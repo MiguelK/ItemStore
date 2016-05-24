@@ -1,6 +1,6 @@
 package com.itemstore.admin.dto;
 
-import com.itemstore.model.ItemGroup;
+import com.itemstore.engine.model.ItemGroup;
 
 import java.util.List;
 

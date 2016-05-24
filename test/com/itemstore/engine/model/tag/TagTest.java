@@ -1,6 +1,5 @@
 package com.itemstore.engine.model.tag;
 
-import com.itemstore.model.tag.TagContainer;
 import junit.framework.Assert;
 import org.testng.annotations.Test;
 

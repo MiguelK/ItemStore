@@ -1,23 +1,21 @@
 package com.itemstore.engine;
 
 
-import com.itemstore.commons.AsyncService;
 import com.itemstore.collector.ItemCollector;
 import com.itemstore.collector.ItemCollectorListener;
 import com.itemstore.collector.ItemCollectorRunner;
+import com.itemstore.commons.AsyncService;
 import com.itemstore.engine.event.EventType;
 import com.itemstore.engine.event.Events;
-import com.itemstore.collector.loader.rss.Channel;
-import com.itemstore.collector.loader.rss.ChannelLoader;
-import com.itemstore.model.Item;
+import com.itemstore.engine.model.Item;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Predicate;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Logger;
-
 
 //FIXME rename ItemStore, ItemEngine
 public final class ItemEngine implements ItemCollectorListener {
@@ -41,7 +39,7 @@ public final class ItemEngine implements ItemCollectorListener {
 
     @Override
     public void handleNewItems(List<Item> items) {
-        LOG.fine("handleNewItems " + items);
+        LOG.fine("handleNewItems recived from collector" + items);
 
         writeLock.lock();
         /*try {
@@ -54,8 +52,6 @@ public final class ItemEngine implements ItemCollectorListener {
         //FIXME
     }
 
-
-
     public void registerItem(Item item) {
         writeLock.lock();
         try {
@@ -67,7 +63,6 @@ public final class ItemEngine implements ItemCollectorListener {
             writeLock.unlock();
         }
     }
-
 
     public void registerItems(List<Item> items) {
         writeLock.lock();

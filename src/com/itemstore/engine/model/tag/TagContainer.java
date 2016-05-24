@@ -1,4 +1,4 @@
-package com.itemstore.model.tag;
+package com.itemstore.engine.model.tag;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;

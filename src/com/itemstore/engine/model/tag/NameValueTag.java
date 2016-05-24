@@ -1,4 +1,4 @@
-package com.itemstore.model.tag;
+package com.itemstore.engine.model.tag;
 
 public class NameValueTag implements Tag {
 

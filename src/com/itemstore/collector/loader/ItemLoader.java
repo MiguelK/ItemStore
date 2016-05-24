@@ -1,7 +1,7 @@
 package com.itemstore.collector.loader;
 
-import com.itemstore.model.Item;
-import com.itemstore.model.tag.TagContainer;
+import com.itemstore.engine.model.Item;
+import com.itemstore.engine.model.tag.TagContainer;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;

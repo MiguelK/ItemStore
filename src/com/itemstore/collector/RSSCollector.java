@@ -1,11 +1,7 @@
 package com.itemstore.collector;
 
-import com.itemstore.collector.loader.Loader;
 import com.itemstore.collector.loader.rss.Channel;
-import com.itemstore.collector.loader.rss.ChannelLoader;
 import com.itemstore.commons.EngineConf;
-import com.itemstore.engine.ItemEngine;
-import com.itemstore.model.Item;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletConfig;

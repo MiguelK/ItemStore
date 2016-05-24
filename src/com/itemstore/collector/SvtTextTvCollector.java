@@ -1,6 +1,6 @@
 package com.itemstore.collector;
 
-import com.itemstore.model.Item;
+import com.itemstore.engine.model.Item;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;

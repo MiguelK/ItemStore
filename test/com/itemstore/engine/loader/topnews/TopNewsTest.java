@@ -2,7 +2,7 @@ package com.itemstore.engine.loader.topnews;
 
 import com.itemstore.collector.loader.topnews.TopNews;
 import com.itemstore.collector.loader.topnews.TopNewsSweden;
-import com.itemstore.model.Item;
+import com.itemstore.engine.model.Item;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

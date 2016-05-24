@@ -1,7 +1,7 @@
 package com.itemstore.collector;
 
 import com.itemstore.engine.event.EventType;
-import com.itemstore.model.Item;
+import com.itemstore.engine.model.Item;
 
 import java.util.List;
 

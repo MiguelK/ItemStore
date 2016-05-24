@@ -1,8 +1,8 @@
 package com.itemstore.engine;
 
-import com.itemstore.model.Item;
-import com.itemstore.model.ItemGroup;
-import com.itemstore.model.tag.TagContainer;
+import com.itemstore.engine.model.Item;
+import com.itemstore.engine.model.ItemGroup;
+import com.itemstore.engine.model.tag.TagContainer;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
 

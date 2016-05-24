@@ -3,7 +3,7 @@ package com.itemstore.admin.impl;
 import com.itemstore.engine.ItemEngine;
 import com.itemstore.admin.Action;
 import com.itemstore.admin.dto.StatisticsDTO;
-import com.itemstore.model.Item;
+import com.itemstore.engine.model.Item;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;

@@ -1,9 +1,11 @@
 package com.itemstore.api;
 
+import com.itemstore.api.response.dto.ItemGroupResponse;
 import com.itemstore.commons.AsyncService;
 import com.itemstore.engine.ItemEngine;
-import com.itemstore.model.Item;
-import com.itemstore.model.tag.TagContainer;
+import com.itemstore.engine.ItemStore;
+import com.itemstore.engine.model.Item;
+import com.itemstore.engine.model.tag.TagContainer;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,11 +34,15 @@ public class ItemGroup {
         //List<String> tags) FIXME etc more params
         //int resultSize =10
 
+        List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemStore.getInstance().searchItemGroups();//FIXME
+
+        ItemGroupResponse res = ItemGroupResponse.create(itemGroupGroups);
+
 
        // List<com.itemstore.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().getItemGroupsForUser(userId);
-      //  ItemGroupsForUserResponse response = ItemGroupsForUserResponse.createResponse(itemGroupGroups);
+      // ItemGroupsForUserResponse response = ItemGroupsForUserResponse.createResponse(itemGroupGroups);
 
-        return Response.status(Response.Status.OK).entity("FIXME").build();
+        return Response.status(Response.Status.OK).entity(res).build();
     }
 
 
