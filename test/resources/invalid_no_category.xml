@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<PostCardStorage>
+
+    <Name>Unused</Name>
+
+    <PostCards>
+        <PostCard>
+            <Image1>sodermalm/slussen/Slussen1_2176x1224.png</Image1>
+            <Title>Östermalm</Title>
+            <Description/>
+            <Year/>
+            <Tags>
+                <Tag>TV_OLD_STOCKHOLM_CATEGORY_HEADER#Östermalm</Tag>
+            </Tags>
+        </PostCard>
+
+        <!-- Wrong sub category, not Östermalm -->
+        <PostCard>
+            <Image1>sodermalm/slussen/Slussen1_2176x1224.png</Image1>
+            <Title>Slussen 1</Title>
+            <Description/>
+            <Year/>
+            <Tags>
+                <Tag>TV_OLD_STOCKHOLM_CATEGORY#Södermalm</Tag>
+                <Tag>TV_OLD_STOCKHOLM_STREET_NAME#Slussen</Tag>
+            </Tags>
+        </PostCard>
+
+    </PostCards>
+</PostCardStorage>

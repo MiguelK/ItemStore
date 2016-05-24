@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Old Stockholm (Open Shift)" type="openshift-deploy" factoryName="OpenShift Deployment" server-name="OpenShift">
+    <deployment type="module" name="ItemStore">
+      <settings>
+        <option name="defaultDeploymentName" value="false" />
+        <option name="deploymentName" value="flowengine" />
+      </settings>
+    </deployment>
+    <method>
+      <option name="BuildArtifacts" enabled="true">
+        <artifact name="ItemStore:war" />
+        <artifact name="ItemStore:war exploded" />
+      </option>
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="All Test" run_configuration_type="TestNG" />
+    </method>
+  </configuration>
+</component>

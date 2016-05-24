@@ -1,0 +1,45 @@
+Index: web/tv/oldstockholm/client/js/Presenter.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- web/tv/oldstockholm/client/js/Presenter.js	(revision b3b8f527b54fe178867020e881041f45068d2560)
++++ web/tv/oldstockholm/client/js/Presenter.js	(revision )
+@@ -112,7 +112,19 @@
+         var self = this,
+             ele = event.target,
+             templateURL = ele.getAttribute("template"),
++            videoURL = ele.getAttribute("videoURL"),
+             presentation = ele.getAttribute("presentation");
++
++        if(videoURL) {
++            //2
++            var player = new Player();
++            var playlist = new Playlist();
++            var mediaItem = new MediaItem("video", videoURL);
++
++            player.playlist = playlist;
++            player.playlist.push(mediaItem);
++            player.present();
++        }
+ 
+         /*
+         Check if the selected element has a 'template' attribute. If it does then we begin
+Index: src/com/flow/tv/tvml/Lockup.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/com/flow/tv/tvml/Lockup.java	(revision b3b8f527b54fe178867020e881041f45068d2560)
++++ src/com/flow/tv/tvml/Lockup.java	(revision )
+@@ -16,6 +16,10 @@
+     @XmlAttribute
+     private String template;
+ 
++    @XmlAttribute
++    private String videoURL="http://www.oppetarkiv.se/video/4084293/journalfilm";
++
++    //
+     private static final String TEMPLATE_PREFIX = "${this.BASEURL}tv/oldstockholm?template=";
+ 
+     protected Lockup() {

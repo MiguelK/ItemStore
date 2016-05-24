@@ -1,0 +1,106 @@
+//Swedish news
+http://www.aftonbladet.se/rss.xml;;Swe,Nyheter;;15
+http://realtid.se/rss/senaste;;Swe,Nyheter;;15
+http://www.dn.se/nyheter/m/rss;;Swe,Nyheter;;15
+http://www.metro.se/rss.xml;;Swe,Nyheter;;15
+http://gt.expressen.se/rss/nyheter;;Swe,Nyheter;;15
+http://www.expressen.se/1.573280?standAlone=true;;Swe,Nyheter;;15
+http://www.tv4.se/rss;;Swe,News;;15
+http://www.nyhetsportalen.se/?t=1616&rss=1&na=15;; Swe,Nyheter","Swe,Nyheter,Stockholm;;15
+http://www.aftonbladet.se/nojesliv/rss.xml;;Swe,Nyheter;;15
+http://www.dn.se/debatt/m/rss;;Swe,Nyheter;;15
+http://www.dn.se/nyheter/m/rss/senaste-nytt;;Swe,Nyheter;;15
+http://www.sydsvenskan.se/rss.xml;;Swe,Nyheter;;15
+http://www.gp.se/1.165654;;Swe,Nyheter;;15
+http://www.svd.se/?service=rss&type=latest;;Swe,Nyheter;;15
+http://www.svd.se/?service=rss;;Swe,Nyheter;;15
+http://www.svd.se/stockholm/nyheter/?service=rss;;Swe,Nyheter;;15
+http://www.svd.se/nyheter/inrikes/?service=rss;;Swe,Nyheter;;15
+http://www.svd.se/nyheter/utrikes/?service=rss;;Swe,Nyheter;;15
+http://www.nyhetsportalen.se//?na=25&&rss=1;;Swe,Nyheter;;15
+http://api.sr.se/api/rssfeed/rssfeed.aspx?rssfeed=83;;Swe,Nyheter;;15
+http://api.sr.se/api/rssfeed/rssfeed.aspx?rssfeed=1646;;Swe,Nyheter;;15
+http://kvp.expressen.se/rss/nyheter;;Swe,Nyheter;;15
+http://rss.barometern.se/bot-nyheter;;Swe,Nyheter;;15
+http://arbetarbladet.se/1.18218;;Swe,Nyheter;;15
+
+//Swedish blogs
+http://blogg.se/rss.xml;;Swe,Bloggar;;15
+http://kenzas.se/feed/;;Swe,Bloggar;;15
+http://blondinbella.se/feed/;;Swe,Bloggar;;15
+http://fokis.se/feed/;;Swe,Bloggar;;15
+http://www.kissies.se/feed;;Swe,Bloggar;;15
+http://teatermagasinet.se/?feed=rss2;;Swe,Bloggar;;15
+http://www.newsmill.se/rss/senaste-artiklarna;;Swe,Bloggar;;15
+http://jinge.se/feed;;Swe,Bloggar;;15
+http://feeds.feedburner.com/tjuvlyssnat;;Swe,Bloggar;;15
+http://feeds.feedburner.com/bakomrubrikerna;;Swe,Bloggar;;15
+http://carlbildt.wordpress.com/feed/;;Swe,Bloggar;;15
+http://henrikalexandersson.blogspot.com/feeds/posts/default?alt=rss;;Swe,Bloggar;;15
+http://blog.zaramis.se/feed/;;Swe,Bloggar;;15
+http://www.uppdragbarn.se/feed/;;Swe,Bloggar;;15
+http://www.posh24.se/feed;;Swe,Bloggar;;15
+http://www.dn.se/blogg/feed/;;Swe,Bloggar;;15
+http://blogg.aftonbladet.se/feeds/entries/schulman/rss;;Swe,Bloggar;;15
+http://blogg.aftonbladet.se/feeds/entries/zandra/rss;;Swe,Bloggar;;15
+http://feeds.feedburner.com/filipochfredrik/podcast;;Swe,Bloggar;;15
+http://feeds.feedburner.com/filipochfredrik/feed;;Swe,Bloggar;;15
+http://www.alliansfrittsverige.nu/feeds/posts/default?alt=rss;;Swe,Bloggar;;15
+http://blogg.aftonbladet.se/feeds/entries/annabook/rss;;Swe,Bloggar;;15
+http://swedenconfidential.wordpress.com/feed/;;Swe,Bloggar;;15
+http://www.alltforforaldrar.se/rss.xml;;Swe,Bloggar;;15
+http://charlotteperrelli.chic.se/feed/;;Swe,Bloggar;;15
+http://blogg.svt.se/ebba/feed/;;Swe,Bloggar;;15
+http://stylebykling.nowmanifest.com/feed/,Swe;;Bloggar;;15
+http://magdalenagraaf.se/feed/;;Swe,Bloggar;;15
+http://www.magnusuggla.nu/feed/;;Swe,Bloggar;;15
+http://blogg.amelia.se/maria-montazami/feed/;;Swe,Bloggar;;15
+http://allasbloggar.blogg.se/index.rss;;Swe,Bloggar;;15
+http://emdtour.blogg.se/index.rss;;Swe,Bloggar;;15
+http://ifkgoteborg.blogspot.com/rss.xml;;Swe,Bloggar;;15
+http://feeds.feedburner.com/AnnaRitar;;Swe,Bloggar;;15
+http://blog.godaremat.se/rss.xml;;Swe,Bloggar;;15
+http://argaklara.com/feed/;;Swe,Bloggar;;15
+http://veryfunnypics.eu/feed/;;Swe,Bloggar;;15
+http://gynning.net/feed/;;Swe,Bloggar;;15
+http://www.nattstad.se/visit_blogg_rss.ashx?id=765682;;Swe,Bloggar;;15
+http://tyras.se/feed/;;Swe,Bloggar;;15
+http://wisemanswisdoms.blogspot.se/feeds/posts/default;;Swe,Bloggar;;15
+
+
+//Swdish sport
+http://www.aftonbladet.se/sportbladet/rss.xml;;Swe,Sport,Toplist ;;15
+http://www.aikfotboll.se/AIKFeed/AIKFeed/rss/START;;Swe,Sport;;15
+http://www.aikforum.se/external.php?type=RSS2;;Swe,Sport,Swe,Sport,AIK Fotboll;;15
+
+//English news
+http://rss.cnn.com/services/podcasting/newscast/rss.xml";;Eng,News;;15
+http://feeds.bbci.co.uk/news/rss.xml";;Eng,News;;15
+http://feeds.washingtonpost.com/rss/world";;Eng,News;;15
+http://feeds.washingtonpost.com/rss/world/americas";;Eng,News;;15
+http://feeds.washingtonpost.com/rss/world/europe";;Eng,News;;15
+
+
+//FIXME make xml file-...
+ //ENglish   ----- Photo/Foto
+http://www.photographica.org/rss/main/show;;Eng,Photo;;15
+http://feeds.feedburner.com/EarthShots";;Eng,Photo;;15
+http://feeds.feedburner.com/DigitalPhotographySchool;;Eng,Photo;;15
+http://feeds.feedburner.com/jmg-galleries;;Eng,Photo;;15
+http://kelbytv.com/photoshopusertv/feed/rss/;;Eng,Photo;;15
+http://blog.epicedits.com/2007/11/07/87-great-photography-blogs-and-feeds/;;Eng,Photo;;15
+http://feeds.feedburner.com/blogspot/kecE;;Eng,Photo;;15
+
+
+
+
+
+
+
+
+
+
+
+
+
+
