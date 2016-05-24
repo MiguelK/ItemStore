@@ -1,4 +1,4 @@
-package com.itemstore.engine.loader;
+package com.itemstore.collector.loader;
 
 import org.apache.commons.io.IOUtils;
 

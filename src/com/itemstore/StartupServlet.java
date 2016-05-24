@@ -2,12 +2,12 @@ package com.itemstore;
 
 import com.itemstore.commons.EngineConf;
 import com.itemstore.engine.ItemEngine;
-import com.itemstore.engine.collector.ItemCollector;
-import com.itemstore.engine.collector.RSSChannelCollector;
-import com.itemstore.engine.loader.Loader;
-import com.itemstore.engine.loader.rss.Channel;
-import com.itemstore.engine.loader.rss.ChannelLoader;
-import com.itemstore.engine.loader.topnews.TopNewsSweden;
+import com.itemstore.collector.ItemCollector;
+import com.itemstore.collector.RSSChannelCollector;
+import com.itemstore.collector.loader.Loader;
+import com.itemstore.collector.loader.rss.Channel;
+import com.itemstore.collector.loader.rss.ChannelLoader;
+import com.itemstore.collector.loader.topnews.TopNewsSweden;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -28,14 +28,7 @@ public class StartupServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
-        setupHardcodeTestValues(config);
-
-        //#1 configure engine load from disk etc...index
-        ItemEngine.getInstance().start();
-    }
-
-    private void setupHardcodeTestValues(ServletConfig config) {
-        logger.info("Starting itemstore engine in ....DEV mode");
+        logger.info("Starting ItemStore...");
 
         File channelFile = EngineConf.getInstance().getChannelsFile(config.getServletContext());
 
@@ -56,6 +49,8 @@ public class StartupServlet extends HttpServlet {
         ItemEngine.getInstance().addCollectors(channelCollectors);
         ItemEngine.getInstance().addCollector(new TopNewsSweden());
 
+        //#1 configure engine load from disk etc...index
+        ItemEngine.getInstance().start();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

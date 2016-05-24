@@ -1,6 +1,6 @@
-package com.itemstore.engine.loader.rss;
+package com.itemstore.collector.loader.rss;
 
-import com.itemstore.engine.loader.Loader;
+import com.itemstore.collector.loader.Loader;
 
 import java.util.ArrayList;
 import java.util.HashSet;

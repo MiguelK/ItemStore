@@ -1,4 +1,4 @@
-package com.itemstore.engine.collector;
+package com.itemstore.collector;
 
 import java.util.List;
 

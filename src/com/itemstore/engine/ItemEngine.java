@@ -2,15 +2,14 @@ package com.itemstore.engine;
 
 
 import com.itemstore.commons.AsyncService;
-import com.itemstore.engine.collector.ItemCollector;
-import com.itemstore.engine.collector.ItemCollectorListener;
-import com.itemstore.engine.collector.ItemCollectorRunner;
+import com.itemstore.collector.ItemCollector;
+import com.itemstore.collector.ItemCollectorListener;
+import com.itemstore.collector.ItemCollectorRunner;
 import com.itemstore.engine.event.EventType;
 import com.itemstore.engine.event.Events;
-import com.itemstore.engine.loader.rss.Channel;
-import com.itemstore.engine.loader.rss.ChannelLoader;
+import com.itemstore.collector.loader.rss.Channel;
+import com.itemstore.collector.loader.rss.ChannelLoader;
 import com.itemstore.model.Item;
-import com.itemstore.model.ItemGroup;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Predicate;
 
@@ -19,10 +18,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Logger;
 
-/**
- * (Synchronized in-memory wrapper for accessing userLoader,itemLoader and  channelManager
- * access read/update the core model User,Item rename o ItemStore
- */
+
 public final class ItemEngine implements ItemCollectorListener {
     private static final Logger logger = Logger.getLogger(ItemEngine.class.getName());
 
@@ -33,8 +29,6 @@ public final class ItemEngine implements ItemCollectorListener {
     private ItemCollectorRunner itemCollectorRunner;
 
     private List<String> itemTags = new ArrayList<String>();
-
-    private Map<String, BasicIndexBuilder.UserResult> userItems;
 
     private static final ItemEngine INSTANCE = new ItemEngine();
 
@@ -143,42 +137,18 @@ public final class ItemEngine implements ItemCollectorListener {
     }
 
 
-    public List<ItemGroup> getItemGroupsForUser(String userId) {
-        readLock.lock();
-        try {
-            List<ItemGroup> itemGroups = userItems.get(userId).getItemGroups();
-            if (itemGroups == null) {
-                return Collections.emptyList();
-            }
-
-            return itemGroups;
-        } finally {
-            readLock.unlock();
-        }
-    }
-
 
 
     public void init(ChannelLoader channelLoader) {
         writeLock.lock();
         try {
             this.channelLoader = channelLoader;
-            userItems = new HashMap<String, BasicIndexBuilder.UserResult>();
             itemCollectorRunner = new ItemCollectorRunner(this); //FIXME
         } finally {
             writeLock.unlock();
         }
     }
 
-
-    public List<Item> getTopNewsForUser(String userid) {
-        readLock.lock();
-        try {
-            return userItems.get(userid).getTopNews();
-        } finally {
-            readLock.unlock();
-        }
-    }
 
     public Collection<Item> searchItems(Predicate<Item> predicate) {
         readLock.lock();

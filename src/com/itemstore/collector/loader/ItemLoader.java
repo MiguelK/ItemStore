@@ -1,4 +1,4 @@
-package com.itemstore.engine.loader;
+package com.itemstore.collector.loader;
 
 import com.itemstore.model.Item;
 import com.itemstore.model.tag.TagContainer;

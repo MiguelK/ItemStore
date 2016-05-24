@@ -1,5 +1,6 @@
 package com.itemstore.engine.loader.rss;
 
+import com.itemstore.collector.loader.rss.Channel;
 import it.sauronsoftware.feed4j.FeedParser;
 import it.sauronsoftware.feed4j.bean.Feed;
 import it.sauronsoftware.feed4j.bean.FeedHeader;

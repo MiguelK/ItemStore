@@ -1,4 +1,4 @@
-package com.itemstore.engine.loader.topnews;
+package com.itemstore.collector.loader.topnews;
 
 import com.itemstore.model.Item;
 import com.itemstore.model.tag.TagContainer;

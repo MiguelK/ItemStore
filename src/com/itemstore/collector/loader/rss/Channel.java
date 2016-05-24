@@ -1,4 +1,4 @@
-package com.itemstore.engine.loader.rss;
+package com.itemstore.collector.loader.rss;
 
 import com.itemstore.commons.StringUtil;
 import org.apache.commons.lang3.StringUtils;

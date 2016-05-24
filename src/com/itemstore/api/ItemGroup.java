@@ -29,8 +29,9 @@ public class ItemGroup {
                                          @PathParam("userId") String userId) {
 
         //List<String> tags) FIXME
+        //int resultSize =10
 
-        List<com.itemstore.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().getItemGroupsForUser(userId);
+       // List<com.itemstore.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().getItemGroupsForUser(userId);
       //  ItemGroupsForUserResponse response = ItemGroupsForUserResponse.createResponse(itemGroupGroups);
 
         return Response.status(Response.Status.OK).entity("FIXME").build();

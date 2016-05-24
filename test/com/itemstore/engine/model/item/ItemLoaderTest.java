@@ -1,8 +1,8 @@
 package com.itemstore.engine.model.item;
 
 import com.itemstore.model.Item;
-import com.itemstore.engine.loader.ItemLoader;
-import com.itemstore.engine.loader.Loader;
+import com.itemstore.collector.loader.ItemLoader;
+import com.itemstore.collector.loader.Loader;
 
 import com.itemstore.model.tag.TagContainer;
 import org.apache.commons.io.FileUtils;
@@ -12,7 +12,6 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.UUID;
 
 public class ItemLoaderTest {
 

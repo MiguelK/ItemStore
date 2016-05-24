@@ -1,5 +1,6 @@
 package com.itemstore.engine.collector;
 
+import com.itemstore.collector.SvtTextTvCollector;
 import com.itemstore.model.Item;
 import org.testng.annotations.Test;
 

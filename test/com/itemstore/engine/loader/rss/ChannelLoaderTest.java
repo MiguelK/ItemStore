@@ -1,6 +1,8 @@
 package com.itemstore.engine.loader.rss;
 
-import com.itemstore.engine.loader.Loader;
+import com.itemstore.collector.loader.Loader;
+import com.itemstore.collector.loader.rss.Channel;
+import com.itemstore.collector.loader.rss.ChannelLoader;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

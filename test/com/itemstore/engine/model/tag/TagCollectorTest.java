@@ -1,6 +1,6 @@
 package com.itemstore.engine.model.tag;
 
-import com.itemstore.engine.collector.TagCollector;
+import com.itemstore.collector.TagCollector;
 import com.itemstore.model.tag.NameValueTag;
 import com.itemstore.model.tag.TagContainer;
 import org.testng.Assert;

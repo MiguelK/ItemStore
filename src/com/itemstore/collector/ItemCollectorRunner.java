@@ -1,4 +1,4 @@
-package com.itemstore.engine.collector;
+package com.itemstore.collector;
 
 import com.itemstore.commons.AsyncService;
 import com.itemstore.commons.EngineConf;

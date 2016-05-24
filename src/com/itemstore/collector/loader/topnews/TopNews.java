@@ -1,6 +1,6 @@
-package com.itemstore.engine.loader.topnews;
+package com.itemstore.collector.loader.topnews;
 
-import com.itemstore.engine.collector.ItemCollectorBase;
+import com.itemstore.collector.ItemCollectorBase;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
