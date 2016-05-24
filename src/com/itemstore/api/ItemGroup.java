@@ -1,8 +1,7 @@
 package com.itemstore.api;
 
-import com.itemstore.api.response.ItemGroupsForUserResponse;
-import com.itemstore.engine.ItemEngine;
 import com.itemstore.commons.AsyncService;
+import com.itemstore.engine.ItemEngine;
 import com.itemstore.model.Item;
 import com.itemstore.model.tag.TagContainer;
 import org.apache.commons.lang3.StringUtils;
@@ -32,9 +31,9 @@ public class ItemGroup {
         //List<String> tags) FIXME
 
         List<com.itemstore.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().getItemGroupsForUser(userId);
-        ItemGroupsForUserResponse response = ItemGroupsForUserResponse.createResponse(itemGroupGroups);
+      //  ItemGroupsForUserResponse response = ItemGroupsForUserResponse.createResponse(itemGroupGroups);
 
-        return Response.status(Response.Status.OK).entity(response).build();
+        return Response.status(Response.Status.OK).entity("FIXME").build();
     }
 
 
