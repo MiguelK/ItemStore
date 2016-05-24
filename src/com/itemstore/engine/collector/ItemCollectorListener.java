@@ -1,7 +1,7 @@
 package com.itemstore.engine.collector;
 
 
-import com.itemstore.engine.model.Item;
+import com.itemstore.model.Item;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.itemstore.admin.impl;
 
-import com.itemstore.engine.FlowEngine;
+import com.itemstore.engine.ItemEngine;
 import com.itemstore.admin.Action;
 import com.google.common.base.Stopwatch;
 
@@ -14,7 +14,7 @@ public class ItemRebuildIndexAction extends Action {
 
         Stopwatch started = Stopwatch.createStarted();
 
-        FlowEngine.getInstance().rebuildIndex();
+        ItemEngine.getInstance().rebuildIndex();
 
         return started.stop().toString();
 

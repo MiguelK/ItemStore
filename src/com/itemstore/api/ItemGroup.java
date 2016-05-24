@@ -1,10 +1,10 @@
 package com.itemstore.api;
 
 import com.itemstore.api.response.ItemGroupsForUserResponse;
-import com.itemstore.engine.FlowEngine;
+import com.itemstore.engine.ItemEngine;
 import com.itemstore.commons.AsyncService;
-import com.itemstore.engine.model.ItemGroup;
-import com.itemstore.engine.model.tag.TagContainer;
+import com.itemstore.model.Item;
+import com.itemstore.model.tag.TagContainer;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,22 +18,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Path("/item")
-public class Item {
+@Path("/itemGroup")
+public class ItemGroup {
 
-    private static final Logger logger = Logger.getLogger(Item.class.getName());
+    private static final Logger logger = Logger.getLogger(ItemGroup.class.getName());
 
     @GET
     @Path("{userId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getItemGroupsForUser(@Context HttpServletRequest request,
+    public Response searchItemGroups(@Context HttpServletRequest request,
                                          @PathParam("userId") String userId) {
 
-        logger.fine("getItemGroupsForUser() userId =" + userId);
+        //List<String> tags) FIXME
 
-
-        List<ItemGroup> itemGroups = FlowEngine.getInstance().getItemGroupsForUser(userId);
-        ItemGroupsForUserResponse response = ItemGroupsForUserResponse.createResponse(itemGroups);
+        List<com.itemstore.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().getItemGroupsForUser(userId);
+        ItemGroupsForUserResponse response = ItemGroupsForUserResponse.createResponse(itemGroupGroups);
 
         return Response.status(Response.Status.OK).entity(response).build();
     }
@@ -41,22 +40,9 @@ public class Item {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getItemComponentsById(@Context HttpServletRequest request, String itemId) {
+    public Response getItemGroupsById(@Context HttpServletRequest request, String itemId) {
 
-        //FIXME TODOD
-        return Response.status(200).entity("").build();
-    }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response searchItemComponentsByTags(@Context HttpServletRequest request, List<String> tags) {
-        //FIXME TODOD
-        return Response.status(200).entity("").build();
-    }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response searchItemComponents(@Context HttpServletRequest request, String searchToken) {
+        //alla goupId's
         //FIXME TODOD
         return Response.status(200).entity("").build();
     }
@@ -118,19 +104,19 @@ public class Item {
         }
 
 
-        com.itemstore.engine.model.Item.Builder builder = new com.itemstore.engine.model.Item.Builder();
+        Item.Builder builder = new Item.Builder();
         builder.title(title).tags(TagContainer.create(tags))
                 .description(description).imageURL1(imageURL1).
                         sourceURL(sourceURL).articleURL1(targetURL).youTubeVideoID(youTubeVideoID);
 
-        final com.itemstore.engine.model.Item item = builder.build();
+        final Item item = builder.build();
 
         //FIXME filter
         try {
             AsyncService.instance().submit(new Runnable() {
                 @Override
                 public void run() {
-                    FlowEngine.getInstance().registerItem(item);
+                    ItemEngine.getInstance().registerItem(item);
                 }
             });
 

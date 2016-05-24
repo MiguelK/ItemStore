@@ -1,10 +1,10 @@
 package com.itemstore.engine.model.item;
 
-import com.itemstore.engine.model.Item;
+import com.itemstore.model.Item;
 import com.itemstore.engine.loader.ItemLoader;
 import com.itemstore.engine.loader.Loader;
 
-import com.itemstore.engine.model.tag.TagContainer;
+import com.itemstore.model.tag.TagContainer;
 import org.apache.commons.io.FileUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;

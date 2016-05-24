@@ -1,7 +1,7 @@
 package com.itemstore.admin.dto;
 
 
-import com.itemstore.engine.model.Item;
+import com.itemstore.model.Item;
 
 import java.util.ArrayList;
 import java.util.List;

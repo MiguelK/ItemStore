@@ -2,7 +2,7 @@ package com.itemstore.api;
 
 
 import com.itemstore.api.response.TagTreeResponse;
-import com.itemstore.engine.model.tag.TagContainer;
+import com.itemstore.model.tag.TagContainer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;

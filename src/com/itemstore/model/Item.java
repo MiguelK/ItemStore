@@ -1,7 +1,7 @@
-package com.itemstore.engine.model;
+package com.itemstore.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.itemstore.engine.model.tag.TagContainer;
+import com.itemstore.model.tag.TagContainer;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;

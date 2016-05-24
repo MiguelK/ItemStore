@@ -1,6 +1,6 @@
 package com.itemstore.engine.loader.topnews;
 
-import com.itemstore.engine.model.Item;
+import com.itemstore.model.Item;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

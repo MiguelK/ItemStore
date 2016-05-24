@@ -1,6 +1,6 @@
 package com.itemstore.admin.impl;
 
-import com.itemstore.engine.FlowEngine;
+import com.itemstore.engine.ItemEngine;
 import com.itemstore.admin.Action;
 import com.itemstore.admin.dto.ChannelDTO;
 import com.itemstore.engine.loader.rss.Channel;
@@ -12,8 +12,8 @@ public class ChannelReloadAction extends Action {
 
     @Override
     protected Object execute(HttpServletRequest request) {
-        FlowEngine.getInstance().reloadChannels();
-        List<Channel> channels = FlowEngine.getInstance().getChannels();
+        ItemEngine.getInstance().reloadChannels();
+        List<Channel> channels = ItemEngine.getInstance().getChannels();
         return ChannelDTO.map(channels);
     }
 }

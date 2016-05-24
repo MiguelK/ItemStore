@@ -1,12 +1,10 @@
 package com.itemstore;
 
 import com.itemstore.commons.EngineConf;
-import com.itemstore.engine.FlowEngine;
+import com.itemstore.engine.ItemEngine;
 import com.itemstore.engine.collector.ItemCollector;
 import com.itemstore.engine.collector.RSSChannelCollector;
-import com.itemstore.engine.loader.ItemLoader;
 import com.itemstore.engine.loader.Loader;
-import com.itemstore.engine.loader.UserLoader;
 import com.itemstore.engine.loader.rss.Channel;
 import com.itemstore.engine.loader.rss.ChannelLoader;
 import com.itemstore.engine.loader.topnews.TopNewsSweden;
@@ -24,50 +22,39 @@ import java.util.logging.Logger;
 
 public class StartupServlet extends HttpServlet {
 
-
-    private static final boolean TV_AND_FLOW_MODE = false;
-
     private static final Logger logger = Logger.getLogger(StartupServlet.class.getName());
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
-        EngineConf.getInstance().load(config);
-
-        setupHardcodeTestValues();
+        setupHardcodeTestValues(config);
 
         //#1 configure engine load from disk etc...index
-        FlowEngine.getInstance().start();
+        ItemEngine.getInstance().start();
     }
 
-    private void setupHardcodeTestValues() {
+    private void setupHardcodeTestValues(ServletConfig config) {
         logger.info("Starting itemstore engine in ....DEV mode");
 
-        File channelFile = EngineConf.getInstance().getChannelsFile();
-        File itemsFile = EngineConf.getInstance().getItemsFile();
-
-        ItemLoader itemLoader = new ItemLoader();
-        itemLoader.setLoadSource(itemsFile, Loader.StorageType.Serializable);
-        UserLoader userLoader = new UserLoader();//FIXME load from userFile
+        File channelFile = EngineConf.getInstance().getChannelsFile(config.getServletContext());
 
         ChannelLoader channelLoader = ChannelLoader.create();
         channelLoader.setLoadSource(channelFile, Loader.StorageType.TextRows);
-        FlowEngine.getInstance().init(channelLoader, userLoader, itemLoader);
+        ItemEngine.getInstance().init(channelLoader); //FIXME Collectore's
 
-        if (TV_AND_FLOW_MODE) {
-            channelLoader.load();
-            List<Channel> channels = channelLoader.getChannels();
-            List<ItemCollector> channelCollectors = new ArrayList<ItemCollector>();
-            for (Channel channel : channels) {
-                RSSChannelCollector channelCollector = new RSSChannelCollector(channel.getUnparsedChannelURL(),
-                        channel.getTags(), channel.getPollFrequencyInSeconds());
-                channelCollectors.add(channelCollector);
-            }// //FIXME
+        channelLoader.load();
 
-            FlowEngine.getInstance().addCollectors(channelCollectors);
-            FlowEngine.getInstance().addCollector(new TopNewsSweden());
-        }
+        List<Channel> channels = channelLoader.getChannels();
+        List<ItemCollector> channelCollectors = new ArrayList<ItemCollector>();
+        for (Channel channel : channels) {
+            RSSChannelCollector channelCollector = new RSSChannelCollector(channel.getUnparsedChannelURL(),
+                    channel.getTags(), channel.getPollFrequencyInSeconds());
+            channelCollectors.add(channelCollector);
+        }// //FIXME
+
+        ItemEngine.getInstance().addCollectors(channelCollectors);
+        ItemEngine.getInstance().addCollector(new TopNewsSweden());
 
     }
 

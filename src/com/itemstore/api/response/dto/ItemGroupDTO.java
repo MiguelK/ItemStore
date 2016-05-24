@@ -1,6 +1,6 @@
 package com.itemstore.api.response.dto;
 
-import com.itemstore.engine.model.ItemGroup;
+import com.itemstore.model.ItemGroup;
 
 import java.util.ArrayList;
 import java.util.List;

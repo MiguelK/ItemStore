@@ -1,10 +1,10 @@
 package com.itemstore.admin.impl;
 
-import com.itemstore.engine.FlowEngine;
+import com.itemstore.engine.ItemEngine;
 import com.itemstore.admin.Action;
 import com.itemstore.admin.dto.ItemDTO;
-import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.tag.TagContainer;
+import com.itemstore.model.Item;
+import com.itemstore.model.tag.TagContainer;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -37,7 +37,7 @@ public class ItemCreateRandomAction extends Action {
             items.add(builder.build());
         }
 
-        FlowEngine.getInstance().registerItems(items);
+        ItemEngine.getInstance().registerItems(items);
 
         return ItemDTO.map(items);
     }

@@ -1,7 +1,7 @@
 package com.itemstore.api.response;
 
 import com.itemstore.api.response.dto.UserDTO;
-import com.itemstore.engine.model.User;
+import com.itemstore.model.User;
 
 import java.util.ArrayList;
 import java.util.List;

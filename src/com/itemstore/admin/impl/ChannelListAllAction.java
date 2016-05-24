@@ -1,6 +1,6 @@
 package com.itemstore.admin.impl;
 
-import com.itemstore.engine.FlowEngine;
+import com.itemstore.engine.ItemEngine;
 import com.itemstore.admin.Action;
 import com.itemstore.admin.dto.ChannelDTO;
 import com.itemstore.engine.loader.rss.Channel;
@@ -12,7 +12,7 @@ public class ChannelListAllAction extends Action {
     @Override
     protected Object execute(HttpServletRequest request) {
 
-        List<Channel> channels = FlowEngine.getInstance().getChannels();
+        List<Channel> channels = ItemEngine.getInstance().getChannels();
 
         return ChannelDTO.map(channels);
     }

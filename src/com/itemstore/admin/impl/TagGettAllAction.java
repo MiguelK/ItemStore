@@ -1,6 +1,6 @@
 package com.itemstore.admin.impl;
 
-import com.itemstore.engine.FlowEngine;
+import com.itemstore.engine.ItemEngine;
 import com.itemstore.admin.Action;
 import com.itemstore.admin.dto.TagDTO;
 
@@ -11,7 +11,7 @@ public class TagGettAllAction extends Action {
 
     @Override
     protected Object execute(HttpServletRequest request) {
-        List<String> tags = FlowEngine.getInstance().getItemTags();
+        List<String> tags = ItemEngine.getInstance().getItemTags();
         return TagDTO.map(tags);
 
     }

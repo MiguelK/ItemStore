@@ -1,8 +1,8 @@
 package com.itemstore.admin.impl;
 
-import com.itemstore.engine.FlowEngine;
+import com.itemstore.engine.ItemEngine;
 import com.itemstore.admin.Action;
-import com.itemstore.engine.model.Item;
+import com.itemstore.model.Item;
 import com.itemstore.commons.StringUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -19,7 +19,7 @@ public class ItemGetByTagsAction extends Action {
 
         final List<String> tags = StringUtil.split(tagsParam);
 
-        return FlowEngine.getInstance().searchItems(new org.apache.commons.collections4.Predicate<Item>() {
+        return ItemEngine.getInstance().searchItems(new org.apache.commons.collections4.Predicate<Item>() {
             @Override
             public boolean evaluate(Item item) {
 

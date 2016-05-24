@@ -1,10 +1,10 @@
 package com.itemstore.admin.impl;
 
-import com.itemstore.engine.FlowEngine;
+import com.itemstore.engine.ItemEngine;
 import com.itemstore.admin.Action;
 import com.itemstore.admin.dto.ItemDTO;
-import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.tag.TagContainer;
+import com.itemstore.model.Item;
+import com.itemstore.model.tag.TagContainer;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +36,7 @@ public class ItemCreateAction extends Action {
                         sourceURL(sourceURL).articleURL1(targetURL).
                         youTubeVideoID(youTubeVideoID).build();
 
-        FlowEngine.getInstance().registerItem(item);
+        ItemEngine.getInstance().registerItem(item);
 
         return ItemDTO.map(Collections.singletonList(item));
 

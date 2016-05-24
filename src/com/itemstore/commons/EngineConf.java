@@ -1,7 +1,7 @@
 package com.itemstore.commons;
 
-import com.itemstore.engine.model.User;
-import com.itemstore.engine.model.tag.TagContainer;
+import com.itemstore.model.User;
+import com.itemstore.model.tag.TagContainer;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.ServletConfig;
@@ -83,26 +83,13 @@ public class EngineConf {
         logger.info("}");
     }
 
-    public void load(ServletConfig servletConfig) {
-        String propertyFile = StringUtils.isNotEmpty(System.getProperty(DEV_PROFILE_KEY)) ?
-                DEV_PROPERTIES_FILE_NAME : PROD_PROPERTIES_FILE_NAME;
-        logger.info("Init EngineConf using property file = " + propertyFile);
-
-        servletContext = servletConfig.getServletContext();
-
-        EngineProperties engineProperties = EngineProperties.loadProperties(propertyFile);
-
-        threadPoolSize = engineProperties.getThreadPoolSize();
-        itemsFile = engineProperties.getItemsFilePath();
-        printConf();
-    }
 
     public InputStream getResourceAsStreamFromWebInf(String path) {
         return servletContext.getResourceAsStream("WEB-INF/" + path);
     }
 
 
-    public File getChannelsFile() {
+    public File getChannelsFile(ServletContext servletContext) {
         String realPath = servletContext.getRealPath("/" + CHANNELS_FILE_NAME);
         File file = new File(realPath);
         FileValidator.validateFile(file, String.format("Unable to read Channels %s file", CHANNELS_FILE_NAME));

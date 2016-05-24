@@ -1,7 +1,7 @@
 package com.itemstore.engine.loader;
 
-import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.tag.TagContainer;
+import com.itemstore.model.Item;
+import com.itemstore.model.tag.TagContainer;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

@@ -1,8 +1,8 @@
 package com.itemstore.engine;
 
-import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.ItemGroup;
-import com.itemstore.engine.model.tag.TagContainer;
+import com.itemstore.model.Item;
+import com.itemstore.model.ItemGroup;
+import com.itemstore.model.tag.TagContainer;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -17,7 +17,10 @@ class BasicIndexBuilder {
 
     private final List<Item> items;
 
-    public BasicIndexBuilder(List<Item> items) {
+    public  BasicIndexBuilder(List<Item> items) {
+        if(items==null || items.isEmpty()){
+            throw  new IllegalArgumentException("No item to inex");
+        }
 
         Set<Item> clean = new HashSet<Item>(items);
 

@@ -1,4 +1,4 @@
-package com.itemstore.engine.model;
+package com.itemstore.model;
 
 import java.io.Serializable;
 import java.util.*;

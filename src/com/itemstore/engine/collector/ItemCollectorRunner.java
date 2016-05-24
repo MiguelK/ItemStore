@@ -4,7 +4,7 @@ import com.itemstore.commons.AsyncService;
 import com.itemstore.commons.EngineConf;
 import com.itemstore.engine.event.EventType;
 import com.itemstore.engine.event.Events;
-import com.itemstore.engine.model.Item;
+import com.itemstore.model.Item;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.*;

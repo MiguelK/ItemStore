@@ -1,6 +1,6 @@
 package com.itemstore.api.response.dto;
 
-import com.itemstore.engine.model.User;
+import com.itemstore.model.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;

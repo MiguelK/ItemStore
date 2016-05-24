@@ -1,9 +1,5 @@
 package com.itemstore.engine;
 
-import com.itemstore.engine.loader.rss.ChannelLoader;
-import com.itemstore.engine.loader.ItemLoader;
-
-import com.itemstore.engine.loader.UserLoader;
 import org.testng.annotations.BeforeMethod;
 
 public class FlowFlowEngineTest {
@@ -11,7 +7,7 @@ public class FlowFlowEngineTest {
 
     @BeforeMethod
     public void setUp() throws Exception {
-        FlowEngine.getInstance().init(ChannelLoader.create(), new UserLoader(), new ItemLoader()); //FIXME
+     //   FlowEngine.getInstance().init(ChannelLoader.create(), new UserLoader(), new ItemLoader()); //FIXME
     }
 
     /*

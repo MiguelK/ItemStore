@@ -1,6 +1,6 @@
 package com.itemstore.api.response.dto;
 
-import com.itemstore.engine.model.Item;
+import com.itemstore.model.Item;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;

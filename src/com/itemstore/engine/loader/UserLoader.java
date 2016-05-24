@@ -1,6 +1,6 @@
 package com.itemstore.engine.loader;
 
-import com.itemstore.engine.model.User;
+import com.itemstore.model.User;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package com.itemstore.api.response;
 
-import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.ItemGroup;
+import com.itemstore.model.Item;
+import com.itemstore.model.ItemGroup;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

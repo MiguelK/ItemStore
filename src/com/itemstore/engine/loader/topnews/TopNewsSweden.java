@@ -1,7 +1,7 @@
 package com.itemstore.engine.loader.topnews;
 
-import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.tag.TagContainer;
+import com.itemstore.model.Item;
+import com.itemstore.model.tag.TagContainer;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

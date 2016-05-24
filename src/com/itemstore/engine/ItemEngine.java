@@ -7,13 +7,10 @@ import com.itemstore.engine.collector.ItemCollectorListener;
 import com.itemstore.engine.collector.ItemCollectorRunner;
 import com.itemstore.engine.event.EventType;
 import com.itemstore.engine.event.Events;
-import com.itemstore.engine.loader.ItemLoader;
-import com.itemstore.engine.loader.UserLoader;
 import com.itemstore.engine.loader.rss.Channel;
 import com.itemstore.engine.loader.rss.ChannelLoader;
-import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.ItemGroup;
-import com.itemstore.engine.model.tag.TagContainer;
+import com.itemstore.model.Item;
+import com.itemstore.model.ItemGroup;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Predicate;
 
@@ -26,13 +23,12 @@ import java.util.logging.Logger;
  * (Synchronized in-memory wrapper for accessing userLoader,itemLoader and  channelManager
  * access read/update the core model User,Item rename o ItemStore
  */
-public final class FlowEngine implements ItemCollectorListener {
-    private static final Logger logger = Logger.getLogger(FlowEngine.class.getName());
+public final class ItemEngine implements ItemCollectorListener {
+    private static final Logger logger = Logger.getLogger(ItemEngine.class.getName());
 
     private final ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
     private final Lock readLock = readWriteLock.readLock();
     private final Lock writeLock = readWriteLock.writeLock();
-    private ItemLoader itemLoader;
     private ChannelLoader channelLoader;
     private ItemCollectorRunner itemCollectorRunner;
 
@@ -40,13 +36,13 @@ public final class FlowEngine implements ItemCollectorListener {
 
     private Map<String, BasicIndexBuilder.UserResult> userItems;
 
-    private static final FlowEngine INSTANCE = new FlowEngine();
+    private static final ItemEngine INSTANCE = new ItemEngine();
 
-    public static FlowEngine getInstance() {
+    public static ItemEngine getInstance() {
         return INSTANCE;
     }
 
-    private FlowEngine() {
+    private ItemEngine() {
     }
 
     @Override
@@ -54,31 +50,23 @@ public final class FlowEngine implements ItemCollectorListener {
         logger.fine("handleNewItems " + items);
 
         writeLock.lock();
-        try {
+        /*try {
             itemLoader.registerItems(items);
         } finally {
             itemLoader.save();
             rebuildIndex(); //FIXME TEST
             writeLock.unlock();
-        }
+        } */
+        //FIXME
     }
 
 
-    public void removeItemsByTags(TagContainer tagContainer) {
-        writeLock.lock();
-        try {
-            itemLoader.removeItemsByTags(tagContainer);
-            itemLoader.save();
-        } finally {
-            writeLock.unlock();
-        }
-    }
 
     public void registerItem(Item item) {
         writeLock.lock();
         try {
-            itemLoader.registerItem(item);
-            itemLoader.save();
+   //         itemLoader.registerItem(item);
+            //         itemLoader.save();
             rebuildIndex(); //FIXME TEST
 
         } finally {
@@ -90,8 +78,8 @@ public final class FlowEngine implements ItemCollectorListener {
     public void registerItems(List<Item> items) {
         writeLock.lock();
         try {
-            itemLoader.registerItems(items);
-            itemLoader.save();
+            //    itemLoader.registerItems(items);
+            // itemLoader.save();
             rebuildIndex(); //FIXME TEST
 
         } finally {
@@ -104,10 +92,10 @@ public final class FlowEngine implements ItemCollectorListener {
 
 
         //FIXME asynch can take long time...
-        BasicIndexBuilder.Result newResult;
+       /* BasicIndexBuilder.Result newResult;
         readLock.lock();
         try {
-            BasicIndexBuilder indexBuilder = new BasicIndexBuilder(itemLoader.getItems());
+            BasicIndexBuilder indexBuilder = new BasicIndexBuilder(null);//FIXME//itemLoader.getItems()); //FIXME
             newResult = indexBuilder.buildIndexForUsers();
         } finally {
             readLock.unlock();
@@ -120,7 +108,7 @@ public final class FlowEngine implements ItemCollectorListener {
             this.itemTags = newResult.getItemTags();
         } finally {
             writeLock.unlock();
-        }
+        }*/
 
         Events.fireEvent(EventType.EngineRebuildIndex);
     }
@@ -129,11 +117,6 @@ public final class FlowEngine implements ItemCollectorListener {
     public void start() {
         writeLock.lock();
         try {
-
-
-            if (itemLoader == null) {
-                throw new IllegalStateException("itemLoader is null, call init() method");
-            }
 
             if (itemCollectorRunner == null) {
                 throw new IllegalStateException("itemCollectorRunner is null, call init() method");
@@ -149,8 +132,6 @@ public final class FlowEngine implements ItemCollectorListener {
 
             //FIXME call load on registers async
             logger.info("Start loading tag/user and item Register...");
-
-            itemLoader.load();
             logger.info("Start channelManager...");
 
             itemCollectorRunner.start();
@@ -178,10 +159,9 @@ public final class FlowEngine implements ItemCollectorListener {
 
 
 
-    public void init(ChannelLoader channelLoader, UserLoader userLoader, ItemLoader itemLoader) {
+    public void init(ChannelLoader channelLoader) {
         writeLock.lock();
         try {
-            this.itemLoader = itemLoader;
             this.channelLoader = channelLoader;
             userItems = new HashMap<String, BasicIndexBuilder.UserResult>();
             itemCollectorRunner = new ItemCollectorRunner(this); //FIXME
@@ -203,7 +183,7 @@ public final class FlowEngine implements ItemCollectorListener {
     public Collection<Item> searchItems(Predicate<Item> predicate) {
         readLock.lock();
         try {
-            List<Item> items = itemLoader.getItems();
+            List<Item> items = null;//FIXEM //itemLoader.getItems();
             return CollectionUtils.select(items, predicate);
         } finally {
             readLock.unlock();
@@ -240,8 +220,6 @@ public final class FlowEngine implements ItemCollectorListener {
             readLock.unlock();
         }
     }
-
-
 
     public void addCollectors(List<ItemCollector> itemCollectors) {
         writeLock.lock();

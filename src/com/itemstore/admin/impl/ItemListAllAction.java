@@ -1,9 +1,9 @@
 package com.itemstore.admin.impl;
 
-import com.itemstore.engine.FlowEngine;
+import com.itemstore.engine.ItemEngine;
 import com.itemstore.admin.Action;
 import com.itemstore.admin.dto.StatisticsDTO;
-import com.itemstore.engine.model.Item;
+import com.itemstore.model.Item;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
@@ -15,7 +15,7 @@ public class ItemListAllAction extends Action {
 
     @Override
     protected Object execute(HttpServletRequest request) {
-        Collection<Item> allItems = FlowEngine.getInstance().searchItems(new org.apache.commons.collections4.Predicate<Item>() {
+        Collection<Item> allItems = ItemEngine.getInstance().searchItems(new org.apache.commons.collections4.Predicate<Item>() {
             @Override
             public boolean evaluate(Item item) {
                 return true;
