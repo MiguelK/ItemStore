@@ -24,7 +24,7 @@
 
     <servlet>
         <servlet-name>StartupServlet</servlet-name>
-        <servlet-class>com.flow.StartupServlet</servlet-class>
+        <servlet-class>com.itemstore.StartupServlet</servlet-class>
         <init-param>
             <param-name>app-conf-path</param-name>
            <!-- <param-value>/Users/miguelkrantz/Documents/intellij-projects/AppBackData</param-value> -->
@@ -37,7 +37,7 @@
 
     <servlet>
         <servlet-name>ViewStatisticsServlet</servlet-name>
-        <servlet-class>com.flow.admin.AdminManagerServlet</servlet-class>
+        <servlet-class>com.itemstore.admin.AdminManagerServlet</servlet-class>
         <load-on-startup>2</load-on-startup>
     </servlet>
 
