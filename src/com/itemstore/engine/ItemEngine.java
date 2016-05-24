@@ -28,8 +28,6 @@ public final class ItemEngine implements ItemCollectorListener {
     private ChannelLoader channelLoader;
     private ItemCollectorRunner itemCollectorRunner;
 
-    private List<String> itemTags = new ArrayList<String>();
-
     private static final ItemEngine INSTANCE = new ItemEngine();
 
     public static ItemEngine getInstance() {
@@ -111,18 +109,15 @@ public final class ItemEngine implements ItemCollectorListener {
     public void start() {
         writeLock.lock();
         try {
-
             if (itemCollectorRunner == null) {
                 throw new IllegalStateException("itemCollectorRunner is null, call init() method");
             }
-
 
             if (channelLoader == null) {
                 throw new IllegalStateException("channelLoader is null, call init() method");
             }
 
             AsyncService.instance().init();
-
 
             //FIXME call load on registers async
             logger.info("Start loading tag/user and item Register...");
@@ -165,27 +160,6 @@ public final class ItemEngine implements ItemCollectorListener {
         try {
 
             return channelLoader.getChannels();
-        } finally {
-            readLock.unlock();
-        }
-    }
-
-    public void reloadChannels() {
-        writeLock.lock();
-        try {
-            //FIXME remove channel collectors and readd
-            throw new UnsupportedOperationException("TODO...");
-            //  channelLoader.reloadChannels(); //FIXME
-        } finally {
-            writeLock.unlock();
-        }
-    }
-
-    public List<String> getItemTags() {
-
-        readLock.lock();
-        try {
-            return itemTags;
         } finally {
             readLock.unlock();
         }
