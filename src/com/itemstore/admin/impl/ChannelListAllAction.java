@@ -12,7 +12,7 @@ public class ChannelListAllAction extends Action {
     @Override
     protected Object execute(HttpServletRequest request) {
 
-        List<Channel> channels = ItemEngine.getInstance().getChannels();
+        List<Channel> channels = null; //FIXMEItemEngine.getInstance().getChannels();
 
         return ChannelDTO.map(channels);
     }

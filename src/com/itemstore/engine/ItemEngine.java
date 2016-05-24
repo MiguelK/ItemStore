@@ -19,13 +19,14 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Logger;
 
 
+//FIXME rename ItemStore, ItemEngine
 public final class ItemEngine implements ItemCollectorListener {
-    private static final Logger logger = Logger.getLogger(ItemEngine.class.getName());
+    private static final Logger LOG = Logger.getLogger(ItemEngine.class.getName());
 
     private final ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
     private final Lock readLock = readWriteLock.readLock();
     private final Lock writeLock = readWriteLock.writeLock();
-    private ChannelLoader channelLoader;
+
     private ItemCollectorRunner itemCollectorRunner;
 
     private static final ItemEngine INSTANCE = new ItemEngine();
@@ -35,11 +36,12 @@ public final class ItemEngine implements ItemCollectorListener {
     }
 
     private ItemEngine() {
+        itemCollectorRunner = new ItemCollectorRunner(this); //FIXME
     }
 
     @Override
     public void handleNewItems(List<Item> items) {
-        logger.fine("handleNewItems " + items);
+        LOG.fine("handleNewItems " + items);
 
         writeLock.lock();
         /*try {
@@ -80,7 +82,7 @@ public final class ItemEngine implements ItemCollectorListener {
     }
 
     public void rebuildIndex() {
-        logger.fine("Start building full index...");
+        LOG.fine("Start building full index...");
 
 
         //FIXME asynch can take long time...
@@ -109,36 +111,12 @@ public final class ItemEngine implements ItemCollectorListener {
     public void start() {
         writeLock.lock();
         try {
-            if (itemCollectorRunner == null) {
-                throw new IllegalStateException("itemCollectorRunner is null, call init() method");
-            }
-
-            if (channelLoader == null) {
-                throw new IllegalStateException("channelLoader is null, call init() method");
-            }
 
             AsyncService.instance().init();
-
-            //FIXME call load on registers async
-            logger.info("Start loading tag/user and item Register...");
-            logger.info("Start channelManager...");
 
             itemCollectorRunner.start();
 
             rebuildIndex();
-        } finally {
-            writeLock.unlock();
-        }
-    }
-
-
-
-
-    public void init(ChannelLoader channelLoader) {
-        writeLock.lock();
-        try {
-            this.channelLoader = channelLoader;
-            itemCollectorRunner = new ItemCollectorRunner(this); //FIXME
         } finally {
             writeLock.unlock();
         }
@@ -155,20 +133,10 @@ public final class ItemEngine implements ItemCollectorListener {
         }
     }
 
-    public List<Channel> getChannels() {
-        readLock.lock();
-        try {
-
-            return channelLoader.getChannels();
-        } finally {
-            readLock.unlock();
-        }
-    }
-
     public void addCollectors(List<ItemCollector> itemCollectors) {
         writeLock.lock();
         try {
-            this.itemCollectorRunner.add(itemCollectors);
+            this.itemCollectorRunner.addCollectors(itemCollectors);
         } finally {
             writeLock.unlock();
         }
@@ -177,7 +145,7 @@ public final class ItemEngine implements ItemCollectorListener {
     public void addCollector(ItemCollector collector) {
         writeLock.lock();
         try {
-            this.itemCollectorRunner.add(collector);
+            this.itemCollectorRunner.addCollector(collector);
         } finally {
             writeLock.unlock();
         }

@@ -13,7 +13,7 @@ public class ChannelReloadAction extends Action {
     @Override
     protected Object execute(HttpServletRequest request) {
        //FIXME ItemEngine.getInstance().reloadChannels();
-        List<Channel> channels = ItemEngine.getInstance().getChannels();
+        List<Channel> channels = null;//FIXME ItemEngine.getInstance().getChannels();
         return ChannelDTO.map(channels);
     }
 }

@@ -32,15 +32,18 @@ public class ItemCollectorRunner {
         this.itemCollectorListener = itemCollectorListener;
     }
 
-    public void add(List<ItemCollector> collectors) {
+    public void addCollectors(List<ItemCollector> collectors) {
         this.collectors.addAll(collectors);
     }
 
-    public void add(ItemCollector collector) {
+    public void addCollector(ItemCollector collector) {
         this.collectors.add(collector);
     }
 
     public void start() {
+        if(collectors.isEmpty()){
+            throw new IllegalStateException("No collectors are registered");
+        }
 
         scheduledExecutorService = Executors.newScheduledThreadPool(EngineConf.getInstance().getThreadPoolSize());
 

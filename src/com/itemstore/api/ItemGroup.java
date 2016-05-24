@@ -23,13 +23,15 @@ public class ItemGroup {
     private static final Logger logger = Logger.getLogger(ItemGroup.class.getName());
 
     @GET
-    @Path("{userId}")
+    @Path("/search")
     @Produces(MediaType.APPLICATION_JSON)
     public Response searchItemGroups(@Context HttpServletRequest request,
-                                         @PathParam("userId") String userId) {
+                                         @QueryParam("excludeIds") List<Integer> excludeIds,
+                                         @QueryParam("resultSize") Integer resultSize) {
 
-        //List<String> tags) FIXME
+        //List<String> tags) FIXME etc more params
         //int resultSize =10
+
 
        // List<com.itemstore.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().getItemGroupsForUser(userId);
       //  ItemGroupsForUserResponse response = ItemGroupsForUserResponse.createResponse(itemGroupGroups);
