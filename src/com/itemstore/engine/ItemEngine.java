@@ -8,11 +8,11 @@ import com.itemstore.commons.AsyncService;
 import com.itemstore.engine.event.EventType;
 import com.itemstore.engine.event.Events;
 import com.itemstore.engine.model.Item;
+import com.itemstore.engine.model.ItemGroup;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Predicate;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Logger;
@@ -24,6 +24,10 @@ public final class ItemEngine implements ItemCollectorListener {
     private final ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
     private final Lock readLock = readWriteLock.readLock();
     private final Lock writeLock = readWriteLock.writeLock();
+
+    private Set<Item> allItems = new HashSet<Item>();
+    private List<String> allItemTags;
+    private List<ItemGroup> allItemGroupsSortedByDate = new ArrayList<ItemGroup>();
 
     private ItemCollectorRunner itemCollectorRunner;
 
@@ -42,23 +46,21 @@ public final class ItemEngine implements ItemCollectorListener {
         LOG.fine("handleNewItems recived from collector" + items);
 
         writeLock.lock();
-        /*try {
-            itemLoader.registerItems(items);
+        try {
+            this.allItems.addAll(items);
+
         } finally {
-            itemLoader.save();
             rebuildIndex(); //FIXME TEST
             writeLock.unlock();
-        } */
+        }
         //FIXME
     }
 
     public void registerItem(Item item) {
         writeLock.lock();
         try {
-   //         itemLoader.registerItem(item);
-            //         itemLoader.save();
+            allItems.add(item);
             rebuildIndex(); //FIXME TEST
-
         } finally {
             writeLock.unlock();
         }
@@ -67,25 +69,29 @@ public final class ItemEngine implements ItemCollectorListener {
     public void registerItems(List<Item> items) {
         writeLock.lock();
         try {
-            //    itemLoader.registerItems(items);
-            // itemLoader.save();
+            allItems.addAll(items);
             rebuildIndex(); //FIXME TEST
-
         } finally {
             writeLock.unlock();
         }
     }
 
     public void rebuildIndex() {
+
+        if(allItems.isEmpty()){
+            return; //FIXME
+        }
+
         LOG.fine("Start building full index...");
 
 
         //FIXME asynch can take long time...
-       /* BasicIndexBuilder.Result newResult;
+        BasicIndexBuilder.Result result;
         readLock.lock();
         try {
-            BasicIndexBuilder indexBuilder = new BasicIndexBuilder(null);//FIXME//itemLoader.getItems()); //FIXME
-            newResult = indexBuilder.buildIndexForUsers();
+
+            BasicIndexBuilder indexBuilder = new BasicIndexBuilder(new ArrayList<Item>(this.allItems));//FIXME new Array..
+            result = indexBuilder.buildIndexForUsers();
         } finally {
             readLock.unlock();
         }
@@ -93,11 +99,11 @@ public final class ItemEngine implements ItemCollectorListener {
         //FIXME
         writeLock.lock();
         try {
-            this.userItems = newResult.getUserItems();
-            this.itemTags = newResult.getItemTags();
+            this.allItemGroupsSortedByDate = result.getItemGroups();
+            this.allItemTags = result.getItemTags();
         } finally {
             writeLock.unlock();
-        }*/
+        }
 
         Events.fireEvent(EventType.EngineRebuildIndex);
     }
@@ -121,12 +127,29 @@ public final class ItemEngine implements ItemCollectorListener {
     public Collection<Item> searchItems(Predicate<Item> predicate) {
         readLock.lock();
         try {
-            List<Item> items = null;//FIXEM //itemLoader.getItems();
-            return CollectionUtils.select(items, predicate);
+            return CollectionUtils.select(allItems, predicate);
         } finally {
             readLock.unlock();
         }
     }
+
+    public List<String> getAllItemTags() {
+        readLock.lock();
+        try {
+            return allItemTags;
+        } finally {
+            readLock.unlock();
+        }
+    }
+
+  /*  public List<String> getAllItemTags() {
+        readLock.lock();
+        try {
+            return itemCollectorRunner.;
+        } finally {
+            readLock.unlock();
+        }
+    }*/
 
     public void addCollectors(List<ItemCollector> itemCollectors) {
         writeLock.lock();

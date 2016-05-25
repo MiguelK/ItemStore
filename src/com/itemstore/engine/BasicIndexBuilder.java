@@ -29,8 +29,7 @@ class BasicIndexBuilder {
 
 
     // 1. Iterate all items, createItemgroups (max x in each)
-    // 2. Iterate all users, collect all itemgroups for each users
-    // 3. done!
+    // 2. Sort... done!
     public Result buildIndexForUsers() {
         Set<String> itemTags = new HashSet<String>();
 
@@ -136,49 +135,33 @@ class BasicIndexBuilder {
             }
         }*/
 
-        Map<String, UserResult> userResults = new HashMap<String, UserResult>();
+/*        Map<String, Result> userResults = new HashMap<String, Result>();
 
         for (Map.Entry<String, List<ItemGroup>> entry : newUserItems.entrySet()) {
             List<Item> topNews = newUserTopNews.get(entry.getKey());
-            userResults.put(entry.getKey(), new UserResult(entry.getValue(), topNews));
-        }
+            userResults.put(entry.getKey(), new Result(entry.getValue(), topNews));
+        } */
 
-        return new Result(userResults, itemTags);
+        return new Result(itemGroups, new ArrayList<String>(itemTags));
     }
 
-    public static final class UserResult {
+    public static final class Result {
         private final List<ItemGroup> itemGroups;
-        private final List<Item> topNews;
+        private final List<String> itemTags;
 
-        public UserResult(List<ItemGroup> itemGroups, List<Item> topNews) {
+        public Result(List<ItemGroup> itemGroups, List<String> itemTags) {
             this.itemGroups = ListUtils.unmodifiableList(itemGroups);
-            this.topNews = ListUtils.unmodifiableList(topNews);
+            this.itemTags = ListUtils.unmodifiableList(itemTags);
         }
 
         public List<ItemGroup> getItemGroups() {
             return itemGroups;
         }
 
-        public List<Item> getTopNews() {
-            return topNews;
-        }
-    }
-
-    public static class Result {
-        private final Map<String, UserResult> userItems;
-        private final List<String> itemTags;
-
-        public Result(Map<String, UserResult> userItems, Set<String> itemTags) {
-            this.userItems = Collections.unmodifiableMap(userItems);
-            this.itemTags = new ArrayList<String>(itemTags);
-        }
-
-        public Map<String, UserResult> getUserItems() {
-            return userItems;
-        }
-
         public List<String> getItemTags() {
             return itemTags;
         }
     }
+
+
 }

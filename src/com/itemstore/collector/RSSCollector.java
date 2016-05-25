@@ -18,8 +18,9 @@ import java.util.logging.Logger;
 
 public class RSSCollector {
 
-    private static final Logger LOG = Logger.getLogger(RSSCollector.class.getName());
+    private static final Set<Channel> channels = new HashSet<Channel>();
 
+    private static final Logger LOG = Logger.getLogger(RSSCollector.class.getName());
 
     public static List<ItemCollector> load(ServletConfig servletConfig) {
         return init(servletConfig);
@@ -51,7 +52,6 @@ public class RSSCollector {
         return channelCollectors;
     }
 
-    private static final Set<Channel> channels = new HashSet<Channel>();
 
 
     private static List<String> loadTextFile(ServletConfig servletConfig) {

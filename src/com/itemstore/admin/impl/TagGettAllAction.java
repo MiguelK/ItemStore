@@ -11,9 +11,7 @@ public class TagGettAllAction extends Action {
 
     @Override
     protected Object execute(HttpServletRequest request) {
-        //List<String> tags = ItemEngine.getInstance().getItemTags();
-        //return TagDTO.map(tags);
-
-        throw new UnsupportedOperationException("TODO");
-    }
+        List<String> tags = ItemEngine.getInstance().getAllItemTags();
+        return TagDTO.map(tags);
+}
 }

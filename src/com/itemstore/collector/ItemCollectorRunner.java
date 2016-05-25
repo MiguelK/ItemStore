@@ -19,7 +19,7 @@ public class ItemCollectorRunner {
 
     static final int EXECUTE_ONLY_ONCE = -1;
 
-    private static final Logger logger = Logger.getLogger(ItemCollectorRunner.class.getName());
+    private static final Logger LOG = Logger.getLogger(ItemCollectorRunner.class.getName());
     private static final int INITIAL_DELAY_SECONDS = 1;
 
     private ScheduledExecutorService scheduledExecutorService; //FIXME use syncService
@@ -47,7 +47,7 @@ public class ItemCollectorRunner {
 
         scheduledExecutorService = Executors.newScheduledThreadPool(EngineConf.getInstance().getThreadPoolSize());
 
-        logger.info("Starting " + getClass().getSimpleName() + " with " + collectors.size() + " collectors");
+        LOG.info("Starting " + getClass().getSimpleName() + " with " + collectors.size() + " collectors");
 
         for (ItemCollector itemCollector : collectors) {
             int pollFrequencyInSeconds = itemCollector.getPollFrequencyInSeconds();
@@ -97,7 +97,7 @@ public class ItemCollectorRunner {
                     return;
                 }
 
-                logger.info("Items to be handled " + notHandledItems.size());
+                LOG.info("Items to be handled " + notHandledItems.size());
 
                 synchronized (itemCollectorListener) {
                     itemCollectorListener.handleNewItems(notHandledItems); //FIXME call in seperate Thread
@@ -110,7 +110,7 @@ public class ItemCollectorRunner {
                 }
 
             } catch (Exception e) {
-                logger.log(Level.SEVERE, "Unable to parse itemCollector " + itemCollector, e);
+                LOG.log(Level.SEVERE, "Unable to parse itemCollector " + itemCollector, e);
             }
         }
     }
