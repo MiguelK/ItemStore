@@ -78,7 +78,7 @@ public final class ItemEngine implements ItemCollectorListener {
 
     public void rebuildIndex() {
 
-        if(allItems.isEmpty()){
+        if (allItems.isEmpty()) {
             return; //FIXME
         }
 
@@ -142,14 +142,14 @@ public final class ItemEngine implements ItemCollectorListener {
         }
     }
 
-  /*  public List<String> getAllItemTags() {
+    public List<ItemGroup> getAllItemGroupsSortedByDate() {
         readLock.lock();
         try {
-            return itemCollectorRunner.;
+            return allItemGroupsSortedByDate;
         } finally {
             readLock.unlock();
         }
-    }*/
+    }
 
     public void addCollectors(List<ItemCollector> itemCollectors) {
         writeLock.lock();

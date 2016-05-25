@@ -28,8 +28,8 @@ public class ItemGroup {
     @Path("/search")
     @Produces(MediaType.APPLICATION_JSON)
     public Response searchItemGroups(@Context HttpServletRequest request,
-                                         @QueryParam("excludeIds") List<Integer> excludeIds,
-                                         @QueryParam("resultSize") Integer resultSize) {
+                                     @QueryParam("excludeIds") List<Integer> excludeIds,
+                                     @QueryParam("resultSize") Integer resultSize) {
 
         //List<String> tags) FIXME etc more params
         //int resultSize =10
@@ -38,21 +38,20 @@ public class ItemGroup {
 
         ItemGroupResponse res = ItemGroupResponse.create(itemGroupGroups);
 
-
-       // List<com.itemstore.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().getItemGroupsForUser(userId);
-      // ItemGroupsForUserResponse response = ItemGroupsForUserResponse.createResponse(itemGroupGroups);
-
         return Response.status(Response.Status.OK).entity(res).build();
     }
 
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getItemGroupsById(@Context HttpServletRequest request, String itemId) {
+    public Response getItemGroupsById(@Context HttpServletRequest request,
+                                      @QueryParam("itemGroupIds") List<Integer> itemGroupIds) {
 
-        //alla goupId's
-        //FIXME TODOD
-        return Response.status(200).entity("").build();
+        //alla goupId's //FIXME check id's
+        List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate();
+
+        ItemGroupResponse res = ItemGroupResponse.create(itemGroupGroups);
+
+        return Response.status(200).entity(res).build();
     }
 
 
@@ -94,7 +93,7 @@ public class ItemGroup {
 
     //  @Consumes(MediaType.APPLICATION_JSON)
 
-    @POST
+    @POST //FIXME Remove ????
     @Produces(MediaType.APPLICATION_JSON)
     public Response addItem(@Context HttpServletRequest request,
                             MultivaluedMap<String, String> parameters) {
@@ -115,7 +114,7 @@ public class ItemGroup {
         Item.Builder builder = new Item.Builder();
         builder.title(title).tags(TagContainer.create(tags))
                 .description(description).imageURL1(imageURL1).
-                        sourceURL(sourceURL).articleURL1(targetURL).youTubeVideoID(youTubeVideoID);
+                sourceURL(sourceURL).articleURL1(targetURL).youTubeVideoID(youTubeVideoID);
 
         final Item item = builder.build();
 

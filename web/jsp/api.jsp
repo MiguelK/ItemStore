@@ -17,41 +17,13 @@
 
     <table>
         <tr>
-            <td>User with empty result</td>
-            <td><a href="<%=jsonServiceURL%>item/9999"> getItemComponentsForUser/9999 </a></td>
-        </tr>
-
-        <tr>
-            <td>User not found</td>
-            <td><a href="<%=jsonServiceURL%>item/9111999"> getItemComponentsForUser/9111999 </a></td>
-        </tr>
-
-        <tr>
-            <td>User 1</td>
-            <td><a href="<%=jsonServiceURL%>item/1"> getItemComponentsForUser/1 </a>
-            </td>
-        </tr>
-        <tr>
-            <td>User 2 (TV Old Stockholm)</td>
-            <td><a href="<%=jsonServiceURL%>item/2"> getItemComponentsForUser/2 </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Toplist</td>
-            <td><a href="<%=jsonServiceURL%>item/toplist/1"> getTopNewsByLocation </a>
+            <td>ItemGroup</td>
+            <td><a href="<%=jsonServiceURL%>itemGroup"> getItemGroupsById() ALL (No param) </a>
             </td>
         </tr>
     </table>
 
-    <table border="1px">
-        <tr>
-            <td>List all users
-            <td>
-            <td><a href="<%=jsonServiceURL%>user"> getUsers </a>
-            </td>
-        </tr>
-    </table>
+    <br>
 
     <table border="1px">
         <tr>
@@ -62,6 +34,7 @@
         </tr>
     </table>
 
+    <br>
 
     <form id="formId" action="<%=jsonServiceURL%>user" method="post" target="_self">
         .
