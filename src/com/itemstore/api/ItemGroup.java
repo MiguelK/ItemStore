@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
@@ -35,6 +36,23 @@ public class ItemGroup {
         //int resultSize =10
 
         List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemStore.getInstance().searchItemGroups();//FIXME
+
+        ItemGroupResponse res = ItemGroupResponse.create(itemGroupGroups);
+
+        return Response.status(Response.Status.OK).entity(res).build();
+    }
+
+    @GET
+    @Path("/search/tag/{tagName}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response searchItemGroupsByTags(@Context HttpServletRequest request,
+                                     @PathParam("tagName") String tagName) {
+
+        List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().searchItemsByTags(Collections.singletonList(tagName));
+        //List<String> tags) FIXME etc more params
+        //int resultSize =10
+
+    //    List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemStore.getInstance().searchItemGroups();//FIXME
 
         ItemGroupResponse res = ItemGroupResponse.create(itemGroupGroups);
 

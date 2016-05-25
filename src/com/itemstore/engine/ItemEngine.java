@@ -133,6 +133,33 @@ public final class ItemEngine implements ItemCollectorListener {
         }
     }
 
+    public List<ItemGroup> searchItemsByTags(final List<String> tags) {
+        readLock.lock();
+        try {
+
+            Predicate<ItemGroup> predicate = new Predicate<ItemGroup>() {
+                @Override
+                public boolean evaluate(ItemGroup item) {
+
+                    boolean tagsMatch = true;
+                    if (!tags.isEmpty()) {
+                        tagsMatch = CollectionUtils.containsAny(item.getTags(), tags);
+                    }
+
+
+                    return tagsMatch;
+                }
+            };
+
+            return new ArrayList<ItemGroup>(CollectionUtils.select(allItemGroupsSortedByDate, predicate));
+
+        } finally {
+            readLock.unlock();
+        }
+    }
+
+
+
     public List<String> getAllItemTags() {
         readLock.lock();
         try {
