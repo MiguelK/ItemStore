@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 class BasicIndexBuilder {
 
-    private static final Logger logger = Logger.getLogger(BasicIndexBuilder.class.getName());
+    private static final Logger LOG = Logger.getLogger(BasicIndexBuilder.class.getName());
     private static final int MAX_NUMBER_OF_TOP_ITEMS_TO_SHOW = 25;
     private static final int MAX_ITEM_IN_GROUP = 5;
 
@@ -28,7 +28,7 @@ class BasicIndexBuilder {
     }
 
 
-    // 1. Iterate all items, createItemgroups (max x in each)
+    // 1. Iterate all items, create ItemGroups (max x in each)
     // 2. Sort... done!
     public Result buildIndexForUsers() {
         Set<String> itemTags = new HashSet<String>();
@@ -121,7 +121,7 @@ class BasicIndexBuilder {
                 }
 
                 if (CollectionUtils.containsAny(userExcludeTags, itemGroup.getTags())) {
-                    logger.fine("Exclude " + itemGroup.getTags());
+                    LOG.fine("Exclude " + itemGroup.getTags());
                     continue; //Exclude filter isSimilarText
                 }
 
@@ -134,13 +134,6 @@ class BasicIndexBuilder {
 
             }
         }*/
-
-/*        Map<String, Result> userResults = new HashMap<String, Result>();
-
-        for (Map.Entry<String, List<ItemGroup>> entry : newUserItems.entrySet()) {
-            List<Item> topNews = newUserTopNews.get(entry.getKey());
-            userResults.put(entry.getKey(), new Result(entry.getValue(), topNews));
-        } */
 
         return new Result(itemGroups, new ArrayList<String>(itemTags));
     }

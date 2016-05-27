@@ -23,32 +23,40 @@ import java.util.logging.Logger;
 @Path("/itemGroup")
 public class ItemGroup {
 
-    private static final Logger logger = Logger.getLogger(ItemGroup.class.getName());
+    private static final Logger LOG = Logger.getLogger(ItemGroup.class.getName());
 
     @GET
     @Path("/search")
     @Produces(MediaType.APPLICATION_JSON)
     public Response searchItemGroups(@Context HttpServletRequest request,
-                                     @QueryParam("excludeIds") List<Integer> excludeIds,
+                                     @QueryParam("excludeTagForest") String excludeTagForest,
+                                     @QueryParam("favoriteTagForest") String favoriteTagForest,
                                      @QueryParam("resultSize") Integer resultSize) {
 
         //List<String> tags) FIXME etc more params
         //int resultSize =10
+            //swe_sport_zlatan
+           //swe_sport_fotboll_os_zlatan
+            //eng_news
 
-        List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemStore.getInstance().searchItemGroups();//FIXME
+        List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance()
+                .searchItemsByTags(Collections.singletonList("Nyheter")); //FIXME use TagForest
+
+//        List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemStore.getInstance().searchItemGroups();//FIXME
 
         ItemGroupResponse res = ItemGroupResponse.create(itemGroupGroups);
 
         return Response.status(Response.Status.OK).entity(res).build();
     }
 
-    @GET
+   /* @GET
     @Path("/search/tag/{tagName}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response searchItemGroupsByTags(@Context HttpServletRequest request,
-                                     @PathParam("tagName") String tagName) {
+                                            @PathParam("tagName") String tagName) {
 
-        List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().searchItemsByTags(Collections.singletonList(tagName));
+        List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance()
+                .searchItemsByTags(Collections.singletonList(tagName));
         //List<String> tags) FIXME etc more params
         //int resultSize =10
 
@@ -57,7 +65,7 @@ public class ItemGroup {
         ItemGroupResponse res = ItemGroupResponse.create(itemGroupGroups);
 
         return Response.status(Response.Status.OK).entity(res).build();
-    }
+    } */
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

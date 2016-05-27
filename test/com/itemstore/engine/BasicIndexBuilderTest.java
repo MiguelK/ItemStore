@@ -1,6 +1,24 @@
 package com.itemstore.engine;
 
+import com.itemstore.engine.model.Item;
+import com.itemstore.engine.model.tag.TagContainer;
+import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class BasicIndexBuilderTest {
+    @Test
+    public void testBuildIndexForUsers() {
+
+        List<Item> items = new ArrayList<Item>();
+
+        items.add(new Item.Builder().title("Test aaa").tags(TagContainer.create(Arrays.asList("Swe", "Sport"))).build());
+        items.add(new Item.Builder().title("Test DUPLICATE").tags(TagContainer.create(Arrays.asList("Swe", "Sport"))).build());
+
+
+    }
 
    /* @Test
     public void buildIndex_3_composite_exclude_eng() {
