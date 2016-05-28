@@ -1,22 +1,16 @@
 package com.itemstore.api;
 
 import com.itemstore.api.response.dto.ItemGroupResponse;
-import com.itemstore.commons.AsyncService;
 import com.itemstore.engine.ItemEngine;
-import com.itemstore.engine.ItemStore;
-import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.tag.TagContainer;
-import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -31,18 +25,21 @@ public class ItemGroup {
     public Response searchItemGroups(@Context HttpServletRequest request,
                                      @QueryParam("excludeTagForest") String excludeTagForest,
                                      @QueryParam("favoriteTagForest") String favoriteTagForest,
-                                     @QueryParam("resultSize") Integer resultSize) {
+                                     @QueryParam("skipItemGroupIds")List<Integer> skipItemGroupIds,
+                                     @QueryParam("itemGroupIds") List<Integer> itemGroupIds,
+                                     @QueryParam("maxResultSize") Integer maxResultSize) {
 
         //List<String> tags) FIXME etc more params
         //int resultSize =10
             //swe_sport_zlatan
            //swe_sport_fotboll_os_zlatan
             //eng_news
+        List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate();
 
-        List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance()
-                .searchItemsByTags(Collections.singletonList("Nyheter")); //FIXME use TagForest
+        LOG.info("excludeTagForest=" + excludeTagForest);
 
-//        List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemStore.getInstance().searchItemGroups();//FIXME
+        //List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance()
+          //      .searchItemsByTags(Collections.singletonList("Nyheter")); //FIXME use TagForest
 
         ItemGroupResponse res = ItemGroupResponse.create(itemGroupGroups);
 
@@ -50,7 +47,7 @@ public class ItemGroup {
     }
 
    /* @GET
-    @Path("/search/tag/{tagName}")
+    @Path("/search/tag2/{tagName}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response searchItemGroupsByTags(@Context HttpServletRequest request,
                                             @PathParam("tagName") String tagName) {
@@ -67,7 +64,7 @@ public class ItemGroup {
         return Response.status(Response.Status.OK).entity(res).build();
     } */
 
-    @GET
+   /* @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getItemGroupsById(@Context HttpServletRequest request,
                                       @QueryParam("itemGroupIds") List<Integer> itemGroupIds) {
@@ -78,9 +75,7 @@ public class ItemGroup {
         ItemGroupResponse res = ItemGroupResponse.create(itemGroupGroups);
 
         return Response.status(200).entity(res).build();
-    }
-
-
+    }*/
 
     /*@POST
     @Path("/{itemId}/{userId}")
@@ -119,7 +114,7 @@ public class ItemGroup {
 
     //  @Consumes(MediaType.APPLICATION_JSON)
 
-    @POST //FIXME Remove ????
+    /*@POST //FIXME Remove ????
     @Produces(MediaType.APPLICATION_JSON)
     public Response addItem(@Context HttpServletRequest request,
                             MultivaluedMap<String, String> parameters) {
@@ -159,5 +154,5 @@ public class ItemGroup {
         }
 
         return Response.status(Response.Status.OK).build();
-    }
+    }*/
 }

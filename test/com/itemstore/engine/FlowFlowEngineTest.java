@@ -117,7 +117,7 @@ public class FlowFlowEngineTest {
 
         List<ItemGroup> itemGroupsForUser = FlowEngine.getInstance().getItemGroupsForUser(user.getId());//asJson()
         String json = JsonUtil.toJson(itemGroupsForUser);
-        System.out.println("Result = " + json); //itemA1 and itemA2 as composite (Both has swe tag and same itemGroupId)
+        System.out.println("Result = " + json); //itemA1 and itemA2 as composite (Both has swe tag2 and same itemGroupId)
 
         Assert.assertFalse(json.contains("tagId"));
         //3# update FlowEngine add,remove, reindex etc..

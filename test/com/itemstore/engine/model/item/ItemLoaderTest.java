@@ -4,7 +4,7 @@ import com.itemstore.engine.model.Item;
 import com.itemstore.collector.loader.ItemLoader;
 import com.itemstore.collector.loader.Loader;
 
-import com.itemstore.engine.model.tag.TagContainer;
+import com.itemstore.engine.model.tag2.TagContainer;
 import org.apache.commons.io.FileUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;

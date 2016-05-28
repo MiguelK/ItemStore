@@ -1,4 +1,4 @@
-package com.itemstore.engine.model.tag;
+package com.itemstore.engine.model.tag2;
 
 public interface Tag {
     String getName();

@@ -1,4 +1,4 @@
-package com.itemstore.engine.model.tag;
+package com.itemstore.engine.model.tag2;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;
@@ -172,7 +172,7 @@ public class TagContainer implements Serializable {
             }
         });
         if (result.size() != 1) {
-            return null; //throw new IllegalArgumentException("More then 1 tag with name " + tagName);
+            return null; //throw new IllegalArgumentException("More then 1 tag2 with name " + tagName);
         }
 
         return (NameValueTag) result.iterator().next();

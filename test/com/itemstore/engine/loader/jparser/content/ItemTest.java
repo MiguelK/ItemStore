@@ -2,7 +2,7 @@ package com.itemstore.engine.loader.jparser.content;
 
 import com.itemstore.commons.JsonUtil;
 import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.tag.TagContainer;
+import com.itemstore.engine.model.tag2.TagContainer;
 import junit.framework.Assert;
 import org.testng.annotations.Test;
 

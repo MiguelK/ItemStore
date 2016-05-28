@@ -2,7 +2,6 @@ package com.itemstore.engine;
 
 import com.itemstore.engine.model.Item;
 import com.itemstore.engine.model.ItemGroup;
-import com.itemstore.engine.model.tag.TagContainer;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -33,8 +32,6 @@ class BasicIndexBuilder {
     public Result buildIndexForUsers() {
         Set<String> itemTags = new HashSet<String>();
 
-        Map<String, List<Item>> topNewsByLocation = new HashMap<String, List<Item>>();
-
         Collections.sort(items, Item.PUBLISHED_DATE_SORTER);
 
         List<ItemGroup> itemGroups = new ArrayList<ItemGroup>();
@@ -43,18 +40,6 @@ class BasicIndexBuilder {
             if (handledItems.contains(item)) {
                 //User client has already this items in is local cache
                 continue;
-            }
-
-            List<Item> topItems = topNewsByLocation.get(TagContainer.TOP_NEWS_SWE); //tag = TopNews_sweden
-            if (topItems == null) {
-                topItems = new ArrayList<Item>();
-                topNewsByLocation.put(TagContainer.TOP_NEWS_SWE, topItems); //Add to user
-            }
-
-            if (item.getTagContainer().containsTagWithName(TagContainer.TOP_NEWS_SWE) &&
-                    topItems.size() < MAX_NUMBER_OF_TOP_ITEMS_TO_SHOW) { //FIXME
-                System.out.println("Index: " + item.getTitle() + " " + item.getPublishedDate());
-                topItems.add(item);
             }
 
             itemTags.addAll(item.getTags());
@@ -91,49 +76,6 @@ class BasicIndexBuilder {
         }
 
         Collections.sort(itemGroups, ItemGroup.PUBLISHED_DATE_SORTER);
-
-        Map<String, List<ItemGroup>> newUserItems = new HashMap<String, List<ItemGroup>>();
-        Map<String, List<Item>> newUserTopNews = new HashMap<String, List<Item>>();
-
-        /*for (User user : users) {
-            List<String> favoriteTags = user.getFavoriteTags(); //FIXME sort on this and createdDate
-
-            newUserTopNews.put(user.getId(), new ArrayList<Item>());
-            for (Map.Entry<String, List<Item>> entry : topNewsByLocation.entrySet()) {
-                if (favoriteTags.contains(entry.getKey())) { //A user can have a multiple topNews ??//FIXME
-                    List<Item> topNews = newUserTopNews.get(user.getId());
-                    topNews.addAll(entry.getValue());
-                }
-            }
-
-            List<String> receivedItems = user.getReceivedItems(); //FIXME exclude already wieved items
-
-            List<String> userExcludeTags = user.getExcludeTags();
-            for (ItemGroup itemGroup : itemGroups) {
-
-                if (user.getExcludeTags().contains(TagContainer.EXCLUDE_ALL)
-                        && !CollectionUtils.containsAny(itemGroup.getTags(), user.getFavoriteTags())) {
-                    continue; //If exclude all tag then only favorites are matched
-                }
-
-                if (CollectionUtils.containsAny(itemGroup.getItemIds(), receivedItems)) {
-                    continue; //Filter out already delivered items
-                }
-
-                if (CollectionUtils.containsAny(userExcludeTags, itemGroup.getTags())) {
-                    LOG.fine("Exclude " + itemGroup.getTags());
-                    continue; //Exclude filter isSimilarText
-                }
-
-                List<ItemGroup> itemComponents = newUserItems.get(user.getId());
-                if (itemComponents == null) {
-                    itemComponents = new ArrayList<ItemGroup>();
-                    newUserItems.put(user.getId(), itemComponents);
-                }
-                itemComponents.add(itemGroup);
-
-            }
-        }*/
 
         return new Result(itemGroups, new ArrayList<String>(itemTags));
     }

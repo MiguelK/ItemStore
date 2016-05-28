@@ -1,7 +1,7 @@
 package com.itemstore.engine;
 
 import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.tag.TagContainer;
+import com.itemstore.engine.model.tag2.TagContainer;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
