@@ -11,14 +11,13 @@ import java.util.logging.Logger;
 class BasicIndexBuilder {
 
     private static final Logger LOG = Logger.getLogger(BasicIndexBuilder.class.getName());
-    private static final int MAX_NUMBER_OF_TOP_ITEMS_TO_SHOW = 25;
     private static final int MAX_ITEM_IN_GROUP = 5;
 
     private final List<Item> items;
 
     public  BasicIndexBuilder(List<Item> items) {
         if(items==null || items.isEmpty()){
-            throw  new IllegalArgumentException("No item to inex");
+            throw  new IllegalArgumentException("No item to index");
         }
 
         Set<Item> clean = new HashSet<Item>(items);

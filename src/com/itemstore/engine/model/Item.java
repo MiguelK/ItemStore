@@ -26,13 +26,12 @@ public class Item implements Serializable {
     private final String imageURL2;
     private final String youTubeVideoID;
     private final String targetURL; //Required targetURL
-    private final String videoURL1;
     private final String sourceURL;
     private final Date publishedDate;
     private String itemGroupId; //if not null use it= part of group, groupId? Required Same id will be part of same composite object
 
     private Item(Date publishedDate, String title, String description, String imageURL1, String imageURL2,
-                 String youTubeVideoID, String targetURL, String videoURL1, String sourceURL,
+                 String youTubeVideoID, String targetURL, String sourceURL,
                  List<String> tags, String itemGroupId) {
         this.id = String.valueOf(title.hashCode() + targetURL.hashCode()); //FIXME UUID.randomUUID().toString();
         this.tags = tags;
@@ -42,7 +41,6 @@ public class Item implements Serializable {
         this.imageURL2 = imageURL2;
         this.youTubeVideoID = youTubeVideoID;
         this.targetURL = targetURL;
-        this.videoURL1 = videoURL1;
         this.sourceURL = sourceURL;
         this.publishedDate = publishedDate == null ? new Date() : publishedDate; //FIXME
         this.itemGroupId = itemGroupId;
@@ -56,7 +54,6 @@ public class Item implements Serializable {
         private String imageURL2;
         private String youTubeVideoID;
         private String targetURL;
-        private String videoURL1;
         private String sourceURL;
         private TagContainer tagContainer = TagContainer.create("");
         private String itemGroupId; //Same id will be part of same composite object
@@ -135,7 +132,7 @@ public class Item implements Serializable {
 
 
             return new Item(publishedDate,title, description, imageURL1,
-                    imageURL2, youTubeVideoID, targetURL, videoURL1, sourceURL, tagContainer.getRawTags(), itemGroupId);
+                    imageURL2, youTubeVideoID, targetURL, sourceURL, tagContainer.getRawTags(), itemGroupId);
         }
     }
 
@@ -170,10 +167,6 @@ public class Item implements Serializable {
 
     public String getTargetURL() {
         return targetURL;
-    }
-
-    public String getVideoURL1() {
-        return videoURL1;
     }
 
     public String getYouTubeVideoID() {
@@ -224,7 +217,6 @@ public class Item implements Serializable {
                 ", imageURL2='" + imageURL2 + '\'' +
                 ", youTubeVideoID='" + youTubeVideoID + '\'' +
                 ", targetURL='" + targetURL + '\'' +
-                ", videoURL1='" + videoURL1 + '\'' +
                 ", sourceURL='" + sourceURL + '\'' +
                 ", publishedDate=" + publishedDate +
                 ", itemGroupId='" + itemGroupId + '\'' +

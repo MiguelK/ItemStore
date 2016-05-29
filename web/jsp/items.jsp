@@ -119,26 +119,8 @@
                     </table>
                 </form>
             </td>
-            <td>
-                <form action="#" id="formId2"
-                      onsubmit="postToServer('formId2', itemGetItemGroupsActionCallBack, 'ItemGetItemGroupsAction')"
-                      method="post"
-                      target="hiddenFrame">
-
-                    <table border="1" bgcolor="aqua">
-                        <tr>
-                            <td>UserId </td>
-                            <td><input type="text" name="userId" placeholder="UserId"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="submit" value="Get ItemGroups"></td>
-                        </tr>
-                    </table>
-                </form>
-            </td>
         </tr>
     </table>
-
 
     <div id="resultDivId"/>
 </div>

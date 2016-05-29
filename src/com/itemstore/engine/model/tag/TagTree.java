@@ -3,8 +3,7 @@ package com.itemstore.engine.model.tag;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TagTree implements TagMatcher {
-
+public class TagTree implements TagFilter {
 
     public List<TagDescendant> getTagDescendants() {
         return new ArrayList();
@@ -38,7 +37,7 @@ public class TagTree implements TagMatcher {
     }*/
 
     @Override
-    public double match(TagMatcher tagMatcher) {
+    public double match(TagFilter tagFilter) {
         return 0;
     }
 }

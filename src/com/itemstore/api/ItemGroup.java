@@ -11,6 +11,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -23,11 +24,17 @@ public class ItemGroup {
     @Path("/search")
     @Produces(MediaType.APPLICATION_JSON)
     public Response searchItemGroups(@Context HttpServletRequest request,
-                                     @QueryParam("excludeTagForest") String excludeTagForest,
-                                     @QueryParam("favoriteTagForest") String favoriteTagForest,
-                                     @QueryParam("skipItemGroupIds")List<Integer> skipItemGroupIds,
+                                     @QueryParam("excludeTagFilter") String excludeTagFilter,
+                                     @QueryParam("favoriteTagFilter") String favoriteTagFilter,
+                                     @QueryParam("excludeItemGroupIds")List<String> excludeItemGroupIds,
                                      @QueryParam("itemGroupIds") List<Integer> itemGroupIds,
                                      @QueryParam("maxResultSize") Integer maxResultSize) {
+
+        //1# if itemGroupIds>0 return only theese itemGroups
+
+        //TagFilter f = TagForest.create(excludeTagFilter)
+        //TagFilter a = TagForest.create(favoriteTagFilter)
+
 
         //List<String> tags) FIXME etc more params  favoriteTagFilter, skipTagFilter
         //int resultSize =10
@@ -35,47 +42,30 @@ public class ItemGroup {
            //swe_sport_fotboll_os_zlatan
             //eng_news
         List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate();
+        List<com.itemstore.engine.model.ItemGroup> filtered = new ArrayList<com.itemstore.engine.model.ItemGroup>();
 
-        LOG.info("excludeTagForest=" + excludeTagForest);
+        if(excludeItemGroupIds!=null && excludeItemGroupIds.size()>0){
+            for (com.itemstore.engine.model.ItemGroup itemGroupGroup : itemGroupGroups) {
+                if(excludeItemGroupIds.contains(itemGroupGroup.getItems().get(0).getId())){ //FIXME
+                    continue;
+                }
+                filtered.add(itemGroupGroup);
+            }
+        } else {
+            filtered.addAll(itemGroupGroups);
+        }
 
         //List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance()
           //      .searchItemsByTags(Collections.singletonList("Nyheter")); //FIXME use TagForest
 
-        ItemGroupResponse res = ItemGroupResponse.create(itemGroupGroups);
+        ItemGroupResponse res = ItemGroupResponse.create(filtered);
+
+        if (excludeItemGroupIds != null) {
+            LOG.info("excludeItemGroupIds=" + excludeItemGroupIds.size());
+        }
 
         return Response.status(Response.Status.OK).entity(res).build();
     }
-
-   /* @GET
-    @Path("/search/tag2/{tagName}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response searchItemGroupsByTags(@Context HttpServletRequest request,
-                                            @PathParam("tagName") String tagName) {
-
-        List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance()
-                .searchItemsByTags(Collections.singletonList(tagName));
-        //List<String> tags) FIXME etc more params
-        //int resultSize =10
-
-    //    List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemStore.getInstance().searchItemGroups();//FIXME
-
-        ItemGroupResponse res = ItemGroupResponse.create(itemGroupGroups);
-
-        return Response.status(Response.Status.OK).entity(res).build();
-    } */
-
-   /* @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getItemGroupsById(@Context HttpServletRequest request,
-                                      @QueryParam("itemGroupIds") List<Integer> itemGroupIds) {
-
-        //alla goupId's //FIXME check id's
-        List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate();
-
-        ItemGroupResponse res = ItemGroupResponse.create(itemGroupGroups);
-
-        return Response.status(200).entity(res).build();
-    }*/
 
     /*@POST
     @Path("/{itemId}/{userId}")

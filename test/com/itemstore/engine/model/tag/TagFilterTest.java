@@ -7,7 +7,7 @@ import sun.java2d.pipe.AATileGenerator;
 import java.util.Arrays;
 import java.util.List;
 
-public class TagMatcherTest {
+public class TagFilterTest {
 
     @Test
     public void same_root_and_second() {

@@ -17,7 +17,7 @@ public class TagTreeTest {
 
     @Test(expectedExceptions = TagException.class)
     public void missing_child_tag() throws Exception {
-        TagTree tagTree = new TagTree.Builder().rootTagSweTeknik().build();
+        TagTree tagTree = new TagTree.Builder().addTagDescendants(TagDescendant.create("swe")).build();
         Assert.fail("Should not be possible to create tagtree without at least one child tag " + tagTree);
     }
 

@@ -25,14 +25,15 @@ public class ItemGroup {
         items.add(item);
     }
 
+    //TagFilter
     public List<String> getTags() {
         return items.get(0).getTags(); //FIXME
     }
 
-    @JsonIgnore
-    public TagContainer getTagContainer() {
+  //  @JsonIgnore
+    /*  public TagContainer getTagContainer() {
         return items.get(0).getTagContainer(); //FIXME
-    }
+    }*/
 
     public List<Item> getItems() {
         return items;
@@ -52,14 +53,14 @@ public class ItemGroup {
         return header;
     }
 
-    @JsonIgnore
+    /*@JsonIgnore
     public Item getSingeItem() {
         if (items.size() != 1) {
             throw new IllegalStateException("ItemGroup not=1" + getTags());
         }
 
         return items.get(0);
-    }
+    }*/
 
     public void sortItemsByPublishedDate() {
         Collections.sort(items, Item.PUBLISHED_DATE_SORTER);

@@ -1,9 +1,13 @@
 package com.itemstore.engine.model.tag;
 
-public class TagForest implements TagMatcher {
+public class TagForest implements TagFilter {
     @Override
-    public double match(TagMatcher tagMatcher) {
+    public double match(TagFilter tagFilter) {
         return 0;
+    }
+
+    public static TagForest create(String tagForest) {
+        return null;
     }
 
 

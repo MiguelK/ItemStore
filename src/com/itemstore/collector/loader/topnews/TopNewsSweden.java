@@ -62,7 +62,7 @@ public class TopNewsSweden extends TopNews {
                     text.contains("JUST NU") || text.contains("EXTRA")) {
                 Item.Builder builder = new Item.Builder()
                         .tags(TagContainer.create(Collections.singletonList(TagContainer.TOP_NEWS_SWE)))
-                        .sourceURL(URL_AFTONBLADET_SE).title(text);
+                        .sourceURL(URL_AFTONBLADET_SE).title(text).targetURL(URL_AFTONBLADET_SE); //FIXME same target?
 
                 System.out.println("**** " + text);
                 items.add(builder.build());

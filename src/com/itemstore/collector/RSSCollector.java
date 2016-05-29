@@ -1,10 +1,8 @@
 package com.itemstore.collector;
 
 import com.itemstore.collector.loader.rss.Channel;
-import com.itemstore.commons.EngineConf;
 import org.apache.commons.io.IOUtils;
 
-import javax.servlet.ServletConfig;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,31 +16,29 @@ import java.util.logging.Logger;
 
 public class RSSCollector {
 
-    private static final Set<Channel> channels = new HashSet<Channel>();
+    //private static final Set<Channel> channels = new HashSet<Channel>();
 
     private static final Logger LOG = Logger.getLogger(RSSCollector.class.getName());
 
-    public static List<ItemCollector> load(ServletConfig servletConfig) {
-        return init(servletConfig);
-    }
+    public static List<ItemCollector> load(File channelFile) {
 
-    private static List<ItemCollector> init(ServletConfig servletConfig) {
-
-        List<String> strings = loadTextFile(servletConfig);
-        Set<Channel> channels = handleLoadedTextRows(strings);
+        List<String> channelRows = getChannelRows(channelFile);
+        List<Channel> channels = Channel.parseChannelRows(channelRows);
+       // channels.addAll(transform);
 
         List<ItemCollector> channelCollectors = new ArrayList<ItemCollector>();
-        for (Channel channel : RSSCollector.channels) {
+        for (Channel channel : channels) {
             RSSChannelCollector channelCollector = new RSSChannelCollector(channel.getUnparsedChannelURL(),
                     channel.getTags(), channel.getPollFrequencyInSeconds());
             channelCollectors.add(channelCollector);
         }// //FIXME
 
+        LOG.info("Parsed " + channels.size() + " RSSChannels");
         return channelCollectors;
     }
 
-    private static List<String> loadTextFile(ServletConfig servletConfig) {
-        File channelFile = EngineConf.getInstance().getChannelsFile(servletConfig.getServletContext());
+    private static List<String> getChannelRows(File channelFile) {
+       // File channelFile = EngineConf.getInstance().getChannelsFile(servletConfig.getServletContext());
 
         FileInputStream inputStream = null;
         try {
@@ -60,10 +56,4 @@ public class RSSCollector {
         }
     }
 
-    private static Set<Channel> handleLoadedTextRows(List<String> rows) {
-        List<Channel> transform = Channel.parseChannelRows(rows);
-        channels.addAll(transform);
-        return  channels;
-
-    }
 }
