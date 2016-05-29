@@ -29,7 +29,7 @@ public class ItemGroup {
                                      @QueryParam("itemGroupIds") List<Integer> itemGroupIds,
                                      @QueryParam("maxResultSize") Integer maxResultSize) {
 
-        //List<String> tags) FIXME etc more params
+        //List<String> tags) FIXME etc more params  favoriteTagFilter, skipTagFilter
         //int resultSize =10
             //swe_sport_zlatan
            //swe_sport_fotboll_os_zlatan
@@ -135,7 +135,7 @@ public class ItemGroup {
         Item.Builder builder = new Item.Builder();
         builder.title(title).tags(TagContainer.create(tags))
                 .description(description).imageURL1(imageURL1).
-                sourceURL(sourceURL).articleURL1(targetURL).youTubeVideoID(youTubeVideoID);
+                sourceURL(sourceURL).targetURL(targetURL).youTubeVideoID(youTubeVideoID);
 
         final Item item = builder.build();
 

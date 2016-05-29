@@ -28,17 +28,6 @@ public class RSSCollector {
 
     private static List<ItemCollector> init(ServletConfig servletConfig) {
 
-
-       /* ChannelLoader channelLoader = ChannelLoader.create();
-        channelLoader.setLoadSource(channelFile, Loader.StorageType.TextRows);
-        ItemEngine.getInstance().init(channelLoader); //FIXME Collectore's
-        channelLoader.load();
-
-        List<Channel> channels1 = channelLoader.getChannels();
-
-        List<Channel> channels = channelLoader.getChannels();
-      */
-
         List<String> strings = loadTextFile(servletConfig);
         Set<Channel> channels = handleLoadedTextRows(strings);
 
@@ -51,8 +40,6 @@ public class RSSCollector {
 
         return channelCollectors;
     }
-
-
 
     private static List<String> loadTextFile(ServletConfig servletConfig) {
         File channelFile = EngineConf.getInstance().getChannelsFile(servletConfig.getServletContext());

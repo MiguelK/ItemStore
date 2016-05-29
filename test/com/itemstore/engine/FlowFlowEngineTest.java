@@ -24,7 +24,7 @@ public class FlowFlowEngineTest {
                 tags(TagContainer.create(filter)).
                         title("Han döms för brutala nyårsmordet").
                         description("JFohnny Rintanen, 40, döms för det blodiga mordet i Sala natten mot nyårsafton.").
-                        articleURL1("http://www.aftonbladet.se/nyheter/article21013527.ab").build();
+                        targetURL("http://www.aftonbladet.se/nyheter/article21013527.ab").build();
 
         Item itemComponent1_item2 = new Item.Builder().
                 itemGroupId(itemComponent1_item1.getItemGroupId()).
@@ -34,7 +34,7 @@ public class FlowFlowEngineTest {
                         title("Nekar till mord – hävdar nödvärn").
                         description("Misstänkte mördaren Johnny Rintanen uppger att han agerade i nödvärn.\n" +
                                 "På mordkvällen var han alkoholpåverkad och hade tagit tabletter när en konflikt uppstod med det 49-åriga offret.").
-                        articleURL1("http://www.arbetarbladet.se/blaljus/brott/nekar-till-mord-havdar-nodvarn").build();
+                        targetURL("http://www.arbetarbladet.se/blaljus/brott/nekar-till-mord-havdar-nodvarn").build();
 
         Item itemComponent1_item3 = new Item.Builder().
                 itemGroupId(itemComponent1_item1.getItemGroupId()).
@@ -44,7 +44,7 @@ public class FlowFlowEngineTest {
                         title("Nekar till mord – hävdar nödvärn").
                         description("Misstänkte mördaren Johnny Rintanen uppger att han agerade i nödvärn.\n" +
                                 "På mordkvällen var han alkoholpåverkad och hade tagit tabletter när en konflikt uppstod med det 49-åriga offret.").
-                        articleURL1("http://www.arbetarbladet.se/blaljus/brott/nekar-till-mord-havdar-nodvarn").build();
+                        targetURL("http://www.arbetarbladet.se/blaljus/brott/nekar-till-mord-havdar-nodvarn").build();
 
         //ItemComponent_2
         Item itemComponent2_item1 = new Item.Builder().
@@ -53,7 +53,7 @@ public class FlowFlowEngineTest {
                 tags(TagContainer.create(filter)).
                         title("Han döms för brutala nyårsmordet").
                         description("Johnny Rintanen, 40, döms för det blodiga mordet i Sala natten mot nyårsafton.").
-                        articleURL1("http://www.aftonbladet.se/nyheter/article21013527.ab").build();
+                        targetURL("http://www.aftonbladet.se/nyheter/article21013527.ab").build();
 
         Item itemComponent2_item2 = new Item.Builder().
                 itemGroupId(itemComponent2_item1.getItemGroupId()).
@@ -63,7 +63,7 @@ public class FlowFlowEngineTest {
                         title("Nekar till mord – hävdar nödvärn").
                         description("Misstänkte mördaren Johnny Rintanen uppger att han agerade i nödvärn.\n" +
                                 "På mordkvällen var han alkoholpåverkad och hade tagit tabletter när en konflikt uppstod med det 49-åriga offret.").
-                        articleURL1("http://www.arbetarbladet.se/blaljus/brott/nekar-till-mord-havdar-nodvarn").build();
+                        targetURL("http://www.arbetarbladet.se/blaljus/brott/nekar-till-mord-havdar-nodvarn").build();
 
         Item itemComponent2_item3 = new Item.Builder().
                 itemGroupId(itemComponent2_item1.getItemGroupId()).
@@ -73,7 +73,7 @@ public class FlowFlowEngineTest {
                         title("Nekar till mord – hävdar nödvärn").
                         description("Misstänkte mördaren Johnny Rintanen uppger att han agerade i nödvärn.\n" +
                                 "På mordkvällen var han alkoholpåverkad och hade tagit tabletter när en konflikt uppstod med det 49-åriga offret.").
-                        articleURL1("http://www.arbetarbladet.se/blaljus/brott/nekar-till-mord-havdar-nodvarn").build();
+                        targetURL("http://www.arbetarbladet.se/blaljus/brott/nekar-till-mord-havdar-nodvarn").build();
 
         //ItemComponent_3 (Video)
         Item itemComponent3_item1 = new Item.Builder().
@@ -139,7 +139,7 @@ public class FlowFlowEngineTest {
                 tags(TagContainer.create(filter)).
                 title("Han döms för brutala nyårsmordet").
                 description("Johnny Rintanen, 40, döms för det blodiga mordet i Sala natten mot nyårsafton.").
-                articleURL1("http://www.aftonbladet.se/nyheter/article21013527.ab").build();
+                targetURL("http://www.aftonbladet.se/nyheter/article21013527.ab").build();
 
         Item item2 = new Item.Builder().
                 itemGroupId(itemGroupId).
@@ -149,7 +149,7 @@ public class FlowFlowEngineTest {
                         title("Nekar till mord – hävdar nödvärn").
                         description("Misstänkte mördaren Johnny Rintanen uppger att han agerade i nödvärn.\n" +
                                 "På mordkvällen var han alkoholpåverkad och hade tagit tabletter när en konflikt uppstod med det 49-åriga offret.").
-                        articleURL1("http://www.arbetarbladet.se/blaljus/brott/nekar-till-mord-havdar-nodvarn").build();
+                        targetURL("http://www.arbetarbladet.se/blaljus/brott/nekar-till-mord-havdar-nodvarn").build();
 
 
         FlowEngine.getInstance().registerItem(item1);
@@ -176,7 +176,7 @@ public class FlowFlowEngineTest {
                 tags(TagContainer.create(Arrays.asList("Swe","Sport"))).
                 title("Han döms för brutala nyårsmordet").
                 description("Johnny Rintanen, 40, döms för det blodiga mordet i Sala natten mot nyårsafton.").
-                articleURL1("http://www.aftonbladet.se/nyheter/article21013527.ab").build();
+                targetURL("http://www.aftonbladet.se/nyheter/article21013527.ab").build();
 
         Item item2 = new Item.Builder().
                 itemGroupId(itemGroupId).
@@ -186,7 +186,7 @@ public class FlowFlowEngineTest {
                 title("Nekar till mord – hävdar nödvärn").
                 description("Misstänkte mördaren Johnny Rintanen uppger att han agerade i nödvärn.\n" +
                         "På mordkvällen var han alkoholpåverkad och hade tagit tabletter när en konflikt uppstod med det 49-åriga offret.").
-                articleURL1("http://www.arbetarbladet.se/blaljus/brott/nekar-till-mord-havdar-nodvarn").build();
+                targetURL("http://www.arbetarbladet.se/blaljus/brott/nekar-till-mord-havdar-nodvarn").build();
 
 
         FlowEngine.getInstance().registerItem(item1);

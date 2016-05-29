@@ -101,7 +101,7 @@ public class RSSChannelCollector extends ItemCollectorBase {
 
 
                 //FIXME Tag and TagCollector extract tags...rssItemLink(Video or articleUrl)
-                Item item = new Item.Builder().imageURL1(imageUrl1).articleURL1(rssItemLink).sourceURL(url.toString())
+                Item item = new Item.Builder().imageURL1(imageUrl1).targetURL(rssItemLink).sourceURL(url.toString())
                         .tags(TagContainer.create(tags)).title(title).description(description)
                         .publishedDate(rssItem.getPubDate()).build();
 

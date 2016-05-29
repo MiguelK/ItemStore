@@ -21,7 +21,6 @@ public class ItemGroupResponse {
 
         List<ItemGroupDTO> items = new ArrayList<ItemGroupDTO>();
 
-
         for (ItemGroup itemGroupGroup : itemGroupGroups) {
             ItemGroupDTO response = ItemGroupDTO.createResponse(itemGroupGroup);
             items.add(response);

@@ -33,7 +33,7 @@ public class ItemCreateAction extends Action {
 
         Item item = new Item.Builder().title(title).tags(TagContainer.create(tags))
                 .description(description).imageURL1(imageURL1).
-                        sourceURL(sourceURL).articleURL1(targetURL).
+                        sourceURL(sourceURL).targetURL(targetURL).
                         youTubeVideoID(youTubeVideoID).build();
 
         ItemEngine.getInstance().registerItem(item);

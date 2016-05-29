@@ -3,7 +3,8 @@ package com.itemstore.engine.loader.jparser.content;
 import com.itemstore.commons.JsonUtil;
 import com.itemstore.engine.model.Item;
 import com.itemstore.engine.model.tag2.TagContainer;
-import junit.framework.Assert;
+
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.*;
@@ -17,7 +18,8 @@ public class ItemTest {
 
     @Test
     public void getTitle() {
-        Item item = new Item.Builder().title(" The title ").tags(TagContainer.create(Collections.singletonList("Swe"))).description("some stuff...").build();
+        Item item = new Item.Builder().title(" The title ").tags(TagContainer.create(Collections.singletonList("Swe")))
+                .description("some stuff...").targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
         Assert.assertEquals("The title", item.getTitle());
     }
 
@@ -44,13 +46,33 @@ public class ItemTest {
     }*/
 
     @Test
-    public void equalItem() {
-        Item item1 = new Item.Builder().title("Test ccc").tags(TagContainer.create(Arrays.asList("Swe", "Sport"))).description("some text").build();
-        Item item2 = new Item.Builder().title("Test ccc").tags(TagContainer.create(Arrays.asList("Swe", "sport"))).description("some stuff...").build();
+    public void same_title_and_targetURL_should_be_same_id() {
+        Item a = new Item.Builder().title("Samma title").targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
+        Item b = new Item.Builder().title("Samma title").targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
+
+        Assert.assertEquals(a.getId(), b.getId());
+    }
+
+    @Test
+    public void same_title_and_targetURL_trim_should_be_same_id() {
+        Item a = new Item.Builder().title("Samma title ").targetURL(" http://www.aftonbladet.se/nyheter/article22906939.ab ").build();
+        Item b = new Item.Builder().title("Samma title").targetURL(" http://www.aftonbladet.se/nyheter/article22906939.ab").build();
+
+        Assert.assertEquals(a.getId(), b.getId());
+    }
+
+    @Test
+    public void equalItem_title_and_target_url() {
+        Item item1 = new Item.Builder().title("Test ccc").tags(TagContainer.create(Arrays.asList("Swe", "Sport"))).description("some text").
+                targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
+        Item item2 = new Item.Builder().title("Test ccc").tags(TagContainer.create(Arrays.asList("Swe", "sport"))).
+                targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").description("some stuff...").build();
         Assert.assertTrue(item1.equals(item2));
 
-        Item item11 = new Item.Builder().title("EXTRA Redan kaos – nu varnas för ännu mer snö").build();
-        Item item22 = new Item.Builder().title("EXTRA Redan kaos – nu varnas för ännu mer snö").build();
+        Item item11 = new Item.Builder().title("EXTRA Redan kaos – nu varnas för ännu mer snö")
+                .targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
+        Item item22 = new Item.Builder().title("EXTRA Redan kaos – nu varnas för ännu mer snö")
+                .targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
         Assert.assertTrue(item11.equals(item22));
         Set<Item> x = new HashSet<Item>();
         x.add(item11);
@@ -64,10 +86,10 @@ public class ItemTest {
         Item item = new Item.Builder().title(" a ").
                 tags(TagContainer.create(Collections.singletonList("Swe " + " Sport " + " "))).
                         description(" a ").imageURL1(" http://www.dn.se/x.jpg ").
-                        youTubeVideoID(" 1234 ").sourceURL(" http://www.dn.se ").articleURL1(" http://www.dn.se ").build();
+                        youTubeVideoID(" 1234 ").sourceURL(" http://www.dn.se ").targetURL(" http://www.dn.se ").build();
 
         Assert.assertEquals("a", item.getDescription());
-        Assert.assertEquals("http://www.dn.se", item.getArticleURL1());
+        Assert.assertEquals("http://www.dn.se", item.getTargetURL());
         Assert.assertEquals("a", item.getTitle());
         Assert.assertEquals("http://www.dn.se/x.jpg", item.getImageURL1());
         Assert.assertEquals("1234", item.getYouTubeVideoID());
@@ -77,7 +99,8 @@ public class ItemTest {
 
     @Test
     public void testCreatedDate() {
-        Assert.assertNotNull(new Item.Builder().title(" Some test").build().getPublishedDate());
+        Assert.assertNotNull(new Item.Builder().title(" Some test").
+                targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build().getPublishedDate());
     }
 
     //@Test
@@ -91,9 +114,9 @@ public class ItemTest {
     public void sortOnCreatedDate() throws InterruptedException {
         List<Item> items = new ArrayList<Item>();
 
-        Item itemA = new Item.Builder().title(" A").build();
+        Item itemA = new Item.Builder().title(" A").targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
         Thread.sleep(2000);
-        Item itemB = new Item.Builder().title(" B").build();
+        Item itemB = new Item.Builder().title(" B").targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
 
         items.add(itemB);
         items.add(itemA);
@@ -106,7 +129,9 @@ public class ItemTest {
 
     @Test
     public void toJson() {
-        Item item = new Item.Builder().title(" The title ").tags(TagContainer.create(Collections.singletonList("Swe"))).description("some stuff...").build();
+        Item item = new Item.Builder().title(" The title ")
+                .tags(TagContainer.create(Collections.singletonList("Swe"))).description("some stuff...").
+                        targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
         Assert.assertNotNull(JsonUtil.toJson(item));
     }
 

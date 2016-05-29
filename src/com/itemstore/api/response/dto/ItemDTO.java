@@ -15,9 +15,8 @@ public class ItemDTO implements Serializable {
     private String imageURL1;
     private String imageURL2;
     private String youTubeVideoID;
-    private String articleURL1;
+    private String targetURL;
     private String sourecURL;
-    private String videoURL1;
 
     private Date publishedDate;
     private String publishedDateFormated;
@@ -36,9 +35,8 @@ public class ItemDTO implements Serializable {
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         itemResponseDTO.publishedDateFormated = formatter.format(item.getPublishedDate()); //FIXME perf
-        itemResponseDTO.articleURL1 = item.getArticleURL1();
+        itemResponseDTO.targetURL = item.getTargetURL();
         itemResponseDTO.youTubeVideoID = item.getYouTubeVideoID();
-        itemResponseDTO.videoURL1 = item.getVideoURL1();
         itemResponseDTO.id = item.getId();
         itemResponseDTO.tags.addAll(item.getTags());
 
@@ -46,13 +44,10 @@ public class ItemDTO implements Serializable {
     }
 
     public static List<ItemDTO> createResponse(List<Item> items) {
-
         List<ItemDTO> responses = new ArrayList<ItemDTO>();
-
         for (Item item : items) {
             responses.add(ItemDTO.createResponse(item));
         }
-
 
         return responses;
     }
@@ -81,16 +76,12 @@ public class ItemDTO implements Serializable {
         return youTubeVideoID;
     }
 
-    public String getArticleURL1() {
-        return articleURL1;
+    public String getTargetURL() {
+        return targetURL;
     }
 
     public String getSourecURL() {
         return sourecURL;
-    }
-
-    public String getVideoURL1() {
-        return videoURL1;
     }
 
     public Date getPublishedDate() {
