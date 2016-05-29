@@ -112,7 +112,6 @@ public final class ItemEngine implements ItemCollectorListener {
     public void start() {
         writeLock.lock();
         try {
-
             AsyncService.instance().init();
 
             itemCollectorRunner.start();
@@ -122,7 +121,6 @@ public final class ItemEngine implements ItemCollectorListener {
             writeLock.unlock();
         }
     }
-
 
     public Collection<Item> searchItems(Predicate<Item> predicate) {
         readLock.lock();

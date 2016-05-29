@@ -16,15 +16,12 @@ import java.util.logging.Logger;
 
 public class RSSCollector {
 
-    //private static final Set<Channel> channels = new HashSet<Channel>();
-
     private static final Logger LOG = Logger.getLogger(RSSCollector.class.getName());
 
     public static List<ItemCollector> load(File channelFile) {
 
         List<String> channelRows = getChannelRows(channelFile);
         List<Channel> channels = Channel.parseChannelRows(channelRows);
-       // channels.addAll(transform);
 
         List<ItemCollector> channelCollectors = new ArrayList<ItemCollector>();
         for (Channel channel : channels) {
@@ -33,16 +30,14 @@ public class RSSCollector {
             channelCollectors.add(channelCollector);
         }// //FIXME
 
-        LOG.info("Parsed " + channels.size() + " RSSChannels");
+        LOG.info("Parsed " + channels.size() + " RSSChannels from file=" +channelFile.getName());
         return channelCollectors;
     }
 
     private static List<String> getChannelRows(File channelFile) {
-       // File channelFile = EngineConf.getInstance().getChannelsFile(servletConfig.getServletContext());
 
         FileInputStream inputStream = null;
         try {
-            LOG.info("Loading file " + channelFile.getAbsolutePath());
             inputStream = new FileInputStream(channelFile);
             return IOUtils.readLines(inputStream);
         } catch (FileNotFoundException e) {

@@ -27,7 +27,6 @@ public class StartupServlet extends HttpServlet {
         LOG.info("Starting ItemStore...");
 
         File channelFile = EngineConf.getInstance().getChannelsFile(servletConfig.getServletContext());
-        LOG.info("Start loading RSSChannels from file=" + channelFile.getAbsolutePath());
 
         //Register collectors, crawls Internet for Item(s)
         List<ItemCollector> rssChannelCollectors = RSSCollector.load(channelFile);

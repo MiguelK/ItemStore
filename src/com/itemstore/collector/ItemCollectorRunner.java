@@ -45,7 +45,7 @@ public class ItemCollectorRunner {
             throw new IllegalStateException("No collectors are registered");
         }
 
-        scheduledExecutorService = Executors.newScheduledThreadPool(EngineConf.getInstance().getThreadPoolSize());
+        scheduledExecutorService = Executors.newScheduledThreadPool(35); //EngineConf.getInstance().getThreadPoolSize());
 
         LOG.info("Starting " + getClass().getSimpleName() + " with " + collectors.size() + " collectors");
 
