@@ -84,14 +84,12 @@ public final class ItemEngine implements ItemCollectorListener {
 
         LOG.fine("Start building full index...");
 
-
         //FIXME asynch can take long time...
         BasicIndexBuilder.Result result;
         readLock.lock();
         try {
-
-            BasicIndexBuilder indexBuilder = new BasicIndexBuilder(new ArrayList<Item>(this.allItems));//FIXME new Array..
-            result = indexBuilder.buildIndexForUsers();
+            BasicIndexBuilder indexBuilder = new BasicIndexBuilder(this.allItems);
+            result = indexBuilder.buildIndex();
         } finally {
             readLock.unlock();
         }
@@ -107,7 +105,6 @@ public final class ItemEngine implements ItemCollectorListener {
 
         Events.fireEvent(EventType.EngineRebuildIndex);
     }
-
 
     public void start() {
         writeLock.lock();
@@ -131,7 +128,8 @@ public final class ItemEngine implements ItemCollectorListener {
         }
     }
 
-    public List<ItemGroup> searchItemsByTags(final List<String> tags) {
+    //FIXME Uset TagTree filter
+    /*public List<ItemGroup> searchItemsByTags(final List<String> tags) {
         readLock.lock();
         try {
 
@@ -154,8 +152,7 @@ public final class ItemEngine implements ItemCollectorListener {
         } finally {
             readLock.unlock();
         }
-    }
-
+    }*/
 
 
     public List<String> getAllItemTags() {

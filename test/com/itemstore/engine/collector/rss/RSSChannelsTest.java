@@ -8,8 +8,14 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.util.List;
 
-public class XMLTest {
+public class RSSChannelsTest {
 
+
+    @Test
+    public void testName() {
+        //channels-dupliacted-invalid.xml //FIXME read and throw error
+
+    }
 
     @Test
     public void validateChannelsFile() {

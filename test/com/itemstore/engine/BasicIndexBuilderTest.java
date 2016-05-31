@@ -1,23 +1,32 @@
 package com.itemstore.engine;
 
 import com.itemstore.engine.model.Item;
+import com.itemstore.engine.model.tag3.TagTree;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class BasicIndexBuilderTest {
-    /*@Test
-    public void testBuildIndexForUsers() {
 
+    @Test
+    public void buildIndex_2_item_groups() {
         List<Item> items = new ArrayList<Item>();
 
-        items.add(new Item.Builder().title("Test aaa").tags(TagContainer.create(Arrays.asList("Swe", "Sport"))).build());
-        items.add(new Item.Builder().title("Test DUPLICATE").tags(TagContainer.create(Arrays.asList("Swe", "Sport"))).build());
+        items.add(new Item.Builder().title("Test aaa").targetURL("www.dn.se")
+                .tags(new TagTree.Builder("swe_sport").build()).build());
+        items.add(new Item.Builder().title("Test DUPLICATE").targetURL("www.aik.se")
+                .tags(new TagTree.Builder("swe_sport").build()).build());
 
+        BasicIndexBuilder basicIndexBuilder = new BasicIndexBuilder(new HashSet<>(items));
+        BasicIndexBuilder.Result result = basicIndexBuilder.buildIndex();
 
-    }*/
+        Assert.assertEquals(result.getItemGroups().size(), 2);
+    }
+
 
    /* @Test
     public void buildIndex_3_composite_exclude_eng() {
@@ -33,7 +42,7 @@ public class BasicIndexBuilderTest {
 
         BasicIndexBuilder indexBuilder = new BasicIndexBuilder(items);
 
-        Map<String, BasicIndexBuilder.UserResult> userItems = indexBuilder.buildIndexForUsers().getUserItems();
+        Map<String, BasicIndexBuilder.UserResult> userItems = indexBuilder.buildIndex().getUserItems();
         Assert.assertEquals(userItems.get(user1.getId()).getItemGroups().size(), 3);
     }
 
@@ -50,7 +59,7 @@ public class BasicIndexBuilderTest {
 
         BasicIndexBuilder indexBuilder = new BasicIndexBuilder(items);
 
-        Map<String, BasicIndexBuilder.UserResult> userItems = indexBuilder.buildIndexForUsers().getUserItems();
+        Map<String, BasicIndexBuilder.UserResult> userItems = indexBuilder.buildIndex().getUserItems();
 
         Assert.assertEquals(userItems.get(user1.getId()).getItemGroups().size(), 2);
     }
@@ -63,13 +72,13 @@ public class BasicIndexBuilderTest {
         User user = new User();
 
         Map<String, BasicIndexBuilder.UserResult> userItems = new BasicIndexBuilder(items)
-                .buildIndexForUsers().getUserItems();
+                .buildIndex().getUserItems();
         Assert.assertEquals(userItems.get(user.getId()).getItemGroups().size(), 1);
 
         user.addReceivedItems(Collections.singletonList(item.getId()));
 
         userItems = new BasicIndexBuilder(items)
-                .buildIndexForUsers().getUserItems();
+                .buildIndex().getUserItems();
         Assert.assertNull(userItems.get(user.getId()));
     }
 
@@ -83,7 +92,7 @@ public class BasicIndexBuilderTest {
 
         BasicIndexBuilder indexBuilder = new BasicIndexBuilder(items);
 
-        Map<String, BasicIndexBuilder.UserResult> userItems = indexBuilder.buildIndexForUsers().getUserItems();
+        Map<String, BasicIndexBuilder.UserResult> userItems = indexBuilder.buildIndex().getUserItems();
 
         List<ItemGroup> itemGroups = userItems.get("id_1").getItemGroups();
 

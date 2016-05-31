@@ -15,20 +15,17 @@ class BasicIndexBuilder {
 
     private final List<Item> items;
 
-    public  BasicIndexBuilder(List<Item> items) {
+    public  BasicIndexBuilder(Set<Item> items) {
         if(items==null || items.isEmpty()){
             throw  new IllegalArgumentException("No item to index");
         }
 
-        Set<Item> clean = new HashSet<Item>(items);
-
-        this.items = new ArrayList<Item>(clean); //FIXME
+        this.items = new ArrayList<Item>(items);
     }
-
 
     // 1. Iterate all items, create ItemGroups (max x in each)
     // 2. Sort... done!
-    public Result buildIndexForUsers() {
+    public Result buildIndex() {
         Set<String> itemTags = new HashSet<String>();
 
         Collections.sort(items, Item.PUBLISHED_DATE_SORTER);
