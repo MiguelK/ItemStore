@@ -46,9 +46,7 @@ public class RSSChannels {
                 }
             }
         }
-
     }
-
 
     public List<Channel> getChannels() {
         return channels;

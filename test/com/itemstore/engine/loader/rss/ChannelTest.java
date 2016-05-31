@@ -1,21 +1,8 @@
 package com.itemstore.engine.loader.rss;
 
-import com.itemstore.collector.loader.rss.Channel;
-import it.sauronsoftware.feed4j.FeedParser;
-import it.sauronsoftware.feed4j.bean.Feed;
-import it.sauronsoftware.feed4j.bean.FeedHeader;
-import it.sauronsoftware.feed4j.bean.FeedItem;
-import junit.framework.Assert;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.testng.annotations.Test;
-
-import java.net.URL;
-import java.util.Arrays;
-
 public class ChannelTest {
 
-    @Test
+    /*@Test
     public void testFeedParser() throws Exception {
         URL url = new URL("http://www.aftonbladet.se/sportbladet/rss.xml");
         Feed feed = FeedParser.parse(url);
@@ -53,9 +40,10 @@ public class ChannelTest {
             System.out.println("Plain text description: " + item.getDescriptionAsText());
             System.out.println("HTML description: " + item.getDescriptionAsHTML());
             System.out.println("PubDate: " + item.getPubDate());  */
-        }
-    }
+      //  }
+    //}
 
+/*
     @Test
     public void testName() throws Exception {
 
@@ -106,5 +94,5 @@ public class ChannelTest {
         Channel channel2 = Channel.newChannel("http://www.aftonbladet.se/sportbladet/rss.xml", Arrays.asList("Swe","Sport"), 20);
 
         Assert.assertFalse(channel1.equals(channel2));
-    }
+    }*/
 }

@@ -1,6 +1,7 @@
 package com.itemstore.admin.dto;
 
-import com.itemstore.collector.loader.rss.Channel;
+
+import com.itemstore.collector.rss.Channel;
 
 import java.util.ArrayList;
 import java.util.List;

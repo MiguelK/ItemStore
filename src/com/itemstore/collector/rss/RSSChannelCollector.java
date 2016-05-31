@@ -1,5 +1,6 @@
 package com.itemstore.collector.rss;
 
+import com.itemstore.collector.ItemCollector;
 import com.itemstore.collector.ItemCollectorBase;
 import com.itemstore.engine.model.Item;
 import com.itemstore.engine.model.tag3.TagTree;
@@ -12,7 +13,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import java.net.MalformedURLException;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,7 +31,21 @@ public class RSSChannelCollector extends ItemCollectorBase {
 
     private final int pollFrequencyInSeconds;
 
-    public RSSChannelCollector(URL channelURL, String tags, int pollFrequencyInSeconds) {
+
+    public static List<ItemCollector> parseFile(File channelFile){
+        List<Channel> channels = RSSChannels.loadFromFile(channelFile).getChannels();
+
+        List<ItemCollector> channelCollectors = new ArrayList<ItemCollector>();
+        for (Channel channel : channels) {
+            RSSChannelCollector channelCollector = new RSSChannelCollector(channel.getUrl(),
+                    channel.getTag(), channel.getRefreshPeridInSeconds());
+            channelCollectors.add(channelCollector);
+        }
+
+        return channelCollectors;
+    }
+
+    private RSSChannelCollector(URL channelURL, String tags, int pollFrequencyInSeconds) {
         this.channelURL = channelURL;
         this.tags = tags;
         this.pollFrequencyInSeconds = pollFrequencyInSeconds;
@@ -39,21 +54,6 @@ public class RSSChannelCollector extends ItemCollectorBase {
     @Override
     public List<Item> getItems() {
 
-       /* String trimmedInput = StringUtils.trimToNull(channelURL);
-
-        if (trimmedInput == null) {
-            throw new IllegalArgumentException("No channelURL " + channelURL);
-
-        }*/
-
-       /* URL url;
-
-        try {
-            url = new URL(trimmedInput);
-        } catch (MalformedURLException e) {
-            throw new IllegalArgumentException("" + e.getMessage());
-        }*/
-
         Feed feed;
         try {
             feed = FeedParser.parse(channelURL);
@@ -61,7 +61,6 @@ public class RSSChannelCollector extends ItemCollectorBase {
             logger.log(Level.FINE, "failed parsing ", e);
             return Collections.emptyList();
         }
-
 
         List<Item> items = new ArrayList<Item>();
       //  logger.info("** HEADER **");
