@@ -1,0 +1,108 @@
+<RSSChannels>
+
+<Channels>
+
+	//English   ----- News
+	[categoryNews addEnglishFeed:@"test" hostName:@"Reuters.com -Top News" url:@""];
+	[categoryNews addEnglishFeed:@"test" hostName:@"Reuters.com -US News" url:@""];
+	[categoryNews addEnglishFeed:@"test" hostName:@"Reuters.com -World" url:@""];
+	[categoryNews addEnglishFeed:@"test" hostName:@"Reuters.com -Top News Video" url:@""];
+	[categoryNews addEnglishFeed:@"test" hostName:@"Usatoday.com" url:@""];
+	[categoryNews addEnglishFeed:@"test" hostName:@"Usatoday.com -TopStories" url:@""];
+	[categoryNews addEnglishFeed:@"test" hostName:@"Foxnews.com" url:@""];
+	[categoryNews addEnglishFeed:@"test" hostName:@"Kuro5hin.org" url:@""];
+	[categoryNews addEnglishFeed:@"test" hostName:@"CbsNews.com" url:@""];
+	[categoryNews addEnglishFeed:@"test" hostName:@"Slate.com" url:@""];
+	[categoryNews addEnglishFeed:@"test" hostName:@"The Atlantic Wire" url:@""];
+	[categoryNews addEnglishFeed:@"test" hostName:@"FOXNews.com" url:@""];
+	[categoryNews addEnglishFeed:@"test" hostName:@"TheOnion.com" url:@""];
+	[categoryNews addEnglishFeed:@"test" hostName:@"LAtimes.com" url:@""];
+	[categoryNews addEnglishFeed:@"test" hostName:@"Newyorker.com" url:@""];
+
+	<Channel>
+     	  <Url>http://www.wired.com/rss/index.xml</Url>
+       	  <Tag>eng_news</Tag>
+          <RefreshPeridInSeconds>30</RefreshPeridInSeconds>	
+	</Channel>
+
+
+	<Channel>
+		<Url>http://www.newyorker.com/services/rss/feeds/everything.xml</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+
+	<Channel>
+		<Url>http://feeds.reuters.com/reuters/topNews</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+	<Channel>
+		<Url>http://feeds.reuters.com/Reuters/domesticNews</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+	<Channel>
+		<Url>http://feeds.reuters.com/Reuters/worldNews</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+	<Channel>
+		<Url>http://feeds.reuters.com/reuters/USVideoTopNews</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+	<Channel>
+		<Url>http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news1</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+	<Channel>
+		<Url>http://rssfeeds.usatoday.com/usatoday-NewsTopStories</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+	<Channel>
+		<Url>http://feeds.feedburner.com/foxnews/latest</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+	<Channel>
+		<Url>http://www.kuro5hin.org/backend.rdf</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+	<Channel>
+		<Url>http://www.latimes.com/rss2.0.xml</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+	<Channel>
+		<Url>http://feeds.theonion.com/theonion/daily</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+	<Channel>
+		<Url>http://feeds.feedburner.com/foxnews/latest</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+	<Channel>
+		<Url>http://feeds.feedburner.com/TheAtlanticWire</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+	<Channel>
+		<Url>http://feeds.slate.com/slate</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+	<Channel>
+		<Url>http://feeds.cbsnews.com/CBSNewsMain</Url>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+	</Channel>
+
+ </Channels> 
+
+</RSSChannels>
