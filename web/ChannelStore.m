@@ -1,22 +1,22 @@
     //Category ------------------------------------------- News/Nyheter ---------------------------------------------------------
 
     //English   ----- News
-    [categoryNews addEnglishFeedSelected:@"test" hostName:@"Wired.com" url:@"http://www.wired.com/rss/index.xml "];
-    [categoryNews addEnglishFeed:@"test" hostName:@"Reuters.com -Top News" url:@"http://feeds.reuters.com/reuters/topNews"];
-    [categoryNews addEnglishFeed:@"test" hostName:@"Reuters.com -US News" url:@"http://feeds.reuters.com/Reuters/domesticNews"];
-    [categoryNews addEnglishFeed:@"test" hostName:@"Reuters.com -World" url:@"http://feeds.reuters.com/Reuters/worldNews"];
-    [categoryNews addEnglishFeed:@"test" hostName:@"Reuters.com -Top News Video" url:@"http://feeds.reuters.com/reuters/USVideoTopNews"];
-    [categoryNews addEnglishFeed:@"test" hostName:@"Usatoday.com" url:@"http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news1"];
-    [categoryNews addEnglishFeed:@"test" hostName:@"Usatoday.com -TopStories" url:@"http://rssfeeds.usatoday.com/usatoday-NewsTopStories"];
-    [categoryNews addEnglishFeed:@"test" hostName:@"Foxnews.com" url:@"http://feeds.feedburner.com/foxnews/latest"];
-    [categoryNews addEnglishFeed:@"test" hostName:@"Kuro5hin.org" url:@"http://www.kuro5hin.org/backend.rdf"];
-    [categoryNews addEnglishFeed:@"test" hostName:@"CbsNews.com" url:@"http://feeds.cbsnews.com/CBSNewsMain"];
-    [categoryNews addEnglishFeed:@"test" hostName:@"Slate.com" url:@"http://feeds.slate.com/slate"];
-    [categoryNews addEnglishFeed:@"test" hostName:@"The Atlantic Wire" url:@"http://feeds.feedburner.com/TheAtlanticWire"];
-    [categoryNews addEnglishFeed:@"test" hostName:@"FOXNews.com" url:@"http://feeds.feedburner.com/foxnews/latest"];
-    [categoryNews addEnglishFeed:@"test" hostName:@"TheOnion.com" url:@"http://feeds.theonion.com/theonion/daily"];
-    [categoryNews addEnglishFeed:@"test" hostName:@"LAtimes.com" url:@"http://www.latimes.com/rss2.0.xml"];
-    [categoryNews addEnglishFeed:@"test" hostName:@"Newyorker.com" url:@"http://www.newyorker.com/services/rss/feeds/everything.xml"];
+  //  [categoryNews addEnglishFeedSelected:@"test" hostName:@"Wired.com" url:@"http://www.wired.com/rss/index.xml "];
+  //  [categoryNews addEnglishFeed:@"test" hostName:@"Reuters.com -Top News" url:@"http://feeds.reuters.com/reuters/topNews"];
+  //  [categoryNews addEnglishFeed:@"test" hostName:@"Reuters.com -US News" url:@"http://feeds.reuters.com/Reuters/domesticNews"];
+  //  [categoryNews addEnglishFeed:@"test" hostName:@"Reuters.com -World" url:@"http://feeds.reuters.com/Reuters/worldNews"];
+   // [categoryNews addEnglishFeed:@"test" hostName:@"Reuters.com -Top News Video" url:@"http://feeds.reuters.com/reuters/USVideoTopNews"];
+    //[categoryNews addEnglishFeed:@"test" hostName:@"Usatoday.com" url:@"http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news1"];
+    //[categoryNews addEnglishFeed:@"test" hostName:@"Usatoday.com -TopStories" url:@"http://rssfeeds.usatoday.com/usatoday-NewsTopStories"];
+   // [categoryNews addEnglishFeed:@"test" hostName:@"Foxnews.com" url:@"http://feeds.feedburner.com/foxnews/latest"];
+   //// [categoryNews addEnglishFeed:@"test" hostName:@"Kuro5hin.org" url:@"http://www.kuro5hin.org/backend.rdf"];
+   // [categoryNews addEnglishFeed:@"test" hostName:@"CbsNews.com" url:@"http://feeds.cbsnews.com/CBSNewsMain"];
+  //  [categoryNews addEnglishFeed:@"test" hostName:@"Slate.com" url:@"http://feeds.slate.com/slate"];
+  //  [categoryNews addEnglishFeed:@"test" hostName:@"The Atlantic Wire" url:@"http://feeds.feedburner.com/TheAtlanticWire"];
+  //  [categoryNews addEnglishFeed:@"test" hostName:@"FOXNews.com" url:@"http://feeds.feedburner.com/foxnews/latest"];
+   // [categoryNews addEnglishFeed:@"test" hostName:@"TheOnion.com" url:@"http://feeds.theonion.com/theonion/daily"];
+   // [categoryNews addEnglishFeed:@"test" hostName:@"LAtimes.com" url:@"http://www.latimes.com/rss2.0.xml"];
+   // [categoryNews addEnglishFeed:@"test" hostName:@"Newyorker.com" url:@"http://www.newyorker.com/services/rss/feeds/everything.xml"];
 
     //--------------------------------------------------------------------------------------------------------------------------------------------
     //Category -------------------------------------------Sport -----------------------------------------------------------------------------------

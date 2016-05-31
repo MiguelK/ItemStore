@@ -4,7 +4,7 @@ import com.itemstore.engine.ItemEngine;
 import com.itemstore.admin.Action;
 import com.itemstore.admin.dto.ItemDTO;
 import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.tag2.TagContainer;
+import com.itemstore.engine.model.tag3.TagTree;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +31,7 @@ public class ItemCreateAction extends Action {
             tags = Arrays.asList(StringUtils.split(tagsParameter, ","));
         }
 
-        Item item = new Item.Builder().title(title).tags(TagContainer.create(tags))
+        Item item = new Item.Builder().title(title).tags(new TagTree.Builder(tags).build())
                 .description(description).imageURL1(imageURL1).
                         sourceURL(sourceURL).targetURL(targetURL).
                         youTubeVideoID(youTubeVideoID).build();

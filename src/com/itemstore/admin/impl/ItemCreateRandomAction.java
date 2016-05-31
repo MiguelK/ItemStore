@@ -4,7 +4,7 @@ import com.itemstore.engine.ItemEngine;
 import com.itemstore.admin.Action;
 import com.itemstore.admin.dto.ItemDTO;
 import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.tag2.TagContainer;
+import com.itemstore.engine.model.tag3.TagTree;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -32,7 +32,7 @@ public class ItemCreateRandomAction extends Action {
         List<Item> items = new ArrayList<Item>();
         for (int i = 0; i < itemsToGenerate; i++) {
             Item.Builder builder = new Item.Builder();
-            builder.title(title + "_" + i).tags(TagContainer.create(tags))
+            builder.title(title + "_" + i).tags(new TagTree.Builder(tags).build())
                     .description(description);
             items.add(builder.build());
         }

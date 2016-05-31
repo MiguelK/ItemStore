@@ -41,7 +41,7 @@ class BasicIndexBuilder {
                 continue;
             }
 
-            itemTags.addAll(item.getTags());
+        //FIXME needed???    itemTags.addAll(item.getTags());
 
             List<Item> itemsNotHandled = ListUtils.subtract(items, handledItems);
 

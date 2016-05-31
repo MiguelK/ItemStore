@@ -1,7 +1,7 @@
 package com.itemstore.engine.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.itemstore.engine.model.tag2.TagContainer;
+import com.itemstore.engine.model.tag3.TagTree;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -18,7 +18,7 @@ public class Item implements Serializable {
     public static final Comparator<Item> PUBLISHED_DATE_SORTER = new PublishedDateSorter();
     private String id;
 
-    private final List<String> tags;
+    private final TagTree tagTree;
 
     private final String title; //Required
     private final String description; //Required
@@ -32,9 +32,9 @@ public class Item implements Serializable {
 
     private Item(Date publishedDate, String title, String description, String imageURL1, String imageURL2,
                  String youTubeVideoID, String targetURL, String sourceURL,
-                 List<String> tags, String itemGroupId) {
+                 TagTree tagTree, String itemGroupId) {
         this.id = String.valueOf(title.hashCode() + targetURL.hashCode()); //FIXME UUID.randomUUID().toString();
-        this.tags = tags;
+        this.tagTree = tagTree;
         this.title = title;
         this.description = description;
         this.imageURL1 = imageURL1;
@@ -55,7 +55,7 @@ public class Item implements Serializable {
         private String youTubeVideoID;
         private String targetURL;
         private String sourceURL;
-        private TagContainer tagContainer = TagContainer.create("");
+        private TagTree tagTree;
         private String itemGroupId; //Same id will be part of same composite object
 
         public Builder sourceURL(String sourceURL) {
@@ -73,8 +73,8 @@ public class Item implements Serializable {
             return this;
         }
 
-        public Builder tags(TagContainer tagContainer) {
-            this.tagContainer = tagContainer;
+        public Builder tags(TagTree tagTree) {
+            this.tagTree = tagTree;
             return this;
         }
 
@@ -132,7 +132,7 @@ public class Item implements Serializable {
 
 
             return new Item(publishedDate,title, description, imageURL1,
-                    imageURL2, youTubeVideoID, targetURL, sourceURL, tagContainer.getRawTags(), itemGroupId);
+                    imageURL2, youTubeVideoID, targetURL, sourceURL, tagTree, itemGroupId);
         }
     }
 
@@ -140,14 +140,14 @@ public class Item implements Serializable {
         return id;
     }
 
-    public List<String> getTags() { //getTagNames //FIXME
-        return tags;
+    public TagTree getTags() { //getTagNames //FIXME
+        return tagTree;
     }
 
-    @JsonIgnore
-    public TagContainer getTagContainer() {
+   // @JsonIgnore
+   /* public TagContainer getTagContainer() {
         return TagContainer.create(tags);
-    }
+    }*/
 
     public String getTitle() {
         return title;
@@ -210,7 +210,7 @@ public class Item implements Serializable {
     public String toString() {
         return "Item{" +
                 "id='" + id + '\'' +
-                ", tags=" + tags +
+                ", tagTree=" + tagTree +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", imageURL1='" + imageURL1 + '\'' +

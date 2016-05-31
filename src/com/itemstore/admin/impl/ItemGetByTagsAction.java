@@ -25,7 +25,8 @@ public class ItemGetByTagsAction extends Action {
 
                 boolean tagsMatch = true;
                 if (!tags.isEmpty()) {
-                    tagsMatch = CollectionUtils.containsAny(item.getTags(), tags);
+                    throw new UnsupportedOperationException("FIXME tagTree");
+                    //tagsMatch = CollectionUtils.containsAny(item.getTags(), tags);
                 }
 
 

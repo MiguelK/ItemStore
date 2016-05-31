@@ -1,8 +1,5 @@
 package com.itemstore.engine.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.itemstore.engine.model.tag2.TagContainer;
-
 import java.util.*;
 
 public class ItemGroup {
@@ -27,7 +24,7 @@ public class ItemGroup {
 
     //TagFilter
     public List<String> getTags() {
-        return items.get(0).getTags(); //FIXME
+        return Arrays.asList("testTag1");//FIXME needed??items.get(0).getTags(); //FIXME
     }
 
   //  @JsonIgnore

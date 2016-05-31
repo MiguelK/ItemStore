@@ -1,8 +1,10 @@
 package com.itemstore;
 
 import com.itemstore.collector.ItemCollector;
-import com.itemstore.collector.RSSCollector;
 import com.itemstore.collector.loader.topnews.TopNewsSweden;
+import com.itemstore.collector.rss.Channel;
+import com.itemstore.collector.rss.RSSChannelCollector;
+import com.itemstore.collector.rss.RSSChannels;
 import com.itemstore.commons.EngineConf;
 import com.itemstore.engine.ItemEngine;
 
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -28,9 +31,16 @@ public class StartupServlet extends HttpServlet {
 
         File channelFile = EngineConf.getInstance().getChannelsFile(servletConfig.getServletContext());
 
-        //Register collectors, crawls Internet for Item(s)
-        List<ItemCollector> rssChannelCollectors = RSSCollector.load(channelFile);
-        ItemEngine.getInstance().addCollectors(rssChannelCollectors);
+        List<Channel> channels = RSSChannels.loadFromFile(channelFile).getChannels();
+        LOG.info("Starting " + channels.size() + " channel collectors");
+        List<ItemCollector> channelCollectors = new ArrayList<ItemCollector>();
+        for (Channel channel : channels) {
+            RSSChannelCollector channelCollector = new RSSChannelCollector(channel.getUrl(),
+                    channel.getTag(), channel.getRefreshPeridInSeconds());
+            channelCollectors.add(channelCollector);
+        }
+
+        ItemEngine.getInstance().addCollectors(channelCollectors);
         ItemEngine.getInstance().addCollector(new TopNewsSweden());
 
         ItemEngine.getInstance().start();
