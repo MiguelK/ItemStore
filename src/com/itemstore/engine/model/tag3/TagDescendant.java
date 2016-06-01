@@ -18,7 +18,7 @@ public class TagDescendant {
         this.tags = StringUtils.trimToNull(tags);
 
         tagNodes = new HashMap<>();
-        List<String> allTags = parsetags(tags);
+        List<String> allTags = parseTags(tags);
         //FIXME stream etc, trim, lowercase
 
         for (String s : allTags) {
@@ -55,7 +55,7 @@ public class TagDescendant {
         return new ArrayList<>(tagNodes.values());
     }
 
-    private List<String> parsetags(String tags) {
+    private List<String> parseTags(String tags) {
 
             String[] split = StringUtils.trimToNull(tags).split("_"); //STart *? FIXME
             return Arrays.asList(split);

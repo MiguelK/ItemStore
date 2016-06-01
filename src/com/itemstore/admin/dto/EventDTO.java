@@ -7,8 +7,8 @@ import java.util.List;
 
 public class EventDTO {
 
-    public String name;
-    public int count;
+    private String name;
+    private int count;
 
     public static List<EventDTO> map(List<Event> events) {
 

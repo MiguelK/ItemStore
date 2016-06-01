@@ -24,7 +24,7 @@ public class ItemDTO implements Serializable {
     private int id;
     private List<String> tags = new ArrayList<String>();
 
-    public static ItemDTO createResponse(Item item) {
+    private static ItemDTO createResponse(Item item) {
         ItemDTO itemResponseDTO = new ItemDTO();
         itemResponseDTO.title = item.getTitle();
         itemResponseDTO.description = item.getDescription();

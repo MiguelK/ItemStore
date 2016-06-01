@@ -73,6 +73,7 @@
                 <Url>http://www.dn.se/debatt/m/rss</Url>
             </Channel>
             <Channel>
+                <Url>aftonbladet.se</Url>
                 <Url>http://www.aftonbladet.se/nojesliv/rss.xml</Url>
             </Channel>
             <Channel>

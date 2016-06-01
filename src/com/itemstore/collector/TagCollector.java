@@ -38,7 +38,7 @@ public class TagCollector {
         }
     }
 
-    public void add(String tag) {
+    private void add(String tag) {
         String trimmedTag = StringUtils.trimToEmpty(tag);
         if (StringUtils.isEmpty(trimmedTag)) {
             return;

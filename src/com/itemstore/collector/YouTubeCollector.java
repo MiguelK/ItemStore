@@ -3,7 +3,7 @@ package com.itemstore.collector;
 import java.util.List;
 
 //FIXME
-public class YouTubeCollector {
+class YouTubeCollector {
 
 //    Result result = JParser.parse("sjdlksjdlsjdlks https://www.youtube.com/watch?v=RgKAFK5djSk DDDDhagsas" +
     //          " https://www.youtube.com/watch?v=klXyt13nFOk#action=share AAAAAdjsdkjsd");

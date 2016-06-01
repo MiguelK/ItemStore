@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TagDTO {
-    public String name;
+    private String name;
 
     public static Object map(List<String> tags) {
 

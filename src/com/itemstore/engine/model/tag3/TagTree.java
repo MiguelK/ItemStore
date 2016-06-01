@@ -1,13 +1,17 @@
 package com.itemstore.engine.model.tag3;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TagTree {
     private static final String NEW_LINE = System.getProperty("line.separator");
+    public static final String TAGDESCENDANT_SEPARATOR = ",";
     private final List<TagDescendant> tagDescendants;
 
-    public TagTree(List<TagDescendant> tagDescendants) {
+    private TagTree(List<TagDescendant> tagDescendants) {
         this.tagDescendants = tagDescendants;
     }
 
@@ -47,8 +51,23 @@ public class TagTree {
         private List<String> tagsToAddToSingleTree = new ArrayList<>();
 
         public Builder(String rootTags) {
-            TagDescendant parse = TagDescendant.parse(rootTags);
-            tagDescendants.add(parse);
+
+            String s = StringUtils.trimToNull(rootTags);
+            if(s==null){
+                throw new TagTreeException("Invalid tags " + rootTags);
+            }
+
+            List<String> spliTags = Arrays.asList(s.split(TAGDESCENDANT_SEPARATOR));
+
+            if(!spliTags.isEmpty()){
+                List<TagDescendant> parse = TagDescendant.parse(spliTags);
+                tagDescendants.addAll(parse);
+            } else {
+                TagDescendant parse = TagDescendant.parse(s);
+                tagDescendants.add(parse);
+
+            }
+
         }
 
         public Builder(List<String> rootTags) {

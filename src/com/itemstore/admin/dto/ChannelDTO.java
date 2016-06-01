@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ChannelDTO {
 
-    public String name;
+    private String name;
 
 
     public static List<ChannelDTO> map(List<Channel> channels) {

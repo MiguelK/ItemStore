@@ -26,9 +26,9 @@ public class SvtTextTvCollector extends HTMLDocumentBase {
 
 
 
-        for (Element link : imports) {
+        /*for (Element link : imports) {
             print(" * %s <%s> (%s)", link.tagName(), link.attr("abs:href"), link.attr("rel"));
-        }
+        }*/
 
         for (Element element : root) {
             element.setBaseUri("test");

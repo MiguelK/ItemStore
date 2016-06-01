@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChannelGroup {
+class ChannelGroup {
 
     @XmlElementWrapper(name = "Channels")
     @XmlElement(name="Channel")

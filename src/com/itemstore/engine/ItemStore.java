@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemStore {
-    public static final ItemStore INSTANCE = new ItemStore();
+    private static final ItemStore INSTANCE = new ItemStore();
 
     public static ItemStore getInstance(){
         return INSTANCE;

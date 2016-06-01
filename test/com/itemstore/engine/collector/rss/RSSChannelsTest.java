@@ -3,6 +3,8 @@ package com.itemstore.engine.collector.rss;
 import com.itemstore.TestUtil;
 import com.itemstore.collector.rss.Channel;
 import com.itemstore.collector.rss.RSSChannels;
+import com.itemstore.engine.model.tag3.TagDescendant;
+import com.itemstore.engine.model.tag3.TagTree;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,6 +12,18 @@ import java.io.File;
 import java.util.List;
 
 public class RSSChannelsTest {
+
+    @Test
+    public void extra_tag() {
+        RSSChannels rss = RSSChannels.loadFromFile(TestUtil.readFile("channels-group-extra-tags.xml"));
+
+        Assert.assertEquals(rss.getChannels().size(), 1);
+        String tag = rss.getChannels().get(0).getTag();
+        List<TagDescendant> tagDescendants = new TagTree.Builder(tag).build().getTagDescendants();
+
+        Assert.assertEquals(tagDescendants.size(), 2);
+    }
+
     @Test
     public void channels_with_1_group() {
         RSSChannels rss = RSSChannels.loadFromFile(TestUtil.readFile("channels-group-1.xml"));

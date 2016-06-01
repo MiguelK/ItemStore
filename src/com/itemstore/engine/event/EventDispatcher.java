@@ -5,7 +5,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class EventDispatcher {
+class EventDispatcher {
 
     private static final int THREADS = 2;
     private final EventTracker eventTracker;

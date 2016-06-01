@@ -65,17 +65,17 @@ public abstract class Loader {
         logger.fine("Load from disk.." + getClass().getSimpleName());
     }
 
-    protected void handleLoadedTextRows(List<String> rows) {
+    private void handleLoadedTextRows(List<String> rows) {
     }
 
     private Collection<?> getRowsToSave() {
         return Collections.emptyList();
     }
 
-    protected void handledLoadedDate(Object object) {
+    private void handledLoadedDate(Object object) {
     }
 
-    protected Object getData() {
+    private Object getData() {
         throw new UnsupportedOperationException();
     }
 

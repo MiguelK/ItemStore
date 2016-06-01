@@ -9,7 +9,7 @@ public class ItemGroupResponse {
 
     private List<ItemGroupDTO> itemGroups = new ArrayList<ItemGroupDTO>();
 
-    public ItemGroupResponse(List<ItemGroupDTO> itemGroups) {
+    private ItemGroupResponse(List<ItemGroupDTO> itemGroups) {
         this.itemGroups = itemGroups;
     }
 

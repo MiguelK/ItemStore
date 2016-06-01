@@ -1,0 +1,15 @@
+<RSSChannels>
+
+	<ChannelGroup>
+		<Tag>eng_news</Tag>
+		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+
+		<Channels>
+			<Channel>
+				<Tag>dn.se</Tag>
+				<Url>http://www.dn.se.com/rss/index.xml</Url>
+			</Channel>
+		</Channels>
+	</ChannelGroup>
+
+</RSSChannels>

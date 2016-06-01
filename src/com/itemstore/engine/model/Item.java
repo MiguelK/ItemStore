@@ -79,6 +79,7 @@ public class Item implements Serializable {
             this.title = StringUtils.trimToNull(title);
             return this;
         }
+
         public Builder publishedDate(Date publishedDate) {
             this.publishedDate = publishedDate;
             return this;
@@ -128,7 +129,7 @@ public class Item implements Serializable {
             //TagCollector tagCollector = new TagCollector();
 
 
-            return new Item(publishedDate,title, description, imageURL1,
+            return new Item(publishedDate, title, description, imageURL1,
                     imageURL2, youTubeVideoID, targetURL, sourceURL, tagTree, itemGroupId);
         }
     }
@@ -140,11 +141,6 @@ public class Item implements Serializable {
     public TagTree getTags() { //getTagNames //FIXME
         return tagTree;
     }
-
-   // @JsonIgnore
-   /* public TagContainer getTagContainer() {
-        return TagContainer.create(tags);
-    }*/
 
     public String getTitle() {
         return title;

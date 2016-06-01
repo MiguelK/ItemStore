@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemDTO {
-    public String title;
+    private String title;
 
     public static List<ItemDTO> map(List<Item> items) {
 

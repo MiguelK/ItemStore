@@ -17,10 +17,6 @@ abstract class HTMLDocumentBase extends ItemCollectorBase {
         return doc;
     }
 
-     void print(String msg, Object... args) {
-       // System.out.println(String.format(msg, args));
-    }
-
     @Override
     public int getPollFrequencyInSeconds() {
         return 15;
