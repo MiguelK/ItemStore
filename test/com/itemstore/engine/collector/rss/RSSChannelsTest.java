@@ -40,7 +40,7 @@ public class RSSChannelsTest {
         for (Channel channel : channels) {
             Assert.assertNotNull(channel.getRefreshPeridInSeconds());
             Assert.assertNotNull(channel.getUrl());
-            Assert.assertNotNull(channel.getTag());
+            Assert.assertNotNull(channel.getTag(), "tags missing " + channel.getUrl());
         }
     }
 }

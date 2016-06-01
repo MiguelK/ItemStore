@@ -1,29 +1,4 @@
 //Swedish news
-http://www.aftonbladet.se/rss.xml;;Swe,Nyheter;;15
-http://realtid.se/rss/senaste;;Swe,Nyheter;;15
-http://www.dn.se/nyheter/m/rss;;Swe,Nyheter;;15
-http://www.metro.se/rss.xml;;Swe,Nyheter;;15
-http://gt.expressen.se/rss/nyheter;;Swe,Nyheter;;15
-http://www.expressen.se/1.573280?standAlone=true;;Swe,Nyheter;;15
-http://www.tv4.se/rss;;Swe,News;;15
-http://www.nyhetsportalen.se/?t=1616&rss=1&na=15;; Swe,Nyheter","Swe,Nyheter,Stockholm;;15
-http://www.aftonbladet.se/nojesliv/rss.xml;;Swe,Nyheter;;15
-http://www.dn.se/debatt/m/rss;;Swe,Nyheter;;15
-http://www.dn.se/nyheter/m/rss/senaste-nytt;;Swe,Nyheter;;15
-http://www.sydsvenskan.se/rss.xml;;Swe,Nyheter;;15
-http://www.gp.se/1.165654;;Swe,Nyheter;;15
-http://www.svd.se/?service=rss&type=latest;;Swe,Nyheter;;15
-http://www.svd.se/?service=rss;;Swe,Nyheter;;15
-http://www.svd.se/stockholm/nyheter/?service=rss;;Swe,Nyheter;;15
-http://www.svd.se/nyheter/inrikes/?service=rss;;Swe,Nyheter;;15
-http://www.svd.se/nyheter/utrikes/?service=rss;;Swe,Nyheter;;15
-http://www.nyhetsportalen.se//?na=25&&rss=1;;Swe,Nyheter;;15
-http://api.sr.se/api/rssfeed/rssfeed.aspx?rssfeed=83;;Swe,Nyheter;;15
-http://api.sr.se/api/rssfeed/rssfeed.aspx?rssfeed=1646;;Swe,Nyheter;;15
-http://kvp.expressen.se/rss/nyheter;;Swe,Nyheter;;15
-http://rss.barometern.se/bot-nyheter;;Swe,Nyheter;;15
-http://arbetarbladet.se/1.18218;;Swe,Nyheter;;15
-
 //Swedish blogs
 http://blogg.se/rss.xml;;Swe,Bloggar;;15
 http://kenzas.se/feed/;;Swe,Bloggar;;15

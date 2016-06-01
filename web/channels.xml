@@ -53,4 +53,81 @@
         </Channels>
     </ChannelGroup>
 
+    <ChannelGroup>
+        <Tag>swe_nyheter</Tag>
+        <RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+        <Channels>
+            <Channel>
+                <Url>http://www.svd.se/?service=rss</Url>
+            </Channel>
+           <!-- <Channel>
+                <Url>http://www.svd.se/?service=rss&type=latest</Url>
+            </Channel> -->
+            <Channel>
+                <Url>http://www.gp.se/1.165654</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.sydsvenskan.se/rss.xml</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.dn.se/nyheter/m/rss/senaste-nytt</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.dn.se/debatt/m/rss</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.aftonbladet.se/nojesliv/rss.xml</Url>
+            </Channel>
+            <Channel>
+                <Url> <![CDATA[http://www.nyhetsportalen.se/?t=1616&rss=1&na=15 ]]></Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.tv4.se/rss</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.expressen.se/1.573280?standAlone=true</Url>
+            </Channel>
+            <Channel>
+                <Url>http://gt.expressen.se/rss/nyheter</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.metro.se/rss.xml</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.dn.se/nyheter/m/rss</Url>
+            </Channel>
+            <Channel>
+                <Url>http://realtid.se/rss/senaste</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.aftonbladet.se/rss.xml</Url>
+            </Channel>
+            <Channel>
+                <Url>http://api.sr.se/api/rssfeed/rssfeed.aspx?rssfeed=83</Url>
+            </Channel>
+            <Channel>
+                <Url>http://arbetarbladet.se/1.18218</Url>
+            </Channel>
+            <Channel>
+                <Url>http://rss.barometern.se/bot-nyheter</Url>
+            </Channel>
+            <Channel>
+                <Url>http://api.sr.se/api/rssfeed/rssfeed.aspx?rssfeed=1646</Url>
+            </Channel>
+            <Channel>
+                <Url><![CDATA[http://www.nyhetsportalen.se//?na=25&&rss=1 ]]></Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.svd.se/nyheter/utrikes/?service=rss</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.svd.se/nyheter/inrikes/?service=rss</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.svd.se/stockholm/nyheter/?service=rss</Url>
+            </Channel>
+        </Channels>
+    </ChannelGroup>
+
+
 </RSSChannels>
