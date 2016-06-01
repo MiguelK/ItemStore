@@ -42,7 +42,7 @@ class BasicIndexBuilder {
 
             List<Item> itemsNotHandled = ListUtils.subtract(items, handledItems);
 
-            ItemGroup itemGroup = new ItemGroup("Some header FIXME"); //FIXME
+            ItemGroup itemGroup = new ItemGroup();
             itemGroup.addItem(item);
 
             boolean testVideo = false;

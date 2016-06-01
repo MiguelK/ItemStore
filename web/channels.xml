@@ -60,9 +60,6 @@
             <Channel>
                 <Url>http://www.svd.se/?service=rss</Url>
             </Channel>
-           <!-- <Channel>
-                <Url>http://www.svd.se/?service=rss&type=latest</Url>
-            </Channel> -->
             <Channel>
                 <Url>http://www.gp.se/1.165654</Url>
             </Channel>

@@ -15,6 +15,7 @@ public class TagTree {
         return tagDescendants;
     }
 
+    //Should this be included depending on input tree
     public double match(TagTree tagTree) { //passTargetTagTree
 
         for (TagDescendant tagDescendant : tagTree.getTagDescendants()) {

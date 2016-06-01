@@ -21,7 +21,7 @@ public class ItemDTO implements Serializable {
     private Date publishedDate;
     private String publishedDateFormated;
 
-    private String id;
+    private int id;
     private List<String> tags = new ArrayList<String>();
 
     public static ItemDTO createResponse(Item item) {
@@ -88,7 +88,7 @@ public class ItemDTO implements Serializable {
         return publishedDate;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

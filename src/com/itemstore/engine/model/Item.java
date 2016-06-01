@@ -13,7 +13,7 @@ import java.util.Date;
 public class Item implements Serializable {
 
     public static final Comparator<Item> PUBLISHED_DATE_SORTER = new PublishedDateSorter();
-    private String id;
+    private int id;
 
     private final TagTree tagTree;
 
@@ -30,7 +30,7 @@ public class Item implements Serializable {
     private Item(Date publishedDate, String title, String description, String imageURL1, String imageURL2,
                  String youTubeVideoID, String targetURL, String sourceURL,
                  TagTree tagTree, String itemGroupId) {
-        this.id = String.valueOf(title.hashCode() + targetURL.hashCode()); //FIXME UUID.randomUUID().toString();
+        this.id = title.hashCode() + targetURL.hashCode(); //FIXME UUID.randomUUID().toString();
         this.tagTree = tagTree;
         this.title = title;
         this.description = description;
@@ -133,7 +133,7 @@ public class Item implements Serializable {
         }
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

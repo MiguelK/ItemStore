@@ -27,7 +27,7 @@ public class ItemGroup {
     public Response searchItemGroups(@Context HttpServletRequest httpServletRequest,
                                      @QueryParam("excludeTagFilter") String excludeTagFilter,
                                      @QueryParam("favoriteTagFilter") String favoriteTagFilter,
-                                     @QueryParam("excludeItemGroupIds") List<String> excludeItemGroupIds,
+                                     @QueryParam("excludeItemGroupIds") List<Integer> excludeItemGroupIds,
                                      @QueryParam("itemGroupIds") List<Integer> itemGroupIds,
                                      @QueryParam("maxResultSize") Integer maxResultSize) {
 
@@ -49,7 +49,7 @@ public class ItemGroup {
         //swe_sport_zlatan
         //swe_sport_fotboll_os_zlatan
         //eng_news
-        List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate();
+        /*List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate();
         List<com.itemstore.engine.model.ItemGroup> filtered = new ArrayList<>();
 
         if(excludeItemGroupIds!=null && excludeItemGroupIds.size()>0){
@@ -61,12 +61,15 @@ public class ItemGroup {
             }
         } else {
             filtered.addAll(itemGroupGroups);
-        }
+        }*/
+
+
+        List<com.itemstore.engine.model.ItemGroup> search = ItemEngine.getInstance().search(request);
 
         //List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance()
           //      .searchItemsByTags(Collections.singletonList("Nyheter")); //FIXME use TagForest
 
-        ItemGroupResponse response = ItemGroupResponse.create(filtered);
+        ItemGroupResponse response = ItemGroupResponse.create(search);
 
         if (excludeItemGroupIds != null) {
             LOG.info("excludeItemGroupIds=" + excludeItemGroupIds.size());

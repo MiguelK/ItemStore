@@ -7,12 +7,10 @@ import java.util.List;
 
 public class ItemGroupDTO  {
 
-    private String header;
     private List<ItemDTO> items = new ArrayList<ItemDTO>();
 
     public static ItemGroupDTO createResponse(ItemGroup itemGroup) {
         ItemGroupDTO itemGroupDTO = new ItemGroupDTO();
-        itemGroupDTO.header = itemGroup.getHeader();
         itemGroupDTO.items.addAll(ItemDTO.createResponse(itemGroup.getItems()));
 
         return itemGroupDTO;
@@ -26,10 +24,6 @@ public class ItemGroupDTO  {
         }
 
         return responses;
-    }
-
-    public String getHeader() {
-        return header;
     }
 
     public List<ItemDTO> getItems() {

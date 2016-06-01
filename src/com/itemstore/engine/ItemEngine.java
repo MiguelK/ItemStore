@@ -16,6 +16,7 @@ import java.util.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 //FIXME rename ItemStore, ItemEngine
 public final class ItemEngine implements ItemCollectorListener {
@@ -116,6 +117,40 @@ public final class ItemEngine implements ItemCollectorListener {
             rebuildIndex();
         } finally {
             writeLock.unlock();
+        }
+    }
+
+    public List<ItemGroup> search(ItemGroupFilter itemGroupFilter) {
+        readLock.lock();
+        try {
+            //Copy??? FIXME
+            List<ItemGroup> collect = allItemGroupsSortedByDate.stream()
+                    .filter(itemGroup -> {
+
+                        //If specific ItemGroups are requested
+                        if (itemGroupFilter.getItemIds() != null) {
+                            if (itemGroupFilter.getItemIds().contains(itemGroup.getId())) {
+                                return true; //Include
+                            }
+                        }
+
+                        if (!itemGroupFilter.getItemIds().isEmpty()) {
+                                return  false; //Only ids match
+                        }
+
+                            if (itemGroupFilter.getExcludeTag() != null &&
+                                itemGroup.getTags().match(itemGroupFilter.getExcludeTag()) > 0) {
+                            return false;
+                        }
+
+
+                        return true;
+                    }).collect(Collectors.toList());
+
+
+            return collect; //CollectionUtils.select(allItems, predicate);
+        } finally {
+            readLock.unlock();
         }
     }
 

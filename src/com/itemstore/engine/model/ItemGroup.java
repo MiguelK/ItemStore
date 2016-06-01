@@ -1,18 +1,14 @@
 package com.itemstore.engine.model;
 
+import com.itemstore.engine.model.tag3.TagTree;
+
 import java.util.*;
 
 public class ItemGroup {
 
     public static final Comparator<ItemGroup> PUBLISHED_DATE_SORTER = new LATEST_PUBLISHED_DATE_SORTER();
 
-    private String header;
-
     private List<Item> items = new ArrayList<Item>();
-
-    public ItemGroup(String header) {
-        this.header = header;
-    }
 
     private Date getLatestItemCreatedDate() {
         return items.get(0).getPublishedDate(); //0 is always latest withing group
@@ -22,21 +18,19 @@ public class ItemGroup {
         items.add(item);
     }
 
-    //TagFilter
-    public List<String> getTags() {
-        return Arrays.asList("testTag1");//FIXME needed??items.get(0).getTags(); //FIXME
+    public TagTree getTags() {
+        return items.get(0).getTags();
     }
 
-  //  @JsonIgnore
-    /*  public TagContainer getTagContainer() {
-        return items.get(0).getTagContainer(); //FIXME
-    }*/
+    public int getId() {
+        return items.get(0).getId();
+    }
 
     public List<Item> getItems() {
         return items;
     }
 
-    public List<String> getItemIds() {
+    /*public List<String> getItemIds() {
         List<String> ids = new ArrayList<String>();
 
         for (Item item : items) {
@@ -44,19 +38,6 @@ public class ItemGroup {
         }
 
         return ids;
-    }
-
-    public String getHeader() {
-        return header;
-    }
-
-    /*@JsonIgnore
-    public Item getSingeItem() {
-        if (items.size() != 1) {
-            throw new IllegalStateException("ItemGroup not=1" + getTags());
-        }
-
-        return items.get(0);
     }*/
 
     public void sortItemsByPublishedDate() {
