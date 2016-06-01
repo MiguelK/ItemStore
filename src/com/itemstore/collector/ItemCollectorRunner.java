@@ -1,7 +1,6 @@
 package com.itemstore.collector;
 
 import com.itemstore.commons.AsyncService;
-import com.itemstore.commons.EngineConf;
 import com.itemstore.engine.event.EventType;
 import com.itemstore.engine.event.Events;
 import com.itemstore.engine.model.Item;

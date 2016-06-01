@@ -15,6 +15,14 @@ public class Channel {
     @XmlElement(name = "Tag")
     private String tag;
 
+    void setRefreshPeridInSeconds(int refreshPeridInSeconds) {
+        this.refreshPeridInSeconds = refreshPeridInSeconds;
+    }
+
+     void setTag(String tag) {
+        this.tag = tag;
+    }
+
     public String getTag() {
         return tag;
     }
@@ -33,5 +41,7 @@ public class Channel {
 
     void validate(){
         //FIXME validate url+filter
+
+
     }
 }

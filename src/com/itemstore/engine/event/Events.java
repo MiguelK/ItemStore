@@ -19,7 +19,7 @@ public class Events {
     }
 
     public static void fireEvent(EventType eventType) {
-        Event event = Event.create("", null, eventType);
+        Event event = Event.create(null, eventType);
         EVENT_DISPATCHER.dispach(event);
     }
 }

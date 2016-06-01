@@ -1,14 +1,11 @@
 package com.itemstore.engine.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.itemstore.engine.model.tag3.TagTree;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 
 /**
  * Versions FIXME serialId

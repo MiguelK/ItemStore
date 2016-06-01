@@ -26,7 +26,7 @@ public class AsyncService {
         int maximumPoolSize = 200;
         long keepAliveTime = 0L;
         executorService = new MyThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime,
-                TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(),
+                new LinkedBlockingQueue<Runnable>(),
                 Executors.defaultThreadFactory(), new ThreadPoolExecutor.AbortPolicy());
 
         scheduledThreadPoolExecutor = new MyScheduledThreadPoolExecutor();
@@ -69,8 +69,8 @@ public class AsyncService {
     }
 
     private static class MyThreadPoolExecutor extends ThreadPoolExecutor {
-        MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory, RejectedExecutionHandler handler) {
-            super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, handler);
+        MyThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, BlockingQueue<Runnable> workQueue, ThreadFactory threadFactory, RejectedExecutionHandler handler) {
+            super(corePoolSize, maximumPoolSize, keepAliveTime, TimeUnit.MILLISECONDS, workQueue, threadFactory, handler);
         }
 
         @Override

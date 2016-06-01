@@ -1,8 +1,5 @@
 package com.itemstore.engine.model.tag3;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import com.sun.xml.internal.ws.encoding.ContentTypeImpl;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -2,9 +2,7 @@ package com.itemstore;
 
 import com.itemstore.collector.ItemCollector;
 import com.itemstore.collector.loader.topnews.TopNewsSweden;
-import com.itemstore.collector.rss.Channel;
 import com.itemstore.collector.rss.RSSChannelCollector;
-import com.itemstore.collector.rss.RSSChannels;
 import com.itemstore.commons.EngineConf;
 import com.itemstore.engine.ItemEngine;
 
@@ -15,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 

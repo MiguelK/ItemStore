@@ -22,14 +22,14 @@ public final class Event {
         this.thekey = thekey;
     }
 
-    public static Event create(String message, Exception exception, EventType eventType) {
-        TheKey thekey = TheKey.create(eventType, message);
+    public static Event create(Exception exception, EventType eventType) {
+        TheKey thekey = TheKey.create(eventType, "");
         Event event = events.get(thekey);
         if (event != null) {
             return event;
         }
 
-        Event event1 = new Event(thekey, message, exception, eventType);
+        Event event1 = new Event(thekey, "", exception, eventType);
         events.put(thekey, event1);
         return event1;
     }
