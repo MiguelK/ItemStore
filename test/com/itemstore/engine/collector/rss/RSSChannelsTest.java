@@ -36,6 +36,17 @@ public class RSSChannelsTest {
         }
     }
 
+    @Test
+    public void so_not_add_tags_twice() {
+        RSSChannels rss = RSSChannels.loadFromFile(TestUtil.readFile("channels-group-1.xml"));
+
+        Assert.assertEquals(rss.getChannels().size(), 2);
+        for (Channel channel : rss.getChannels()) {
+            Assert.assertEquals(channel.getTag(), "eng_news");
+        }
+    }
+
+
     @Test(expectedExceptions = RuntimeException.class)
     public void duplicated_channels_should_throw_exception() {
         RSSChannels.loadFromFile(TestUtil.readFile("duplicated_channels.xml"));

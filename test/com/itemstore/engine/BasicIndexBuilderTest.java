@@ -27,8 +27,18 @@ public class BasicIndexBuilderTest {
         Assert.assertEquals(result.getItemGroups().size(), 2);
     }
 
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void nullItems() {
+        new BasicIndexBuilder(null).buildIndex();
+    }
 
-   /* @Test
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void noItemsToIndex() {
+        new BasicIndexBuilder(new HashSet<Item>()).buildIndex();
+    }
+
+
+    /* @Test
     public void buildIndex_3_composite_exclude_eng() {
         List<Item> items = new ArrayList<Item>();
 

@@ -15,16 +15,18 @@ class BasicIndexBuilder {
 
     private final List<Item> items;
 
-    public  BasicIndexBuilder(Set<Item> items) {
-        if(items==null || items.isEmpty()){
-            throw  new IllegalArgumentException("No item to index");
+    public BasicIndexBuilder(Set<Item> items) {
+        if (items == null || items.isEmpty()) {
+            throw new IllegalArgumentException("No item(s) to index");
         }
 
         this.items = new ArrayList<Item>(items);
     }
 
-    // 1. Iterate all items, create ItemGroups (max x in each)
-    // 2. Sort... done!
+    // 1. Iterate all items, create ItemGroups based on similra item(s) (max x in each)
+    // 2. Sort on date
+    // 3  Done!
+    // 4 (ItemGroup API search will sort on tags, priority etc...)
     public Result buildIndex() {
         Set<String> itemTags = new HashSet<String>();
 
@@ -38,26 +40,17 @@ class BasicIndexBuilder {
                 continue;
             }
 
-        //FIXME needed???    itemTags.addAll(item.getTags());
+            //FIXME needed???    itemTags.addAll(item.getTags());
 
             List<Item> itemsNotHandled = ListUtils.subtract(items, handledItems);
 
             ItemGroup itemGroup = new ItemGroup();
             itemGroup.addItem(item);
 
-            boolean testVideo = false;
             for (Item itemNotHandled : itemsNotHandled) {
                 if (itemGroup.getItems().size() == MAX_ITEM_IN_GROUP) {
                     break;
                 }
-
-                /*if (!testVideo) {
-                    testVideo = true;
-                    String videoId = "HNaF4-oK_Oo"; //FIXME test only
-                    Item build = new Item.Builder().title("Some bananas").youTubeVideoID(videoId).build();
-                    itemGroup.addItem(build);
-
-                }*/
 
                 if (StringUtils.trimToEmpty(item.getItemGroupId()).equals(itemNotHandled.getItemGroupId())
                         || item.isSimilarTo(itemNotHandled)) {

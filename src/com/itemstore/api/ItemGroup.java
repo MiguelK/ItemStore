@@ -30,49 +30,19 @@ public class ItemGroup {
                                      @QueryParam("itemGroupIds") List<Integer> itemGroupIds,
                                      @QueryParam("maxResultSize") Integer maxResultSize) {
 
-        SearchItemGroupRequest request = SearchItemGroupRequest.create(excludeTagFilter, favoriteTagFilter, excludeItemGroupIds,
-                itemGroupIds, maxResultSize);
+        SearchItemGroupRequest request;
 
         try {
-            request.validate();
+            request = SearchItemGroupRequest.create(excludeTagFilter, favoriteTagFilter, excludeItemGroupIds,
+                    itemGroupIds, maxResultSize);
+            LOG.info("searchItemGroups=" + request);
         } catch (SearchItemGroupRequest.InvalidRequestException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
 
-        //1# if itemGroupIds>0 return only theese itemGroups
-        //TagFilter f = TagForest.create(excludeTagFilter)
-        //TagFilter a = TagForest.create(favoriteTagFilter)
+        List<com.itemstore.engine.model.ItemGroup> itemGroups = ItemEngine.getInstance().search(request);
 
-        //List<String> tags) FIXME etc more params  favoriteTagFilter, skipTagFilter
-        //int resultSize =10
-        //swe_sport_zlatan
-        //swe_sport_fotboll_os_zlatan
-        //eng_news
-        /*List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate();
-        List<com.itemstore.engine.model.ItemGroup> filtered = new ArrayList<>();
-
-        if(excludeItemGroupIds!=null && excludeItemGroupIds.size()>0){
-            for (com.itemstore.engine.model.ItemGroup itemGroupGroup : itemGroupGroups) {
-                if(excludeItemGroupIds.contains(itemGroupGroup.getItems().get(0).getId())){ //FIXME
-                    continue;
-                }
-                filtered.add(itemGroupGroup);
-            }
-        } else {
-            filtered.addAll(itemGroupGroups);
-        }*/
-
-
-        List<com.itemstore.engine.model.ItemGroup> search = ItemEngine.getInstance().search(request);
-
-        //List<com.itemstore.engine.model.ItemGroup> itemGroupGroups = ItemEngine.getInstance()
-          //      .searchItemsByTags(Collections.singletonList("Nyheter")); //FIXME use TagForest
-
-        ItemGroupResponse response = ItemGroupResponse.create(search);
-
-        if (excludeItemGroupIds != null) {
-            LOG.info("excludeItemGroupIds=" + excludeItemGroupIds.size());
-        }
+        ItemGroupResponse response = ItemGroupResponse.create(itemGroups);
 
         return Response.status(Response.Status.OK).entity(response).build();
     }

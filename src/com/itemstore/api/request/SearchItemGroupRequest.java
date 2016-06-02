@@ -3,6 +3,7 @@ package com.itemstore.api.request;
 
 import com.itemstore.engine.ItemGroupFilter;
 import com.itemstore.engine.model.tag3.TagTree;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -14,31 +15,42 @@ public class SearchItemGroupRequest implements ItemGroupFilter {
         }
     }
 
-    private String excludeTagFilter; //swe_sport,eng_*,swe_kultur_*
+    private final TagTree excludeTagFilter;
 
-    private String favoriteTagFilter; //swe_sport,eng_*,swe_kultur_*
+    private final TagTree favoriteTagFilter;
 
-    private List<Integer> excludeItemGroupIds;
+    private final List<Integer> excludeItemGroupIds;
 
-    private List<Integer> itemGroupIds;
+    private final List<Integer> itemGroupIds;
 
-    private Integer maxResultSize;
+    private final Integer maxResultSize;
 
     private SearchItemGroupRequest(String excludeTagFilter, String favoriteTagFilter, List<Integer> excludeItemGroupIds,
-                                   List<Integer> itemGroupIds, Integer maxResultSize) {
+                                   List<Integer> itemGroupIds, Integer maxResultSize) throws InvalidRequestException {
 
-        this.excludeTagFilter = excludeTagFilter;
-        this.favoriteTagFilter = favoriteTagFilter;
+        if (itemGroupIds == null) {
+            throw new InvalidRequestException("itemGroupIds is null");
+        }
+
+        if (excludeItemGroupIds == null) {
+            throw new InvalidRequestException("excludeItemGroupIds is null");
+        }
+
+
+        this.excludeTagFilter = StringUtils.trimToNull(excludeTagFilter) == null ?
+                null : new TagTree.Builder(excludeTagFilter).build();
+        this.favoriteTagFilter = StringUtils.trimToNull(favoriteTagFilter) == null ?
+                null : new TagTree.Builder(favoriteTagFilter).build();
+
         this.excludeItemGroupIds = excludeItemGroupIds;
         this.itemGroupIds = itemGroupIds;
         this.maxResultSize = maxResultSize;
     }
 
-    public static SearchItemGroupRequest create(String excludeTagFilter, String favoriteTagFilter, List<Integer> excludeItemGroupIds, List<Integer> itemGroupIds, Integer maxResultSize) {
+    public static SearchItemGroupRequest create(String excludeTagFilter, String favoriteTagFilter,
+                                                List<Integer> excludeItemGroupIds, List<Integer> itemGroupIds,
+                                                Integer maxResultSize) throws InvalidRequestException {
         return new SearchItemGroupRequest(excludeTagFilter, favoriteTagFilter, excludeItemGroupIds, itemGroupIds, maxResultSize);
-    }
-
-    public void validate() throws InvalidRequestException {
     }
 
     @Override
@@ -58,11 +70,22 @@ public class SearchItemGroupRequest implements ItemGroupFilter {
 
     @Override
     public TagTree getExcludeTag() {
-        return excludeTagFilter == null ? null : new TagTree.Builder(excludeTagFilter).build();
+        return excludeTagFilter;
     }
 
     @Override
     public TagTree getFavoriteTag() {
-        return favoriteTagFilter == null ? null : new TagTree.Builder(favoriteTagFilter).build();
+        return favoriteTagFilter;
+    }
+
+    @Override
+    public String toString() {
+        return "SearchItemGroupRequest{" +
+                "excludeTagFilter=" + excludeTagFilter +
+                ", favoriteTagFilter=" + favoriteTagFilter +
+                ", excludeItemGroupIds=" + excludeItemGroupIds +
+                ", itemGroupIds=" + itemGroupIds +
+                ", maxResultSize=" + maxResultSize +
+                '}';
     }
 }

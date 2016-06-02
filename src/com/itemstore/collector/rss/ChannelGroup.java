@@ -21,7 +21,7 @@ class ChannelGroup {
 
         for (Channel channel : channels) {
             channel.setRefreshPeridInSeconds(refreshPeridInSeconds);
-            channel.setTag(tag);
+            channel.setTagFromChannelGroup(tag);
         }
         return channels;
     }

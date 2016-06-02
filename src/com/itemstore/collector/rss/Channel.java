@@ -21,7 +21,12 @@ public class Channel {
         this.refreshPeridInSeconds = refreshPeridInSeconds;
     }
 
-    void setTag(String newTag) {
+    void setTagFromChannelGroup(String newTag) {
+
+        if(this.tag!=null && this.tag.contains(newTag)){
+            return; //Only add the same tag once
+        }
+
         //use both common tag and channel tag
         this.tag = this.tag != null ? this.tag + TagTree.TAGDESCENDANT_SEPARATOR + newTag : newTag;
     }
