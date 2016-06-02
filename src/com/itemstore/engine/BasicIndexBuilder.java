@@ -39,9 +39,7 @@ class BasicIndexBuilder {
                 //User client has already this items in is local cache
                 continue;
             }
-
             //FIXME needed???    itemTags.addAll(item.getTags());
-
             List<Item> itemsNotHandled = ListUtils.subtract(items, handledItems);
 
             ItemGroup itemGroup = new ItemGroup();
@@ -57,6 +55,7 @@ class BasicIndexBuilder {
                     itemGroup.addItem(itemNotHandled);
                 }   //FIXME //contains same tags + similar description
             }
+
 
             itemGroup.sortItemsByPublishedDate();
 
