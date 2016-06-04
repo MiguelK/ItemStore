@@ -1,4 +1,4 @@
-package com.itemstore.collector.loader.topnews;
+package com.itemstore.collector.web;
 
 import com.itemstore.collector.ItemCollectorBase;
 import org.jsoup.Jsoup;
@@ -38,7 +38,7 @@ import java.io.IOException;
  * //headLine,source //Item
  * List<String> s = t.getItems(; //dn, afton,exp etc...
  */
-public abstract class TopNews extends ItemCollectorBase {
+public abstract class ItemCollectorWebBase extends ItemCollectorBase {
 
      Document get(String url) {
         Document doc = null;
