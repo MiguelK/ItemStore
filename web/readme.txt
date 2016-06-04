@@ -13,3 +13,8 @@ ssh 57506f870c1e66dee6000163@itemstore-miguelk.rhcloud.com
 
 URL
 http://itemstore-miguelk.rhcloud.com/ItemStore/api/itemGroup/search?favoriteTagFilter=swe_news
+
+
+
+Heruku
+miguelworker1 /Swift%123
