@@ -35,7 +35,7 @@ public class ItemGroup {
         try {
             request = SearchItemGroupRequest.create(excludeTagFilter, favoriteTagFilter, excludeItemGroupIds,
                     itemGroupIds, maxResultSize);
-            LOG.info("searchItemGroups=" + request);
+            LOG.info("excludeTagFilter=" + excludeTagFilter);
         } catch (SearchItemGroupRequest.InvalidRequestException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }

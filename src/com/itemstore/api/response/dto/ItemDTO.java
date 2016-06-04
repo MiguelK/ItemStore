@@ -4,8 +4,10 @@ import com.itemstore.engine.model.Item;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -18,8 +20,8 @@ public class ItemDTO implements Serializable {
     private String targetURL;
     private String sourecURL;
 
-    private Date publishedDate;
-    private String publishedDateFormated;
+    private LocalDateTime publishedDate;
+    private String publishedDateFormatted;
 
     private int id;
     private List<String> tags = new ArrayList<String>();
@@ -33,8 +35,9 @@ public class ItemDTO implements Serializable {
         itemResponseDTO.sourecURL = item.getSourceURL();
         itemResponseDTO.publishedDate = item.getPublishedDate();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        itemResponseDTO.publishedDateFormated = formatter.format(item.getPublishedDate()); //FIXME perf
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        itemResponseDTO.publishedDateFormatted = item.getPublishedDate().format(formatter); //formatter.format(item.getPublishedDate()); //FIXME perf
         itemResponseDTO.targetURL = item.getTargetURL();
         itemResponseDTO.youTubeVideoID = item.getYouTubeVideoID();
         itemResponseDTO.id = item.getId();
@@ -52,8 +55,8 @@ public class ItemDTO implements Serializable {
         return responses;
     }
 
-    public String getPublishedDateFormated() {
-        return publishedDateFormated;
+    public String getPublishedDateFormatted() {
+        return publishedDateFormatted;
     }
 
     public String getTitle() {
@@ -84,7 +87,7 @@ public class ItemDTO implements Serializable {
         return sourecURL;
     }
 
-    public Date getPublishedDate() {
+    public LocalDateTime getPublishedDate() {
         return publishedDate;
     }
 

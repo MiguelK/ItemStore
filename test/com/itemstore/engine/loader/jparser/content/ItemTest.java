@@ -22,6 +22,12 @@ public class ItemTest {
         Assert.assertEquals("The title", item.getTitle());
     }*/
 
+    @Test
+    public void testName() {
+
+
+    }
+
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void build_invalid_1() {
         new Item.Builder().title(" ").build();
@@ -39,10 +45,15 @@ public class ItemTest {
     }*/
 
 
-    /*@Test(expectedExceptions = IllegalArgumentException.class)
-    public void create_No_tagfilter() {
-        new Item.Builder().title("Test ccc").description("some stuff...").build();
-    }*/
+    @Test
+    public void create_no_tagtree() {
+        try {
+            Item build = new Item.Builder().title("Test ccc").targetURL("d.se").imageURL1("dn.se/image.jpg").build();
+            Assert.fail("" + build);
+        } catch (IllegalArgumentException e) {
+            Assert.assertTrue(e.getMessage().contains("tag"));
+        }
+    }
 
     /*  @Test
     public void same_title_and_targetURL_should_be_same_id() {

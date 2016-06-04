@@ -65,7 +65,7 @@ class BasicIndexBuilder {
 
         Collections.sort(itemGroups, ItemGroup.PUBLISHED_DATE_SORTER);
 
-        return new Result(itemGroups, new ArrayList<String>(itemTags));
+        return new Result(itemGroups, new ArrayList<>(itemTags));
     }
 
     public static final class Result {

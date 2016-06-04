@@ -4,6 +4,7 @@ import com.itemstore.engine.model.tag3.TagTree;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.Date;
 
@@ -24,10 +25,10 @@ public class Item implements Serializable {
     private final String youTubeVideoID;
     private final String targetURL; //Required targetURL
     private final String sourceURL;
-    private final Date publishedDate;
+    private final LocalDateTime publishedDate;
     private String itemGroupId; //if not null use it= part of group, groupId? Required Same id will be part of same composite object
 
-    private Item(Date publishedDate, String title, String description, String imageURL1, String imageURL2,
+    private Item(LocalDateTime publishedDate, String title, String description, String imageURL1, String imageURL2,
                  String youTubeVideoID, String targetURL, String sourceURL,
                  TagTree tagTree, String itemGroupId) {
         this.id = title.hashCode() + targetURL.hashCode(); //FIXME UUID.randomUUID().toString();
@@ -39,12 +40,12 @@ public class Item implements Serializable {
         this.youTubeVideoID = youTubeVideoID;
         this.targetURL = targetURL;
         this.sourceURL = sourceURL;
-        this.publishedDate = publishedDate == null ? new Date() : publishedDate; //FIXME
+        this.publishedDate = publishedDate == null ? LocalDateTime.now() : publishedDate; //FIXME
         this.itemGroupId = itemGroupId;
     }
 
     public static class Builder {
-        private Date publishedDate;
+        private LocalDateTime publishedDate;
         private String title;
         private String description;
         private String imageURL1;
@@ -52,7 +53,7 @@ public class Item implements Serializable {
         private String youTubeVideoID;
         private String targetURL;
         private String sourceURL;
-        private TagTree tagTree;
+        private TagTree tagTree; //Default empty tagTree
         private String itemGroupId; //Same id will be part of same composite object
 
         public Builder sourceURL(String sourceURL) {
@@ -80,7 +81,7 @@ public class Item implements Serializable {
             return this;
         }
 
-        public Builder publishedDate(Date publishedDate) {
+        public Builder publishedDate(LocalDateTime publishedDate) {
             this.publishedDate = publishedDate;
             return this;
         }
@@ -109,6 +110,10 @@ public class Item implements Serializable {
 
             if (StringUtils.isEmpty(targetURL)) {
                 throw new IllegalArgumentException("Invalid targetURL " + targetURL);
+            }
+
+            if (tagTree == null) {
+                throw new IllegalArgumentException("tagTree is missing");
             }
 
             //FIXME ???
@@ -174,7 +179,7 @@ public class Item implements Serializable {
         return itemGroupId;
     }
 
-    public Date getPublishedDate() {
+    public LocalDateTime getPublishedDate() {
         return publishedDate;
     }
 

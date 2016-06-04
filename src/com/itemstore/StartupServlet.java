@@ -1,8 +1,9 @@
 package com.itemstore;
 
 import com.itemstore.collector.ItemCollector;
-import com.itemstore.collector.loader.topnews.TopNewsSweden;
+import com.itemstore.collector.TopNewsSwedenCollector;
 import com.itemstore.collector.rss.RSSChannelCollector;
+import com.itemstore.collector.web.TopNewsSweden;
 import com.itemstore.commons.EngineConf;
 import com.itemstore.engine.ItemEngine;
 
@@ -40,7 +41,7 @@ public class StartupServlet extends HttpServlet {
         List<ItemCollector> channelCollectors = RSSChannelCollector.parseFile(channelFile);
 
         ItemEngine.getInstance().addCollectors(channelCollectors);
-        ItemEngine.getInstance().addCollector(new TopNewsSweden());
+        ItemEngine.getInstance().addCollector(new TopNewsSwedenCollector());
 
         ItemEngine.getInstance().start();
     }

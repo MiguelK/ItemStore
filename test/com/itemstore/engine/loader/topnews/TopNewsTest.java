@@ -1,7 +1,7 @@
 package com.itemstore.engine.loader.topnews;
 
-import com.itemstore.collector.loader.topnews.TopNews;
-import com.itemstore.collector.loader.topnews.TopNewsSweden;
+import com.itemstore.collector.web.ItemCollectorWebBase;
+import com.itemstore.collector.web.TopNewsSweden;
 import com.itemstore.engine.model.Item;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
@@ -17,8 +17,8 @@ public class TopNewsTest {
 
     @Test
     public void getItemsSwden() {
-        TopNews topNews = new TopNewsSweden();
-        List<Item> items = topNews.getItems();
+        ItemCollectorWebBase itemCollectorWebBase = new TopNewsSweden();
+        List<Item> items = itemCollectorWebBase.getItems();
 
         for (Item item : items) {
             System.out.println(item);

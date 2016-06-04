@@ -53,21 +53,19 @@ public class TagTree {
         public Builder(String rootTags) {
 
             String s = StringUtils.trimToNull(rootTags);
-            if(s==null){
+            if (s == null) {
                 throw new TagTreeException("Invalid tags " + rootTags);
             }
 
-            List<String> spliTags = Arrays.asList(s.split(TAGDESCENDANT_SEPARATOR));
+            List<String> tags = Arrays.asList(s.split(TAGDESCENDANT_SEPARATOR));
 
-            if(!spliTags.isEmpty()){
-                List<TagDescendant> parse = TagDescendant.parse(spliTags);
-                tagDescendants.addAll(parse);
-            } else {
+            if (tags.isEmpty()) {
                 TagDescendant parse = TagDescendant.parse(s);
                 tagDescendants.add(parse);
-
+            } else {
+                List<TagDescendant> parse = TagDescendant.parse(tags);
+                tagDescendants.addAll(parse);
             }
-
         }
 
         public Builder(List<String> rootTags) {

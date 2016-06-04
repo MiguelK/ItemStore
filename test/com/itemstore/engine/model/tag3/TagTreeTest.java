@@ -7,7 +7,6 @@ import java.util.Arrays;
 
 public class TagTreeTest {
 
-
     @Test
     public void parseMultiTag() {
         TagTree tagTreeA = new TagTree.Builder("swe_sport_os2016,swe_sport_zlatan").build();

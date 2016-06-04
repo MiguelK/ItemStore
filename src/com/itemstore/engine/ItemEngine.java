@@ -9,6 +9,7 @@ import com.itemstore.engine.event.EventType;
 import com.itemstore.engine.event.Events;
 import com.itemstore.engine.model.Item;
 import com.itemstore.engine.model.ItemGroup;
+import com.itemstore.engine.model.tag3.TagTree;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Predicate;
 
@@ -55,6 +56,17 @@ public final class ItemEngine implements ItemCollectorListener {
             writeLock.unlock();
         }
         //FIXME
+    }
+
+    //USED by test FIXME
+    public void clear() {
+        writeLock.lock();
+        try {
+            this.allItems = new HashSet<>();
+        } finally {
+
+            writeLock.unlock();
+        }
     }
 
     public void registerItem(Item item) {
@@ -120,35 +132,50 @@ public final class ItemEngine implements ItemCollectorListener {
         }
     }
 
-    public List<ItemGroup> search(ItemGroupFilter itemGroupFilter) {
+    public List<ItemGroup> search(ItemGroupFilter filter) {
         readLock.lock();
         try {
+
+            List<Integer> excludeIds = filter.getExcludeIds();
+            List<Integer> itemIds = filter.getItemIds(); //FIXME renam? itemIdToInclude
+            TagTree excludeTag = filter.getExcludeTag();
+            int maxResult = filter.getMaxResult();
+            TagTree favoriteTag = filter.getFavoriteTag(); //Just a hint, just for sorting
+
             //Copy??? FIXME
             List<ItemGroup> collect = allItemGroupsSortedByDate.stream()
                     .filter(itemGroup -> {
 
-                        //If specific ItemGroups are requested
-                        if (itemGroupFilter.getItemIds() != null) {
-                            if (itemGroupFilter.getItemIds().contains(itemGroup.getId())) {
-                                return true; //Include
-                            }
+                        //1# If included in excludeItemGroupId do not return it
+                        if (excludeIds.contains(itemGroup.getId())) {
+                            return false; //Do not include
                         }
 
-                        if (!itemGroupFilter.getItemIds().isEmpty()) {
-                                return  false; //Only ids match
+                        //2# If specific ItemGroups are requested
+                        if (itemIds.contains(itemGroup.getId())) {
+                            return true; //Include
                         }
 
-                            if (itemGroupFilter.getExcludeTag() != null &&
-                                itemGroup.getTags().match(itemGroupFilter.getExcludeTag()) > 0) {
+                        //4# Is specific itemgroup id's are requested only those should be returned
+                        if (!itemIds.isEmpty()) {
+                            return false; //Only ids match
+                        }
+
+                        if (excludeTag != null &&
+                                itemGroup.getTags().match(excludeTag) > 0) {
                             return false;
                         }
-
 
                         return true;
                     }).collect(Collectors.toList());
 
+            if (collect.size() > maxResult) {
+                return collect.subList(0, maxResult);
+            }
 
-            return collect; //CollectionUtils.select(allItems, predicate);
+            //FIXME add sorting? date tagMatch??? filter
+
+            return collect;
         } finally {
             readLock.unlock();
         }

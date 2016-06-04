@@ -8,6 +8,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -56,7 +57,13 @@ public class TopNewsSwedenCollector extends HTMLDocumentBase {
             if (!plusArticle && size > 0 && StringUtils.isNotEmpty(text) &&
                     text.contains("JUST NU") || text.contains("EXTRA")) {
                 Item.Builder builder = new Item.Builder();
-                builder.sourceURL(URL_AFTONBLADET_SE).title(text);
+                String breakingNewsImage = "http://www.esportsm.se/images/4669-extra.jpg";
+                builder.imageURL1(breakingNewsImage)
+                        .publishedDate(LocalDateTime.now()).
+                        sourceURL(URL_AFTONBLADET_SE).
+                        targetURL(URL_AFTONBLADET_SE).
+                        tags(new TagTree.Builder("swe_news").build()).
+                        title(text);
                 //System.out.println("**** " + text);
                 items.add(builder.build());
             }
