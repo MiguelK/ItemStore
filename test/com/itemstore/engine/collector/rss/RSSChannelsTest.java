@@ -46,7 +46,6 @@ public class RSSChannelsTest {
         }
     }
 
-
     @Test(expectedExceptions = RuntimeException.class)
     public void duplicated_channels_should_throw_exception() {
         RSSChannels.loadFromFile(TestUtil.readFile("duplicated_channels.xml"));
@@ -58,14 +57,14 @@ public class RSSChannelsTest {
         File file = new File("web", "channels.xml");
         RSSChannels rss = RSSChannels.loadFromFile(file);
 
-        List<Channel> channels = rss.getChannels();
+       List<Channel> channels = rss.getChannels();
 
-        Assert.assertFalse(channels.isEmpty());
+       Assert.assertFalse(channels.isEmpty());
 
-        for (Channel channel : channels) {
-            Assert.assertNotNull(channel.getRefreshPeridInSeconds());
-            Assert.assertNotNull(channel.getUrl());
-            Assert.assertNotNull(channel.getTag(), "tags missing " + channel.getUrl());
+      for (Channel channel : channels) {
+         Assert.assertNotNull(channel.getRefreshPeridInSeconds());
+           Assert.assertNotNull(channel.getUrl());
+         Assert.assertNotNull(channel.getTag(), "tags missing " + channel.getUrl());
         }
     }
 }

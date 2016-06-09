@@ -1,6 +1,7 @@
 package com.itemstore.engine.model;
 
 import com.itemstore.engine.model.tag3.TagTree;
+import com.itemstore.engine.text.TextAnayzier;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -16,7 +17,7 @@ public class Item implements Serializable {
     public static final Comparator<Item> PUBLISHED_DATE_SORTER = new PublishedDateSorter();
     private int id;
 
-    private final TagTree tagTree;
+    private final TagTree tagTree; //Transient
 
     private final String title; //Required
     private final String description; //Required
@@ -131,7 +132,8 @@ public class Item implements Serializable {
             }*/
 
             //Validate
-            //TagCollector tagCollector = new TagCollector();
+            //FIXME TextAnayzier textAnayzier = new TextAnayzier() {
+            //TagCollector tagCollector = new TagCollector(description);
 
 
             return new Item(publishedDate, title, description, imageURL1,

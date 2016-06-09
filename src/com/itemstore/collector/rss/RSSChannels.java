@@ -32,11 +32,11 @@ public class RSSChannels {
             adrFile = new FileInputStream(file);
             JAXBContext ctx = JAXBContext.newInstance(RSSChannels.class);
             Unmarshaller um = ctx.createUnmarshaller();
-            RSSChannels unmarshal = (RSSChannels) um.unmarshal(adrFile);
+            RSSChannels rssChannels = (RSSChannels) um.unmarshal(adrFile);
 
-            validate(unmarshal);
+           validate(rssChannels);
 
-            return unmarshal;
+            return rssChannels;
 
         } catch (IOException | JAXBException e) {
             throw new RuntimeException(e);
@@ -53,22 +53,20 @@ public class RSSChannels {
 
     private static void validate(RSSChannels unmarshal) {
 
-        Set<URL> uniqueURLS = new HashSet<>();
+        Set<String> uniqueURLS = new HashSet<>();
         for (Channel channel : unmarshal.getChannels()) {
             channel.validate();//FIXME
-            if (uniqueURLS.contains(channel.getUrl())){
-                throw new RuntimeException("Duplicated channel found " + channel.getUrl());
+            String channelUrlAsString = channel.getUrl().toString();
+            if (uniqueURLS.contains(channelUrlAsString)){
+                throw new RuntimeException("Duplicated channel found " + channelUrlAsString);
             }
-            uniqueURLS.add(channel.getUrl());
+            uniqueURLS.add(channelUrlAsString);
         }
     }
 
     public List<Channel> getChannels() {
-
         List<Channel> allChannels = new ArrayList<>();
-
         allChannels.addAll(channels);
-
         for (ChannelGroup channelGroup : channelGroups) {
             allChannels.addAll(channelGroup.getChannels());
         }

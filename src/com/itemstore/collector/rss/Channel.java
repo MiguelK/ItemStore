@@ -17,13 +17,22 @@ public class Channel {
     @XmlElement(name = "Tag")
     private String tag;
 
+    protected Channel() {
+    }
+
+    Channel(int refreshPeridInSeconds, String url, String tag) {
+        this.refreshPeridInSeconds = refreshPeridInSeconds;
+        this.url = url;
+        this.tag = tag;
+    }
+
     void setRefreshPeridInSeconds(int refreshPeridInSeconds) {
         this.refreshPeridInSeconds = refreshPeridInSeconds;
     }
 
     void setTagFromChannelGroup(String newTag) {
 
-        if(this.tag!=null && this.tag.contains(newTag)){
+        if (this.tag != null && this.tag.contains(newTag)) {
             return; //Only add the same tag once
         }
 
@@ -41,7 +50,7 @@ public class Channel {
 
     public URL getUrl() {
         try {
-            return new URL(url);
+            return  new URL(url);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -49,7 +58,14 @@ public class Channel {
 
     void validate() {
         //FIXME validate url+filter
+    }
 
-
+    @Override
+    public String toString() {
+        return "{" +
+                "refreshPeriodInSeconds=" + refreshPeridInSeconds +
+                ", url='" + url + '\'' +
+                ", tag='" + tag + '\'' +
+                '}';
     }
 }

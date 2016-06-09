@@ -35,7 +35,7 @@ public class EventsTest {
         Events.fireEvent(EventType.ImageServletRequestCount);
         Events.fireEvent(EventType.ImageServletRequestCount);
 
-        Thread.sleep(1000);
+        Thread.sleep(100);
         Assert.assertEquals(Events.getEventTracker().getCounter(EventType.ImageServletRequestCount), 2);
     }
 
@@ -51,7 +51,7 @@ public class EventsTest {
 
         Events.fireEvent(EventType.PostCardChanged);
         Events.fireEvent(EventType.PostCardChanged);
-        Thread.sleep(1000);
+        Thread.sleep(100);
 
         Assert.assertEquals(counter.get(), 2);
     }

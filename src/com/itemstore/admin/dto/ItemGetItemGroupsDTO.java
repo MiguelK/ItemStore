@@ -14,7 +14,7 @@ public class ItemGetItemGroupsDTO {
        /* StringBuilder description = new StringBuilder();
         for (ItemGroup component : components) {
             description.append("Tags=").append(component.getTags())
-                    .append(" items=").append(component.getItems().size()).append("<br>");
+                    .append(" items=").append(component.collect().size()).append("<br>");
         }
 
         ItemGetItemGroupsDTO itemGroupsDTO = new ItemGetItemGroupsDTO();

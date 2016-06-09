@@ -18,7 +18,7 @@ public class TopNewsSwedenCollector extends HTMLDocumentBase {
     private static final String URL_EXPRESSEN_SE = "http://www.expressen.se";
 
     @Override
-    public List<Item> getItems() {
+    public List<Item> collect() {
         List<Item> items = new ArrayList<Item>();
         items.addAll(parseAftonbladet(get(URL_AFTONBLADET_SE)));
         // items.addAll(parseExpressen(get(URL_EXPRESSEN_SE)));

@@ -20,15 +20,27 @@ public class TagTreeTest {
     }
 
     @Test
-    public void testToStringSingleTree() {
-        TagTree tagTreeB = new TagTree.Builder("swe_sport_fotboll").addTagsToSingleTree(Arrays.asList("zlatan", "OS-2016")).build();
+    public void tagDescendants_wth_added_tags()  {
+
+        TagTree tagTreeB = new TagTree.Builder("swe_sport_fotboll")
+                .addTagsToSingleTree(Arrays.asList("zlatan", "OS-2016","fotboll_sverige_landslaget")).build();
+
+        Assert.assertEquals(tagTreeB.getTagDescendants().size(), 4);
+
+        Assert.assertEquals(tagTreeB.getTagDescendants().get(0).getTags(),"swe_sport_fotboll");
+        Assert.assertEquals(tagTreeB.getTagDescendants().get(1).getTags(),"swe_sport_fotboll_zlatan");
+        Assert.assertEquals(tagTreeB.getTagDescendants().get(2).getTags(),"swe_sport_fotboll_OS-2016");
+        Assert.assertEquals(tagTreeB.getTagDescendants().get(3).getTags(),"swe_sport_fotboll_fotboll_sverige_landslaget");
+    }
+
+    @Test
+    public void toStringSingleTree() {
+        TagTree tagTreeB = new TagTree.Builder("swe_sport_fotboll")
+                .addTagsToSingleTree(Arrays.asList("zlatan", "OS-2016")).build();
 
         Assert.assertTrue(tagTreeB.toString().contains("swe_sport_fotboll"), tagTreeB.toString());
         Assert.assertTrue(tagTreeB.toString().contains("swe_sport_fotboll_zlatan"), tagTreeB.toString());
         Assert.assertTrue(tagTreeB.toString().contains("swe_sport_fotboll_OS-2016"), tagTreeB.toString());
-
-
-        System.out.println(tagTreeB);
     }
 
     @Test

@@ -27,7 +27,7 @@ import java.io.IOException;
  * <p/>
  * abstract class TopNews
  * String getKey() //Sweden.Stockholm
- * List<Item> getItems();
+ * List<Item> collect();
  * void List<String> getUrls() //called from base class
  * <p/>
  * <p/>
@@ -36,7 +36,7 @@ import java.io.IOException;
  * TopNews t= TopNews.getByLocation("")
  * GeoLocation.Sweden.
  * //headLine,source //Item
- * List<String> s = t.getItems(; //dn, afton,exp etc...
+ * List<String> s = t.collect(; //dn, afton,exp etc...
  */
 public abstract class ItemCollectorWebBase extends ItemCollectorBase {
 

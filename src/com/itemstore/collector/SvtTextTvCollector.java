@@ -12,7 +12,7 @@ public class SvtTextTvCollector extends HTMLDocumentBase {
 
     //svt.se/svttext/tv/pages/100.html
     @Override
-    public List<Item> getItems() {
+    public List<Item> collect() {
 
         Document document = get("http://www.svt.se/svttext/tv/pages/100.html");
 

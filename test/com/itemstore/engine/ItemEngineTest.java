@@ -1,6 +1,5 @@
 package com.itemstore.engine;
 
-import com.itemstore.api.request.SearchItemGroupRequest;
 import com.itemstore.engine.model.Item;
 import com.itemstore.engine.model.ItemGroup;
 import com.itemstore.engine.model.tag3.TagTree;
@@ -22,7 +21,7 @@ public class ItemEngineTest {
     }
 
     @Test
-    public void search_by_exclude_tag() throws SearchItemGroupRequest.InvalidRequestException {
+    public void search_by_exclude_tag() throws SearchItemGroupQuery.InvalidRequestException {
 
         Item item1 = new Item.Builder().title("Test A").targetURL("dn.se").
                 tags(new TagTree.Builder("swe_sport").build()).build();
@@ -43,7 +42,7 @@ public class ItemEngineTest {
 
         org.testng.Assert.assertEquals(allItemGroupsSortedByDate.size(), 2);
 
-        ItemGroupFilter filter = SearchItemGroupRequest.create("eng_sport", null, Collections.emptyList(),
+        ItemGroupFilter filter = SearchItemGroupQuery.create("eng_sport", null, Collections.emptyList(),
                 Collections.emptyList(), 10);
 
         List<ItemGroup> itemGroups = ItemEngine.getInstance().search(filter);
@@ -53,7 +52,7 @@ public class ItemEngineTest {
     }
 
     @Test
-    public void search_by_id() throws SearchItemGroupRequest.InvalidRequestException {
+    public void search_by_id() throws SearchItemGroupQuery.InvalidRequestException {
 
         Item expectedItem = new Item.Builder().title("Test B").targetURL("aik.se").
                 tags(new TagTree.Builder("swe_sport").build()).build();
@@ -68,7 +67,7 @@ public class ItemEngineTest {
 
         Assert.assertEquals(allItemGroupsSortedByDate.size(), 3);
 
-        ItemGroupFilter filter = SearchItemGroupRequest.create(null, null,
+        ItemGroupFilter filter = SearchItemGroupQuery.create(null, null,
                 Collections.emptyList(), Collections.singletonList(expectedItem.getId()), 10);
 
         List<ItemGroup> itemGroups = ItemEngine.getInstance().search(filter);
@@ -78,7 +77,7 @@ public class ItemEngineTest {
     }
 
     @Test
-    public void search_excludeItemGroupId() throws SearchItemGroupRequest.InvalidRequestException {
+    public void search_excludeItemGroupId() throws SearchItemGroupQuery.InvalidRequestException {
 
         Item item1 = new Item.Builder().title("Test A").targetURL("dn.se").
                 tags(new TagTree.Builder("swe_sport").build()).build();
@@ -99,7 +98,7 @@ public class ItemEngineTest {
 
         Assert.assertEquals(allItemGroupsSortedByDate.size(), 2);
 
-        ItemGroupFilter filter = SearchItemGroupRequest.create(null, null,
+        ItemGroupFilter filter = SearchItemGroupQuery.create(null, null,
                 Collections.singletonList(itemGroup2.getId()),
                 Collections.emptyList(), 10);
 
@@ -110,7 +109,7 @@ public class ItemEngineTest {
     }
 
     @Test
-    public void search_max_result_20() throws SearchItemGroupRequest.InvalidRequestException {
+    public void search_max_result_20() throws SearchItemGroupQuery.InvalidRequestException {
 
         List<Item> items = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
@@ -125,7 +124,7 @@ public class ItemEngineTest {
 
         Assert.assertEquals(allItemGroupsSortedByDate.size(), 100);
 
-        ItemGroupFilter filter = SearchItemGroupRequest.create(null, null,
+        ItemGroupFilter filter = SearchItemGroupQuery.create(null, null,
                 Collections.emptyList(),
                 Collections.emptyList(), 20);
 
@@ -135,7 +134,7 @@ public class ItemEngineTest {
     }
 
     @Test
-    public void search_sortt_on_date() throws SearchItemGroupRequest.InvalidRequestException {
+    public void search_sortt_on_date() throws SearchItemGroupQuery.InvalidRequestException {
 
         Item expectedItem = new Item.Builder().publishedDate(LocalDateTime.now()).title("Test B").targetURL("aik.se").
                 tags(new TagTree.Builder("swe_sport").build()).build();
@@ -152,7 +151,7 @@ public class ItemEngineTest {
 
         Assert.assertEquals(allItemGroupsSortedByDate.size(), 3);
 
-        ItemGroupFilter filter = SearchItemGroupRequest.create(null, null,
+        ItemGroupFilter filter = SearchItemGroupQuery.create(null, null,
                 Collections.emptyList(), Collections.emptyList(), 10);
 
         List<ItemGroup> itemGroups = ItemEngine.getInstance().search(filter);

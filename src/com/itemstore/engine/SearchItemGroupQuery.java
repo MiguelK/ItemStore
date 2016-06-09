@@ -1,13 +1,12 @@
-package com.itemstore.api.request;
+package com.itemstore.engine;
 
 
-import com.itemstore.engine.ItemGroupFilter;
 import com.itemstore.engine.model.tag3.TagTree;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-public class SearchItemGroupRequest implements ItemGroupFilter {
+public class SearchItemGroupQuery implements ItemGroupFilter {
 
     public static class InvalidRequestException extends Exception {
         public InvalidRequestException(String message) {
@@ -25,8 +24,8 @@ public class SearchItemGroupRequest implements ItemGroupFilter {
 
     private final Integer maxResultSize;
 
-    private SearchItemGroupRequest(String excludeTagFilter, String favoriteTagFilter, List<Integer> excludeItemGroupIds,
-                                   List<Integer> itemGroupIds, Integer maxResultSize) throws InvalidRequestException {
+    private SearchItemGroupQuery(String excludeTagFilter, String favoriteTagFilter, List<Integer> excludeItemGroupIds,
+                                 List<Integer> itemGroupIds, Integer maxResultSize) throws InvalidRequestException {
 
         if (itemGroupIds == null) {
             throw new InvalidRequestException("itemGroupIds is null");
@@ -47,10 +46,10 @@ public class SearchItemGroupRequest implements ItemGroupFilter {
         this.maxResultSize = maxResultSize;
     }
 
-    public static SearchItemGroupRequest create(String excludeTagFilter, String favoriteTagFilter,
-                                                List<Integer> excludeItemGroupIds, List<Integer> itemGroupIds,
-                                                Integer maxResultSize) throws InvalidRequestException {
-        return new SearchItemGroupRequest(excludeTagFilter, favoriteTagFilter, excludeItemGroupIds, itemGroupIds, maxResultSize);
+    public static SearchItemGroupQuery create(String excludeTagFilter, String favoriteTagFilter,
+                                              List<Integer> excludeItemGroupIds, List<Integer> itemGroupIds,
+                                              Integer maxResultSize) throws InvalidRequestException {
+        return new SearchItemGroupQuery(excludeTagFilter, favoriteTagFilter, excludeItemGroupIds, itemGroupIds, maxResultSize);
     }
 
     @Override
@@ -80,7 +79,7 @@ public class SearchItemGroupRequest implements ItemGroupFilter {
 
     @Override
     public String toString() {
-        return "SearchItemGroupRequest{" +
+        return "SearchItemGroupQuery{" +
                 "excludeTagFilter=" + excludeTagFilter +
                 ", favoriteTagFilter=" + favoriteTagFilter +
                 ", excludeItemGroupIds=" + excludeItemGroupIds +

@@ -89,7 +89,6 @@ public class TagTree {
         }
 
         public Builder addTagsToSingleTree(List<String> tags) {
-
             tagsToAddToSingleTree.addAll(tags);
             return this;
         }

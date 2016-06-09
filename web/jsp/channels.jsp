@@ -8,7 +8,7 @@
   <script>
     function listChannel(result){
 
-      var table = "Channels = " + result.length + "<table>";
+      var table = "Channels = " + result.length + '<table>';
       $.each(result, function(k, v) {
 
         var row = "<tr><td>" +  result[k].name + "</td></tr>";
@@ -35,7 +35,6 @@
 
 <jsp:include page="common-left.jsp"/>
 
-<!--<div class="centerDiv col-xs-6 col-sm-3 placeholder"> -->
   <div class="centerDiv" style="position: relative;top: 50px">
 
   <a href="<%=request.getContextPath()%>/jsp/items.jsp" target="statisticsFrame" %>

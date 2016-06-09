@@ -18,7 +18,7 @@ public class TopNewsTest {
     @Test
     public void getItemsSwden() {
         ItemCollectorWebBase itemCollectorWebBase = new TopNewsSweden();
-        List<Item> items = itemCollectorWebBase.getItems();
+        List<Item> items = itemCollectorWebBase.collect();
 
         for (Item item : items) {
             System.out.println(item);

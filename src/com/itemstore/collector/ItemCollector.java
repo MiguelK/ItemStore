@@ -5,9 +5,9 @@ import com.itemstore.engine.model.Item;
 
 import java.util.List;
 
-public interface ItemCollector { //Collector
+public interface ItemCollector {
 
-    List<Item> getItems(); //collect()
+    List<Item> collect();
 
     int getPollFrequencyInSeconds();
 

@@ -55,7 +55,7 @@ public class RSSChannelCollector extends ItemCollectorBase {
     }
 
     @Override
-    public List<Item> getItems() {
+    public List<Item> collect() {
 
         Feed feed;
         try {

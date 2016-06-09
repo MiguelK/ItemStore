@@ -127,5 +127,24 @@
         </Channels>
     </ChannelGroup>
 
+    <ChannelGroup>
+        <RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+        <Tag>swe_sport</Tag>
+        <Channels>
+            <Channel>
+                <Url>http://www.aftonbladet.se/sportbladet/rss.xml</Url>
+            </Channel>
+
+            <Channel>
+                <Url>http://www.aikfotboll.se/AIKFeed/AIKFeed/rss/START</Url>
+            </Channel>
+
+            <Channel>
+                <Tag>aik</Tag>
+                <Url>http://www.aikforum.se/external.php?type=RSS2</Url>
+            </Channel>
+        </Channels>
+    </ChannelGroup>
+
 
 </RSSChannels>

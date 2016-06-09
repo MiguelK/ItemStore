@@ -84,7 +84,7 @@ public class ItemCollectorRunner {
         @Override
         public void run() {
             try {
-                List<Item> items = itemCollector.getItems();
+                List<Item> items = itemCollector.collect();
 
                 if (items.isEmpty()) {
                     return;

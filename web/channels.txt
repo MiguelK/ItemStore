@@ -43,11 +43,6 @@ http://tyras.se/feed/;;Swe,Bloggar;;15
 http://wisemanswisdoms.blogspot.se/feeds/posts/default;;Swe,Bloggar;;15
 
 
-//Swdish sport
-http://www.aftonbladet.se/sportbladet/rss.xml;;Swe,Sport,Toplist ;;15
-http://www.aikfotboll.se/AIKFeed/AIKFeed/rss/START;;Swe,Sport;;15
-http://www.aikforum.se/external.php?type=RSS2;;Swe,Sport,Swe,Sport,AIK Fotboll;;15
-
 //English news
 http://rss.cnn.com/services/podcasting/newscast/rss.xml";;Eng,News;;15
 http://feeds.bbci.co.uk/news/rss.xml";;Eng,News;;15

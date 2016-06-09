@@ -29,19 +29,10 @@ public class StartupServlet extends HttpServlet {
 
         File channelFile = EngineConf.getInstance().getChannelsFile(servletConfig.getServletContext());
 
-       /* List<Channel> channels = RSSChannels.loadFromFile(channelFile).getChannels();
-        LOG.info("Starting " + channels.size() + " channel collectors");
-        List<ItemCollector> channelCollectors = new ArrayList<ItemCollector>();
-        for (Channel channel : channels) {
-            RSSChannelCollector channelCollector = new RSSChannelCollector(channel.getUrl(),
-                    channel.getTag(), channel.getRefreshPeridInSeconds());
-            channelCollectors.add(channelCollector);
-        }*/
-
         List<ItemCollector> channelCollectors = RSSChannelCollector.parseFile(channelFile);
 
         ItemEngine.getInstance().addCollectors(channelCollectors);
-        ItemEngine.getInstance().addCollector(new TopNewsSwedenCollector());
+      //  ItemEngine.getInstance().addCollector(new TopNewsSwedenCollector()); //FIXME
 
         ItemEngine.getInstance().start();
     }

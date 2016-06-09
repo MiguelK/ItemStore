@@ -1,6 +1,6 @@
 package com.itemstore.api;
 
-import com.itemstore.api.request.SearchItemGroupRequest;
+import com.itemstore.engine.SearchItemGroupQuery;
 import com.itemstore.api.response.dto.ItemGroupResponse;
 import com.itemstore.engine.ItemEngine;
 
@@ -26,21 +26,22 @@ public class ItemGroup {
     public Response searchItemGroups(@Context HttpServletRequest httpServletRequest,
                                      @QueryParam("excludeTagFilter") String excludeTagFilter,
                                      @QueryParam("favoriteTagFilter") String favoriteTagFilter,
+                                     @QueryParam("requiredItemFields") List<String> requiredItemFields, //FIXME implement
                                      @QueryParam("excludeItemGroupIds") List<Integer> excludeItemGroupIds,
                                      @QueryParam("itemGroupIds") List<Integer> itemGroupIds,
                                      @QueryParam("maxResultSize") Integer maxResultSize) {
 
-        SearchItemGroupRequest request;
+        SearchItemGroupQuery searchQuery;
 
         try {
-            request = SearchItemGroupRequest.create(excludeTagFilter, favoriteTagFilter, excludeItemGroupIds,
+            searchQuery = SearchItemGroupQuery.create(excludeTagFilter, favoriteTagFilter, excludeItemGroupIds,
                     itemGroupIds, maxResultSize);
             LOG.info("excludeTagFilter=" + excludeTagFilter);
-        } catch (SearchItemGroupRequest.InvalidRequestException e) {
+        } catch (SearchItemGroupQuery.InvalidRequestException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
 
-        List<com.itemstore.engine.model.ItemGroup> itemGroups = ItemEngine.getInstance().search(request);
+        List<com.itemstore.engine.model.ItemGroup> itemGroups = ItemEngine.getInstance().search(searchQuery);
 
         ItemGroupResponse response = ItemGroupResponse.create(itemGroups);
 

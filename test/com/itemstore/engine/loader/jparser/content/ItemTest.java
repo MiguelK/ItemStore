@@ -1,12 +1,8 @@
 package com.itemstore.engine.loader.jparser.content;
 
-import com.itemstore.commons.JsonUtil;
 import com.itemstore.engine.model.Item;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.*;
 
 public class ItemTest {
 
