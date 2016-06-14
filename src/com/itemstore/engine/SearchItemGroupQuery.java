@@ -14,9 +14,11 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
         }
     }
 
-    private final TagTree excludeTagFilter;
+    private final TagTree excludeTagFilter; //FIXME SearchFilterTagTree
 
-    private final TagTree favoriteTagFilter;
+    private final TagTree favoriteTagFilter; //FIXME SearchFilterTagTree
+
+    private final TagTree includeOnlyTagFilter; //If not null only items matching will be returned
 
     private final List<Integer> excludeItemGroupIds;
 
@@ -24,7 +26,7 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
 
     private final Integer maxResultSize;
 
-    private SearchItemGroupQuery(String excludeTagFilter, String favoriteTagFilter, List<Integer> excludeItemGroupIds,
+    private SearchItemGroupQuery(String includeOnlyTagFilter,String excludeTagFilter, String favoriteTagFilter, List<Integer> excludeItemGroupIds,
                                  List<Integer> itemGroupIds, Integer maxResultSize) throws InvalidRequestException {
 
         if (itemGroupIds == null) {
@@ -40,16 +42,26 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
                 null : new TagTree.Builder(excludeTagFilter).build();
         this.favoriteTagFilter = StringUtils.trimToNull(favoriteTagFilter) == null ?
                 null : new TagTree.Builder(favoriteTagFilter).build();
+        this.includeOnlyTagFilter = StringUtils.trimToNull(includeOnlyTagFilter) == null ?
+                null : new TagTree.Builder(includeOnlyTagFilter).build();
 
         this.excludeItemGroupIds = excludeItemGroupIds;
         this.itemGroupIds = itemGroupIds;
         this.maxResultSize = maxResultSize;
     }
 
+    public static SearchItemGroupQuery create(String includeOnlyTagFilter,String excludeTagFilter, String favoriteTagFilter,
+                                              List<Integer> excludeItemGroupIds, List<Integer> itemGroupIds,
+                                              Integer maxResultSize) throws InvalidRequestException {
+        return new SearchItemGroupQuery(includeOnlyTagFilter,excludeTagFilter,
+                favoriteTagFilter, excludeItemGroupIds, itemGroupIds, maxResultSize);
+    }
+
     public static SearchItemGroupQuery create(String excludeTagFilter, String favoriteTagFilter,
                                               List<Integer> excludeItemGroupIds, List<Integer> itemGroupIds,
                                               Integer maxResultSize) throws InvalidRequestException {
-        return new SearchItemGroupQuery(excludeTagFilter, favoriteTagFilter, excludeItemGroupIds, itemGroupIds, maxResultSize);
+        return new SearchItemGroupQuery(null,excludeTagFilter,
+                favoriteTagFilter, excludeItemGroupIds, itemGroupIds, maxResultSize);
     }
 
     @Override
@@ -75,6 +87,11 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
     @Override
     public TagTree getFavoriteTag() {
         return favoriteTagFilter;
+    }
+
+    @Override
+    public TagTree getIncludeOnlyTag() {
+        return includeOnlyTagFilter;
     }
 
     @Override

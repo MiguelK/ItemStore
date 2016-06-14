@@ -141,10 +141,19 @@ public final class ItemEngine implements ItemCollectorListener {
             TagTree excludeTag = filter.getExcludeTag();
             int maxResult = filter.getMaxResult();
             TagTree favoriteTag = filter.getFavoriteTag(); //Just a hint, just for sorting
+            TagTree includeOnlyTag = filter.getIncludeOnlyTag(); //If not null only match against this
+
 
             //Copy??? FIXME
             List<ItemGroup> collect = allItemGroupsSortedByDate.stream()
                     .filter(itemGroup -> {
+
+                        if (includeOnlyTag != null &&
+                                itemGroup.getTags().match(includeOnlyTag) > 0) {
+                            return true; //Include
+                        } else if(includeOnlyTag !=null){
+                            return false;
+                        }
 
                         //1# If included in excludeItemGroupId do not return it
                         if (excludeIds.contains(itemGroup.getId())) {

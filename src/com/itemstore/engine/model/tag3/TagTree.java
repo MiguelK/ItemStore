@@ -4,11 +4,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class TagTree {
     private static final String NEW_LINE = System.getProperty("line.separator");
-    public static final String TAGDESCENDANT_SEPARATOR = ",";
+    public static final String TAG_DESCENDANT_SEPARATOR = ",";
     private final List<TagDescendant> tagDescendants;
 
     private TagTree(List<TagDescendant> tagDescendants) {
@@ -57,7 +58,7 @@ public class TagTree {
                 throw new TagTreeException("Invalid tags " + rootTags);
             }
 
-            List<String> tags = Arrays.asList(s.split(TAGDESCENDANT_SEPARATOR));
+            List<String> tags = Arrays.asList(s.split(TAG_DESCENDANT_SEPARATOR));
 
             if (tags.isEmpty()) {
                 TagDescendant parse = TagDescendant.parse(s);
@@ -88,8 +89,22 @@ public class TagTree {
             return new TagTree(tagDescendants);
         }
 
-        public Builder addTagsToSingleTree(List<String> tags) {
+        Builder addTagsToSingleTree(List<String> tags) {
             tagsToAddToSingleTree.addAll(tags);
+            return this;
+        }
+
+        public Builder addTagsToSingleTree(String tag) {
+
+            String tagTrimmed = StringUtils.trimToNull(tag);
+
+            if(tagTrimmed==null){
+                return this;
+            }
+
+            List<String> tags = Arrays.asList(tagTrimmed.split(TAG_DESCENDANT_SEPARATOR));
+            tagsToAddToSingleTree.addAll(tags);
+
             return this;
         }
     }

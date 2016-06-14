@@ -30,7 +30,7 @@ public class RSSChannelCollector extends ItemCollectorBase {
 
     private final URL channelURL;
 
-    private final String tags;
+    private final TagTree tags;
 
     private final int pollFrequencyInSeconds;
 
@@ -48,7 +48,7 @@ public class RSSChannelCollector extends ItemCollectorBase {
         return channelCollectors;
     }
 
-    private RSSChannelCollector(URL channelURL, String tags, int pollFrequencyInSeconds) {
+    private RSSChannelCollector(URL channelURL, TagTree tags, int pollFrequencyInSeconds) {
         this.channelURL = channelURL;
         this.tags = tags;
         this.pollFrequencyInSeconds = pollFrequencyInSeconds;
@@ -111,10 +111,10 @@ public class RSSChannelCollector extends ItemCollectorBase {
 
 
               //  LocalDateTime.
-                TagTree tagTree = new TagTree.Builder(tags).build(); //FIXME add to root??
+               // TagTree tagTree = new TagTree.Builder(tags).build(); //FIXME add to root??
                 //FIXME Tag and TagCollector extract tags...rssItemLink(Video or articleUrl)
                 Item item = new Item.Builder().imageURL1(imageUrl1).targetURL(rssItemLink).sourceURL(channelURL.toString())
-                        .tags(tagTree).title(title).description(description)
+                        .tags(tags).title(title).description(description)
                         .publishedDate(publishedTime).build();
 
                 items.add(item);

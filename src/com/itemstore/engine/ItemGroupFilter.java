@@ -15,4 +15,7 @@ public interface ItemGroupFilter {
     TagTree getExcludeTag();
 
     TagTree getFavoriteTag();
+
+    TagTree getIncludeOnlyTag();
+
 }

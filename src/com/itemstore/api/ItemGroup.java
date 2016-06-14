@@ -25,6 +25,7 @@ public class ItemGroup {
     @Produces(MediaType.APPLICATION_JSON)
     public Response searchItemGroups(@Context HttpServletRequest httpServletRequest,
                                      @QueryParam("excludeTagFilter") String excludeTagFilter,
+                                     @QueryParam("includeOnlyTag") String includeOnlyTag,
                                      @QueryParam("favoriteTagFilter") String favoriteTagFilter,
                                      @QueryParam("requiredItemFields") List<String> requiredItemFields, //FIXME implement
                                      @QueryParam("excludeItemGroupIds") List<Integer> excludeItemGroupIds,
@@ -34,7 +35,7 @@ public class ItemGroup {
         SearchItemGroupQuery searchQuery;
 
         try {
-            searchQuery = SearchItemGroupQuery.create(excludeTagFilter, favoriteTagFilter, excludeItemGroupIds,
+            searchQuery = SearchItemGroupQuery.create(includeOnlyTag, excludeTagFilter, favoriteTagFilter, excludeItemGroupIds,
                     itemGroupIds, maxResultSize);
             LOG.info("excludeTagFilter=" + excludeTagFilter);
         } catch (SearchItemGroupQuery.InvalidRequestException e) {

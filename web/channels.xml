@@ -136,11 +136,12 @@
             </Channel>
 
             <Channel>
+                <Tag>aik,aik_fotboll</Tag>
                 <Url>http://www.aikfotboll.se/AIKFeed/AIKFeed/rss/START</Url>
             </Channel>
 
             <Channel>
-                <Tag>aik</Tag>
+                <Tag>aik,aik_fotboll</Tag>
                 <Url>http://www.aikforum.se/external.php?type=RSS2</Url>
             </Channel>
         </Channels>

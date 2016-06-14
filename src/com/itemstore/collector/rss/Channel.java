@@ -1,6 +1,7 @@
 package com.itemstore.collector.rss;
 
 import com.itemstore.engine.model.tag3.TagTree;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.xml.bind.annotation.XmlElement;
 import java.net.MalformedURLException;
@@ -17,6 +18,8 @@ public class Channel {
     @XmlElement(name = "Tag")
     private String tag;
 
+    private TagTree tagTree;
+
     protected Channel() {
     }
 
@@ -30,18 +33,41 @@ public class Channel {
         this.refreshPeridInSeconds = refreshPeridInSeconds;
     }
 
-    void setTagFromChannelGroup(String newTag) {
+    /**
+     *
+     * @param parentRootTagFromGroup parentRootTags e.g swe_sport or swe_kultur
+     */
+    void setTagFromChannelGroup(String parentRootTagFromGroup) {
 
-        if (this.tag != null && this.tag.contains(newTag)) {
+        String parentTag = StringUtils.trimToNull(parentRootTagFromGroup);
+
+        if(parentTag==null){
+            return;
+        }
+
+        if (this.tag != null && this.tag.contains(parentTag)) { //FIXME
             return; //Only add the same tag once
         }
 
+        if(tagTree==null){
+            //parentRootTagFromGroup swe_sport  tag=aik_fotboll,aik_2016
+            tagTree = new TagTree.Builder(parentTag).addTagsToSingleTree(tag).build();
+        }
+
+        this.tag = tagTree.toString();
+
         //use both common tag and channel tag
-        this.tag = this.tag != null ? this.tag + TagTree.TAGDESCENDANT_SEPARATOR + newTag : newTag;
+       // this.tag = this.tag != null ? this.tag + TagTree.TAG_DESCENDANT_SEPARATOR + parentRootTagFromGroup : parentRootTagFromGroup;
     }
 
-    public String getTag() {
-        return tag;
+    public TagTree getTag() {
+
+        if(tagTree==null){
+            //parentRootTagFromGroup swe_sport  tag=aik_fotboll,aik_2016
+            tagTree = new TagTree.Builder(tag).build();
+        }
+
+        return tagTree;
     }
 
     public int getRefreshPeridInSeconds() {
