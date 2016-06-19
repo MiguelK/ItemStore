@@ -1,18 +1,15 @@
-
-
-
-Open Shidt
-1# Kopiera war filen** Stå i Documents/Temp katalogen
-scp ItemStore.war 57506f870c1e66dee6000163@itemstore-miguelk.rhcloud.com://var/lib/openshift/57506f870c1e66dee6000163/wildfly/standalone/deployments/
+Open Shift
+1# Kopiera war filen till servern:
+scp scp /Users/miguelkrantz/Documents/temp/ItemStore.war 5751eef32d5271c77f0001b3@engine-itemstore.rhcloud.com://var/lib/openshift/5751eef32d5271c77f0001b3/wildfly/standalone/deployments/
 
 
 Bara Logga in
-ssh 57506f870c1e66dee6000163@itemstore-miguelk.rhcloud.com
+ssh 5751eef32d5271c77f0001b3@engine-itemstore.rhcloud.com
 
+URL API
+http://engine-itemstore.rhcloud.com/ItemStore/api/itemGroup/search?favoriteTagFilter=swe_news
 
-
-URL
-http://itemstore-miguelk.rhcloud.com/ItemStore/api/itemGroup/search?favoriteTagFilter=swe_news
+http://engine-itemstore.rhcloud.com/ItemStore/jsp/index.jsp
 
 
 
