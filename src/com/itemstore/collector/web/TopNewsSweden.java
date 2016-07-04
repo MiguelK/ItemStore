@@ -1,7 +1,7 @@
 package com.itemstore.collector.web;
 
 import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.tag3.TagTree;
+import com.itemstore.engine.model.tag3.ItemTagTree;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -61,7 +61,7 @@ public class TopNewsSweden extends ItemCollectorWebBase {
             if (!plusArticle && size > 0 && StringUtils.isNotEmpty(text) &&
                     text.contains("JUST NU") || text.contains("EXTRA")) {
                 Item.Builder builder = new Item.Builder()
-                        .tags(new TagTree.Builder("swe_top_news").build())
+                        .itemTagTree(new ItemTagTree.Builder("swe_top_news").build())
                         .sourceURL(URL_AFTONBLADET_SE).title(text).targetURL(URL_AFTONBLADET_SE); //FIXME same target?
 
                 System.out.println("**** " + text);
@@ -105,7 +105,7 @@ public class TopNewsSweden extends ItemCollectorWebBase {
         for (Element element : cls1) {
             //   Elements extra = element.getElementsContainingText("EXTRA");
            /* if (StringUtils.isNotEmpty(element.text())) {
-                Item.Builder builder = new Item.Builder().tags(TagContainer.create(Collections.singletonList(TagContainer.TOP_NEWS_SWE)))
+                Item.Builder builder = new Item.Builder().itemTagTree(TagContainer.create(Collections.singletonList(TagContainer.TOP_NEWS_SWE)))
                         .sourceURL(URL_EXPRESSEN_SE).title(element.text());
                 items.add(builder.build());
             }*/ //FIXME

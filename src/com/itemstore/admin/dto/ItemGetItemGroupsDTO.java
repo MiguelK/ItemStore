@@ -13,7 +13,7 @@ public class ItemGetItemGroupsDTO {
 
        /* StringBuilder description = new StringBuilder();
         for (ItemGroup component : components) {
-            description.append("Tags=").append(component.getTags())
+            description.append("Tags=").append(component.getItemTagTree())
                     .append(" items=").append(component.collect().size()).append("<br>");
         }
 

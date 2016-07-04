@@ -21,7 +21,7 @@ public class FlowFlowEngineTest {
         Item itemComponent1_item1 = new Item.Builder().
                 sourceURL("aftonbladet.se").
                 imageURL1("http://gfx.aftonbladet-cdn.se/image/21013849/258/normal/25b1f7760867f/Skärmavbild+2015-06-23+kl.+20.29.31.jpg").
-                tags(TagContainer.create(filter)).
+                itemTagTree(TagContainer.create(filter)).
                         title("Han döms för brutala nyårsmordet").
                         description("JFohnny Rintanen, 40, döms för det blodiga mordet i Sala natten mot nyårsafton.").
                         targetURL("http://www.aftonbladet.se/nyheter/article21013527.ab").build();
@@ -30,7 +30,7 @@ public class FlowFlowEngineTest {
                 itemGroupId(itemComponent1_item1.getItemGroupId()).
                 imageURL1("http://gfx.aftonbladet-cdn.se/image/21013849/258/normal/25b1f7760867f/Skärmavbild+2015-06-23+kl.+20.29.31.jpg").
                 sourceURL("arbetarbladet.se").
-                tags(TagContainer.create(filter)).
+                itemTagTree(TagContainer.create(filter)).
                         title("Nekar till mord – hävdar nödvärn").
                         description("Misstänkte mördaren Johnny Rintanen uppger att han agerade i nödvärn.\n" +
                                 "På mordkvällen var han alkoholpåverkad och hade tagit tabletter när en konflikt uppstod med det 49-åriga offret.").
@@ -40,7 +40,7 @@ public class FlowFlowEngineTest {
                 itemGroupId(itemComponent1_item1.getItemGroupId()).
                 imageURL1("http://gfx.aftonbladet-cdn.se/image/21013849/258/normal/25b1f7760867f/Skärmavbild+2015-06-23+kl.+20.29.31.jpg").
                 sourceURL("arbetarbladet.se").
-                tags(TagContainer.create(filter)).
+                itemTagTree(TagContainer.create(filter)).
                         title("Nekar till mord – hävdar nödvärn").
                         description("Misstänkte mördaren Johnny Rintanen uppger att han agerade i nödvärn.\n" +
                                 "På mordkvällen var han alkoholpåverkad och hade tagit tabletter när en konflikt uppstod med det 49-åriga offret.").
@@ -50,7 +50,7 @@ public class FlowFlowEngineTest {
         Item itemComponent2_item1 = new Item.Builder().
                 sourceURL("aftonbladet.se").
                 imageURL1("http://gfx.aftonbladet-cdn.se/image/21013849/258/normal/25b1f7760867f/Skärmavbild+2015-06-23+kl.+20.29.31.jpg").
-                tags(TagContainer.create(filter)).
+                itemTagTree(TagContainer.create(filter)).
                         title("Han döms för brutala nyårsmordet").
                         description("Johnny Rintanen, 40, döms för det blodiga mordet i Sala natten mot nyårsafton.").
                         targetURL("http://www.aftonbladet.se/nyheter/article21013527.ab").build();
@@ -59,7 +59,7 @@ public class FlowFlowEngineTest {
                 itemGroupId(itemComponent2_item1.getItemGroupId()).
                 imageURL1("http://gfx.aftonbladet-cdn.se/image/21013849/258/normal/25b1f7760867f/Skärmavbild+2015-06-23+kl.+20.29.31.jpg").
                 sourceURL("arbetarbladet.se").
-                tags(TagContainer.create(filter)).
+                itemTagTree(TagContainer.create(filter)).
                         title("Nekar till mord – hävdar nödvärn").
                         description("Misstänkte mördaren Johnny Rintanen uppger att han agerade i nödvärn.\n" +
                                 "På mordkvällen var han alkoholpåverkad och hade tagit tabletter när en konflikt uppstod med det 49-åriga offret.").
@@ -69,7 +69,7 @@ public class FlowFlowEngineTest {
                 itemGroupId(itemComponent2_item1.getItemGroupId()).
                 imageURL1("http://gfx.aftonbladet-cdn.se/image/21013849/258/normal/25b1f7760867f/Skärmavbild+2015-06-23+kl.+20.29.31.jpg").
                 sourceURL("arbetarbladet.se").
-                tags(TagContainer.create(filter)).
+                itemTagTree(TagContainer.create(filter)).
                         title("Nekar till mord – hävdar nödvärn").
                         description("Misstänkte mördaren Johnny Rintanen uppger att han agerade i nödvärn.\n" +
                                 "På mordkvällen var han alkoholpåverkad och hade tagit tabletter när en konflikt uppstod med det 49-åriga offret.").
@@ -81,21 +81,21 @@ public class FlowFlowEngineTest {
                 description("Soem descr").
                 sourceURL("aftonbladet.se").
                 youTubeVideoID("wTzR2mTEk-8").
-                tags(TagContainer.create(filter)).build();
+                itemTagTree(TagContainer.create(filter)).build();
 
         Item itemComponent3_item2 = new Item.Builder().
                 title("Some title").
                 description("Soem descr").
                 itemGroupId(itemComponent3_item1.getItemGroupId()).
                 youTubeVideoID("4k6-b4SzX6o").
-                tags(TagContainer.create(filter)).build();
+                itemTagTree(TagContainer.create(filter)).build();
 
         Item itemComponent3_item3 = new Item.Builder().
                 title("Some title").
                 description("Soem descr").
                 itemGroupId(itemComponent3_item1.getItemGroupId()).
                 youTubeVideoID("gn6A5nP3k_I").
-                tags(TagContainer.create(filter)).build();
+                itemTagTree(TagContainer.create(filter)).build();
 
         FlowEngine.getInstance().registerItem(itemComponent1_item1);
         FlowEngine.getInstance().registerItem(itemComponent1_item2);
@@ -136,7 +136,7 @@ public class FlowFlowEngineTest {
                 sourceURL("aftonbladet.se").
                 itemGroupId(itemGroupId).
                 imageURL1("http://gfx.aftonbladet-cdn.se/image/21013849/258/normal/25b1f7760867f/Skärmavbild+2015-06-23+kl.+20.29.31.jpg").
-                tags(TagContainer.create(filter)).
+                itemTagTree(TagContainer.create(filter)).
                 title("Han döms för brutala nyårsmordet").
                 description("Johnny Rintanen, 40, döms för det blodiga mordet i Sala natten mot nyårsafton.").
                 targetURL("http://www.aftonbladet.se/nyheter/article21013527.ab").build();
@@ -145,7 +145,7 @@ public class FlowFlowEngineTest {
                 itemGroupId(itemGroupId).
                 imageURL1("http://gfx.aftonbladet-cdn.se/image/21013849/258/normal/25b1f7760867f/Skärmavbild+2015-06-23+kl.+20.29.31.jpg").
                 sourceURL("arbetarbladet.se").
-                tags(TagContainer.create(filter)).
+                itemTagTree(TagContainer.create(filter)).
                         title("Nekar till mord – hävdar nödvärn").
                         description("Misstänkte mördaren Johnny Rintanen uppger att han agerade i nödvärn.\n" +
                                 "På mordkvällen var han alkoholpåverkad och hade tagit tabletter när en konflikt uppstod med det 49-åriga offret.").
@@ -173,7 +173,7 @@ public class FlowFlowEngineTest {
                 sourceURL("aftonbladet.se").
                 itemGroupId(itemGroupId).
                 imageURL1("http://gfx.aftonbladet-cdn.se/image/21013849/258/normal/25b1f7760867f/Skärmavbild+2015-06-23+kl.+20.29.31.jpg").
-                tags(TagContainer.create(Arrays.asList("Swe","Sport"))).
+                itemTagTree(TagContainer.create(Arrays.asList("Swe","Sport"))).
                 title("Han döms för brutala nyårsmordet").
                 description("Johnny Rintanen, 40, döms för det blodiga mordet i Sala natten mot nyårsafton.").
                 targetURL("http://www.aftonbladet.se/nyheter/article21013527.ab").build();
@@ -182,7 +182,7 @@ public class FlowFlowEngineTest {
                 itemGroupId(itemGroupId).
                 imageURL1("http://gfx.aftonbladet-cdn.se/image/21013849/258/normal/25b1f7760867f/Skärmavbild+2015-06-23+kl.+20.29.31.jpg").
                 sourceURL("arbetarbladet.se").
-                tags(TagContainer.create(Arrays.asList("Swe","Sport"))).
+                itemTagTree(TagContainer.create(Arrays.asList("Swe","Sport"))).
                 title("Nekar till mord – hävdar nödvärn").
                 description("Misstänkte mördaren Johnny Rintanen uppger att han agerade i nödvärn.\n" +
                         "På mordkvällen var han alkoholpåverkad och hade tagit tabletter när en konflikt uppstod med det 49-åriga offret.").

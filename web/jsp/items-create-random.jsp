@@ -51,7 +51,7 @@
             </tr>
             <tr>
                 <td>Tags</td>
-                <td><input type="tags" name="tags" value="Swe"></td>
+                <td><input type="itemTagTree" name="itemTagTree" value="Swe"></td>
             </tr>
 
         </table>

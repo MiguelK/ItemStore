@@ -1,7 +1,7 @@
 package com.itemstore.engine;
 
 
-import com.itemstore.engine.model.tag3.TagTree;
+import com.itemstore.engine.model.tag3.ItemTagTree;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -14,11 +14,11 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
         }
     }
 
-    private final TagTree excludeTagFilter; //FIXME SearchFilterTagTree
+    private final ItemTagTree.Filter excludeTagFilter; //FIXME SearchFilterTagTree
 
-    private final TagTree favoriteTagFilter; //FIXME SearchFilterTagTree
+    private final ItemTagTree.Filter favoriteTagFilter; //FIXME SearchFilterTagTree
 
-    private final TagTree includeOnlyTagFilter; //If not null only items matching will be returned
+    private final ItemTagTree.Filter includeOnlyTagFilter; //If not null only items matching will be returned
 
     private final List<Integer> excludeItemGroupIds;
 
@@ -39,11 +39,11 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
 
 
         this.excludeTagFilter = StringUtils.trimToNull(excludeTagFilter) == null ?
-                null : new TagTree.Builder(excludeTagFilter).build();
+                null :  ItemTagTree.Filter.parse(excludeTagFilter);
         this.favoriteTagFilter = StringUtils.trimToNull(favoriteTagFilter) == null ?
-                null : new TagTree.Builder(favoriteTagFilter).build();
+                null :  ItemTagTree.Filter.parse(favoriteTagFilter);
         this.includeOnlyTagFilter = StringUtils.trimToNull(includeOnlyTagFilter) == null ?
-                null : new TagTree.Builder(includeOnlyTagFilter).build();
+                null :  ItemTagTree.Filter.parse(includeOnlyTagFilter);
 
         this.excludeItemGroupIds = excludeItemGroupIds;
         this.itemGroupIds = itemGroupIds;
@@ -80,17 +80,17 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
     }
 
     @Override
-    public TagTree getExcludeTag() {
+    public ItemTagTree.Filter getExcludeTag() {
         return excludeTagFilter;
     }
 
     @Override
-    public TagTree getFavoriteTag() {
+    public ItemTagTree.Filter getFavoriteTag() {
         return favoriteTagFilter;
     }
 
     @Override
-    public TagTree getIncludeOnlyTag() {
+    public ItemTagTree.Filter getIncludeOnlyTag() {
         return includeOnlyTagFilter;
     }
 

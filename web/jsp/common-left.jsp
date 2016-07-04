@@ -12,7 +12,7 @@
         <li><a href="overview.jsp" >Overview</a></li>
 
         <li><a href="items.jsp" >Items</a></li>
-        <li><a href="tags.jsp" >Tags</a></li>
+        <li><a href="itemTagTree.jsp" >Tags</a></li>
         <li><a href="channels.jsp" >Channels</a></li>
         <li><a href="api.jsp" >API</a></li>
         <li><a href="events.jsp" >Events</a></li>

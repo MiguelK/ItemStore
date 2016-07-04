@@ -9,7 +9,7 @@ import com.itemstore.engine.event.EventType;
 import com.itemstore.engine.event.Events;
 import com.itemstore.engine.model.Item;
 import com.itemstore.engine.model.ItemGroup;
-import com.itemstore.engine.model.tag3.TagTree;
+import com.itemstore.engine.model.tag3.ItemTagTree;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Predicate;
 
@@ -138,10 +138,10 @@ public final class ItemEngine implements ItemCollectorListener {
 
             List<Integer> excludeIds = filter.getExcludeIds();
             List<Integer> itemIds = filter.getItemIds(); //FIXME renam? itemIdToInclude
-            TagTree excludeTag = filter.getExcludeTag();
+            ItemTagTree.Filter excludeTag = filter.getExcludeTag();
             int maxResult = filter.getMaxResult();
-            TagTree favoriteTag = filter.getFavoriteTag(); //Just a hint, just for sorting
-            TagTree includeOnlyTag = filter.getIncludeOnlyTag(); //If not null only match against this
+            ItemTagTree.Filter favoriteTag = filter.getFavoriteTag(); //Just a hint, just for sorting
+            ItemTagTree.Filter includeOnlyTag = filter.getIncludeOnlyTag(); //If not null only match against this
 
 
             //Copy??? FIXME
@@ -149,7 +149,7 @@ public final class ItemEngine implements ItemCollectorListener {
                     .filter(itemGroup -> {
 
                         if (includeOnlyTag != null &&
-                                itemGroup.getTags().match(includeOnlyTag) > 0) {
+                                itemGroup.getItemTagTree().match(includeOnlyTag) > 0) {
                             return true; //Include
                         } else if(includeOnlyTag !=null){
                             return false;
@@ -171,7 +171,7 @@ public final class ItemEngine implements ItemCollectorListener {
                         }
 
                         if (excludeTag != null &&
-                                itemGroup.getTags().match(excludeTag) > 0) {
+                                itemGroup.getItemTagTree().match(excludeTag) > 0) {
                             return false;
                         }
 
@@ -199,8 +199,8 @@ public final class ItemEngine implements ItemCollectorListener {
         }
     }
 
-    //FIXME Uset TagTree filter
-    /*public List<ItemGroup> searchItemsByTags(final List<String> tags) {
+    //FIXME Uset ItemTagTree filter
+    /*public List<ItemGroup> searchItemsByTags(final List<String> itemTagTree) {
         readLock.lock();
         try {
 
@@ -209,8 +209,8 @@ public final class ItemEngine implements ItemCollectorListener {
                 public boolean evaluate(ItemGroup item) {
 
                     boolean tagsMatch = true;
-                    if (!tags.isEmpty()) {
-                        tagsMatch = CollectionUtils.containsAny(item.getTags(), tags);
+                    if (!itemTagTree.isEmpty()) {
+                        tagsMatch = CollectionUtils.containsAny(item.getItemTagTree(), itemTagTree);
                     }
 
 

@@ -1,6 +1,6 @@
 package com.itemstore.engine.model;
 
-import com.itemstore.engine.model.tag3.TagTree;
+import com.itemstore.engine.model.tag3.ItemTagTree;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -15,8 +15,8 @@ public class ItemGroup {
         items.add(item);
     }
 
-    public TagTree getTags() {
-        return items.get(0).getTags();
+    public ItemTagTree getItemTagTree() {
+        return items.get(0).getItemTagTree();
     }
 
     public int getId() {

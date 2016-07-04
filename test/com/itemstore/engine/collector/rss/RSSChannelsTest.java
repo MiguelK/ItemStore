@@ -4,7 +4,6 @@ import com.itemstore.TestUtil;
 import com.itemstore.collector.rss.Channel;
 import com.itemstore.collector.rss.RSSChannels;
 import com.itemstore.engine.model.tag3.TagDescendant;
-import com.itemstore.engine.model.tag3.TagTree;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -36,7 +35,7 @@ public class RSSChannelsTest {
 
         Assert.assertEquals(rss.getChannels().size(), 1);
         /*String tag = rss.getChannels().get(0).getTag();
-        List<TagDescendant> tagDescendants = new TagTree.Builder(tag).build().getTagDescendants();
+        List<TagDescendant> tagDescendants = new ItemTagTree.Builder(tag).build().getTagDescendants();
 
         Assert.assertEquals(tagDescendants.size(), 2); */
     }
@@ -81,7 +80,7 @@ public class RSSChannelsTest {
       for (Channel channel : channels) {
          Assert.assertNotNull(channel.getRefreshPeridInSeconds());
            Assert.assertNotNull(channel.getUrl());
-         Assert.assertNotNull(channel.getTag(), "tags missing " + channel.getUrl());
+         Assert.assertNotNull(channel.getTag(), "itemTagTree missing " + channel.getUrl());
         }
     }
 }

@@ -2,7 +2,7 @@ package com.itemstore.collector;
 
 import com.itemstore.engine.model.Item;
 
-import com.itemstore.engine.model.tag3.TagTree;
+import com.itemstore.engine.model.tag3.ItemTagTree;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -62,7 +62,7 @@ public class TopNewsSwedenCollector extends HTMLDocumentBase {
                         .publishedDate(LocalDateTime.now()).
                         sourceURL(URL_AFTONBLADET_SE).
                         targetURL(URL_AFTONBLADET_SE).
-                        tags(new TagTree.Builder("swe_news").build()).
+                        itemTagTree(new ItemTagTree.Builder("swe_news").build()).
                         title(text);
                 //System.out.println("**** " + text);
                 items.add(builder.build());
@@ -105,7 +105,7 @@ public class TopNewsSwedenCollector extends HTMLDocumentBase {
         for (Element element : cls1) {
             //   Elements extra = element.getElementsContainingText("EXTRA");
             if (StringUtils.isNotEmpty(element.text())) {
-                Item.Builder builder = new Item.Builder().tags(new TagTree.Builder("TOP_NEWS_SWE").build())
+                Item.Builder builder = new Item.Builder().itemTagTree(new ItemTagTree.Builder("TOP_NEWS_SWE").build())
                         .sourceURL(URL_EXPRESSEN_SE).title(element.text());
                 items.add(builder.build());
             }

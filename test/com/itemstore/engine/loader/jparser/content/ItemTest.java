@@ -1,6 +1,8 @@
 package com.itemstore.engine.loader.jparser.content;
 
 import com.itemstore.engine.model.Item;
+import com.itemstore.engine.model.tag3.ItemTagTree;
+import com.itemstore.engine.model.tag3.RootTag;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -13,16 +15,10 @@ public class ItemTest {
 
     /*@Test
     public void getTitle() {
-        Item item = new Item.Builder().title(" The title ").tags(TagContainer.create(Collections.singletonList("Swe")))
+        Item item = new Item.Builder().title(" The title ").itemTagTree(TagContainer.create(Collections.singletonList("Swe")))
                 .description("some stuff...").targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
         Assert.assertEquals("The title", item.getTitle());
     }*/
-
-    @Test
-    public void testName() {
-
-
-    }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void build_invalid_1() {
@@ -37,28 +33,27 @@ public class ItemTest {
 
    /* @Test(expectedExceptions = IllegalArgumentException.class)
     public void build_invalid_4() {
-        new Item.Builder().imageURL1("http://www.dn.se").tags(TagContainer.create(Collections.singletonList("asa"))).build();
+        new Item.Builder().imageURL1("http://www.dn.se").itemTagTree(TagContainer.create(Collections.singletonList("asa"))).build();
     }*/
 
 
-    @Test
+    @Test(expectedExceptions = IllegalArgumentException.class)
     public void create_no_tagtree() {
-        try {
             Item build = new Item.Builder().title("Test ccc").targetURL("d.se").imageURL1("dn.se/image.jpg").build();
-            Assert.fail("" + build);
-        } catch (IllegalArgumentException e) {
-            Assert.assertTrue(e.getMessage().contains("tag"));
-        }
+            Assert.fail(build.getDescription());
     }
 
-    /*  @Test
+    @Test
     public void same_title_and_targetURL_should_be_same_id() {
-        Item a = new Item.Builder().title("Samma title").targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
-        Item b = new Item.Builder().title("Samma title").targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
+        ItemTagTree itemTagTree = new ItemTagTree.Builder(RootTag.ENG_NEWS).build();
+
+        Item a = new Item.Builder().title("Samma title").itemTagTree(itemTagTree).targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
+        Item b = new Item.Builder().title("Samma title").itemTagTree(itemTagTree).targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
 
         Assert.assertEquals(a.getId(), b.getId());
     }
 
+    /*
     @Test
     public void same_title_and_targetURL_trim_should_be_same_id() {
         Item a = new Item.Builder().title("Samma title ").targetURL(" http://www.aftonbladet.se/nyheter/article22906939.ab ").build();
@@ -69,9 +64,9 @@ public class ItemTest {
 
     @Test
     public void equalItem_title_and_target_url() {
-        Item item1 = new Item.Builder().title("Test ccc").tags(TagContainer.create(Arrays.asList("Swe", "Sport"))).description("some text").
+        Item item1 = new Item.Builder().title("Test ccc").itemTagTree(TagContainer.create(Arrays.asList("Swe", "Sport"))).description("some text").
                 targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
-        Item item2 = new Item.Builder().title("Test ccc").tags(TagContainer.create(Arrays.asList("Swe", "sport"))).
+        Item item2 = new Item.Builder().title("Test ccc").itemTagTree(TagContainer.create(Arrays.asList("Swe", "sport"))).
                 targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").description("some stuff...").build();
         Assert.assertTrue(item1.equals(item2));
 
@@ -90,7 +85,7 @@ public class ItemTest {
     @Test
     public void trimField() {
         Item item = new Item.Builder().title(" a ").
-                tags(TagContainer.create(Collections.singletonList("Swe " + " Sport " + " "))).
+                itemTagTree(TagContainer.create(Collections.singletonList("Swe " + " Sport " + " "))).
                         description(" a ").imageURL1(" http://www.dn.se/x.jpg ").
                         youTubeVideoID(" 1234 ").sourceURL(" http://www.dn.se ").targetURL(" http://www.dn.se ").build();
 
@@ -136,7 +131,7 @@ public class ItemTest {
     @Test
     public void toJson() {
         Item item = new Item.Builder().title(" The title ")
-                .tags(TagContainer.create(Collections.singletonList("Swe"))).description("some stuff...").
+                .itemTagTree(TagContainer.create(Collections.singletonList("Swe"))).description("some stuff...").
                         targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
         Assert.assertNotNull(JsonUtil.toJson(item));
     }*/

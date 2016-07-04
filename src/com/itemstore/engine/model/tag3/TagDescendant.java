@@ -40,7 +40,7 @@ public class TagDescendant {
     }
 
     String getWithotWildcard(){
-        return tags.replace("__*","");//FIXME
+        return tags.replace("_*","");//FIXME
     }
 
     public boolean isWildCard() {
@@ -78,12 +78,12 @@ public class TagDescendant {
 
     public void addTags(List<String> tags) {
         if(wildCard){
-            throw  new TagTreeException("Not allowed to add tags to wildcard node");
+            throw  new TagTreeException("Not allowed to add itemTagTree to wildcard node");
         }
 
         String currentTags = getTags();
 
-        for (String tag : tags) {//FIXME support multiple tags swe_news
+        for (String tag : tags) {//FIXME support multiple itemTagTree swe_news
             TagDescendant tagDescendant = new TagDescendant(currentTags + "_" + tag);
 //            ta
         }
@@ -136,7 +136,7 @@ public class TagDescendant {
     @Override
     public String toString() {
         return "TagDescendant{" +
-                "tags='" + tags + '\'' +
+                "itemTagTree='" + tags + '\'' +
                 ", wildCard=" + wildCard +
                 '}';
     }

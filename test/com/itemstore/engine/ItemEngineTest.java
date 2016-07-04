@@ -2,7 +2,7 @@ package com.itemstore.engine;
 
 import com.itemstore.engine.model.Item;
 import com.itemstore.engine.model.ItemGroup;
-import com.itemstore.engine.model.tag3.TagTree;
+import com.itemstore.engine.model.tag3.ItemTagTree;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -24,10 +24,10 @@ public class ItemEngineTest {
     public void search_by_exclude_tag() throws SearchItemGroupQuery.InvalidRequestException {
 
         Item item1 = new Item.Builder().title("Test A").targetURL("dn.se").
-                tags(new TagTree.Builder("swe_sport").build()).build();
+                itemTagTree(new ItemTagTree.Builder("swe_sport").build()).build();
 
         Item item2 = new Item.Builder().title("Test B").targetURL("aik.se").
-                tags(new TagTree.Builder("eng_sport").build()).build();
+                itemTagTree(new ItemTagTree.Builder("eng_sport").build()).build();
 
         ItemGroup itemGroup1 = new ItemGroup();
         itemGroup1.addItem(item1);
@@ -55,11 +55,11 @@ public class ItemEngineTest {
     public void search_by_id() throws SearchItemGroupQuery.InvalidRequestException {
 
         Item expectedItem = new Item.Builder().title("Test B").targetURL("aik.se").
-                tags(new TagTree.Builder("swe_sport").build()).build();
+                itemTagTree(new ItemTagTree.Builder("swe_sport").build()).build();
 
         ItemEngine.getInstance().handleNewItems(Arrays.asList(new Item.Builder().title("Test A").targetURL("dn.se").
-                tags(new TagTree.Builder("swe_sport").build()).build(), expectedItem, new Item.Builder().title("Test C").targetURL("sune.se").
-                tags(new TagTree.Builder("swe_sport").build()).build()));
+                itemTagTree(new ItemTagTree.Builder("swe_sport").build()).build(), expectedItem, new Item.Builder().title("Test C").targetURL("sune.se").
+                itemTagTree(new ItemTagTree.Builder("swe_sport").build()).build()));
 
         ItemEngine.getInstance().rebuildIndex();
 
@@ -80,10 +80,10 @@ public class ItemEngineTest {
     public void search_excludeItemGroupId() throws SearchItemGroupQuery.InvalidRequestException {
 
         Item item1 = new Item.Builder().title("Test A").targetURL("dn.se").
-                tags(new TagTree.Builder("swe_sport").build()).build();
+                itemTagTree(new ItemTagTree.Builder("swe_sport").build()).build();
 
         Item item2 = new Item.Builder().title("Test B").targetURL("aik.se").
-                tags(new TagTree.Builder("eng_sport").build()).build();
+                itemTagTree(new ItemTagTree.Builder("eng_sport").build()).build();
 
         ItemGroup itemGroup1 = new ItemGroup();
         itemGroup1.addItem(item1);
@@ -114,7 +114,7 @@ public class ItemEngineTest {
         List<Item> items = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             items.add(new Item.Builder().title("Test B" + i).targetURL("aik.se").
-                    tags(new TagTree.Builder("eng_sport").build()).build());
+                    itemTagTree(new ItemTagTree.Builder("eng_sport").build()).build());
         }
 
         ItemEngine.getInstance().handleNewItems(items);
@@ -137,13 +137,13 @@ public class ItemEngineTest {
     public void search_sortt_on_date() throws SearchItemGroupQuery.InvalidRequestException {
 
         Item expectedItem = new Item.Builder().publishedDate(LocalDateTime.now()).title("Test B").targetURL("aik.se").
-                tags(new TagTree.Builder("swe_sport").build()).build();
+                itemTagTree(new ItemTagTree.Builder("swe_sport").build()).build();
 
         ItemEngine.getInstance().handleNewItems(Arrays.asList(new Item.Builder().
                         publishedDate(LocalDateTime.now().minusHours(1)).title("Test A").targetURL("dn.se").
-                        tags(new TagTree.Builder("swe_sport").build()).build(), expectedItem,
+                        itemTagTree(new ItemTagTree.Builder("swe_sport").build()).build(), expectedItem,
                 new Item.Builder().publishedDate(LocalDateTime.now().minusMinutes(12)).title("Test C").targetURL("sune.se").
-                        tags(new TagTree.Builder("swe_sport").build()).build()));
+                        itemTagTree(new ItemTagTree.Builder("swe_sport").build()).build()));
 
         ItemEngine.getInstance().rebuildIndex();
 

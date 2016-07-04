@@ -74,7 +74,7 @@ public class SearchItemGroupQueryTest {
         SearchItemGroupQuery request = SearchItemGroupQuery.create("swe_sport,swe_news", "swe_sport_*",
                 Collections.emptyList(), Collections.emptyList(), null);
 
-        Assert.assertTrue(request.toString().contains("swe_sport"));
+        Assert.assertTrue(request.toString().contains("swe_sport"), request.toString());
     }
 
 }

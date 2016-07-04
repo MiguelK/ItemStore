@@ -1,13 +1,11 @@
 package com.itemstore.engine.model;
 
-import com.itemstore.engine.model.tag3.TagTree;
-import com.itemstore.engine.text.TextAnayzier;
+import com.itemstore.engine.model.tag3.ItemTagTree;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Comparator;
-import java.util.Date;
 
 /**
  * Versions FIXME serialId
@@ -17,7 +15,7 @@ public class Item implements Serializable {
     public static final Comparator<Item> PUBLISHED_DATE_SORTER = new PublishedDateSorter();
     private int id;
 
-    private final TagTree tagTree; //Transient
+    private final ItemTagTree itemTagTree; //Transient
 
     private final String title; //Required
     private final String description; //Required
@@ -31,9 +29,9 @@ public class Item implements Serializable {
 
     private Item(LocalDateTime publishedDate, String title, String description, String imageURL1, String imageURL2,
                  String youTubeVideoID, String targetURL, String sourceURL,
-                 TagTree tagTree, String itemGroupId) {
+                 ItemTagTree itemTagTree, String itemGroupId) {
         this.id = title.hashCode() + targetURL.hashCode(); //FIXME UUID.randomUUID().toString();
-        this.tagTree = tagTree;
+        this.itemTagTree = itemTagTree;
         this.title = title;
         this.description = description;
         this.imageURL1 = imageURL1;
@@ -54,7 +52,7 @@ public class Item implements Serializable {
         private String youTubeVideoID;
         private String targetURL;
         private String sourceURL;
-        private TagTree tagTree; //Default empty tagTree
+        private ItemTagTree itemTagTree; //Default empty itemTagTree
         private String itemGroupId; //Same id will be part of same composite object
 
         public Builder sourceURL(String sourceURL) {
@@ -72,8 +70,8 @@ public class Item implements Serializable {
             return this;
         }
 
-        public Builder tags(TagTree tagTree) {
-            this.tagTree = tagTree;
+        public Builder itemTagTree(ItemTagTree itemTagTree) {
+            this.itemTagTree = itemTagTree;
             return this;
         }
 
@@ -113,22 +111,22 @@ public class Item implements Serializable {
                 throw new IllegalArgumentException("Invalid targetURL " + targetURL);
             }
 
-            if (tagTree == null) {
-                throw new IllegalArgumentException("tagTree is missing");
+            if (itemTagTree == null) {
+                throw new IllegalArgumentException("itemTagTree is missing");
             }
 
             //FIXME ???
             /*
-            if (Tag.isInvalidValidTags(tags)) {
-                throw new IllegalArgumentException("Invalid tags " + tags);
+            if (Tag.isInvalidValidTags(itemTagTree)) {
+                throw new IllegalArgumentException("Invalid itemTagTree " + itemTagTree);
             }*/
 
             /*if(StringUtils.isEmpty(description)){
                 throw new IllegalArgumentException("Invalid description " + description);
             }*/
 
-            /*if (tags.isEmpty()) {
-                throw new IllegalArgumentException("Invalid tags " + tags);
+            /*if (itemTagTree.isEmpty()) {
+                throw new IllegalArgumentException("Invalid itemTagTree " + itemTagTree);
             }*/
 
             //Validate
@@ -137,7 +135,7 @@ public class Item implements Serializable {
 
 
             return new Item(publishedDate, title, description, imageURL1,
-                    imageURL2, youTubeVideoID, targetURL, sourceURL, tagTree, itemGroupId);
+                    imageURL2, youTubeVideoID, targetURL, sourceURL, itemTagTree, itemGroupId);
         }
     }
 
@@ -145,8 +143,8 @@ public class Item implements Serializable {
         return id;
     }
 
-    public TagTree getTags() { //getTagNames //FIXME
-        return tagTree;
+    public ItemTagTree getItemTagTree() { //getTagNames //FIXME
+        return itemTagTree;
     }
 
     public String getTitle() {
@@ -186,7 +184,7 @@ public class Item implements Serializable {
     }
 
     public boolean isSimilarTo(Item item) {
-        return false; //FIXME tags + and textAnalys
+        return false; //FIXME itemTagTree + and textAnalys
     }
 
 
@@ -210,7 +208,7 @@ public class Item implements Serializable {
     public String toString() {
         return "Item{" +
                 "id='" + id + '\'' +
-                ", tagTree=" + tagTree +
+                ", itemTagTree=" + itemTagTree +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", imageURL1='" + imageURL1 + '\'' +

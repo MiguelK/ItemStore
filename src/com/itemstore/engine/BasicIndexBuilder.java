@@ -26,7 +26,7 @@ class BasicIndexBuilder {
     // 1. Iterate all items, create ItemGroups based on similra item(s) (max x in each)
     // 2. Sort on date
     // 3  Done!
-    // 4 (ItemGroup API search will sort on tags, priority etc...)
+    // 4 (ItemGroup API search will sort on itemTagTree, priority etc...)
     public Result buildIndex() {
         Set<String> itemTags = new HashSet<String>();
 
@@ -39,7 +39,7 @@ class BasicIndexBuilder {
                 //User client has already this items in is local cache
                 continue;
             }
-            //FIXME needed???    itemTags.addAll(item.getTags());
+            //FIXME needed???    itemTags.addAll(item.getItemTagTree());
             List<Item> itemsNotHandled = ListUtils.subtract(items, handledItems);
 
             ItemGroup itemGroup = new ItemGroup();
@@ -53,7 +53,7 @@ class BasicIndexBuilder {
                 if (StringUtils.trimToEmpty(item.getItemGroupId()).equals(itemNotHandled.getItemGroupId())
                         || item.isSimilarTo(itemNotHandled)) {
                     itemGroup.addItem(itemNotHandled);
-                }   //FIXME //contains same tags + similar description
+                }   //FIXME //contains same itemTagTree + similar description
             }
 
 

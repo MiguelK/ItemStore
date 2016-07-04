@@ -14,7 +14,7 @@ public class ItemGetByTagsAction extends Action {
     @Override
     protected Object execute(HttpServletRequest request) {
 
-        String tagsParam = StringUtils.trimToNull(request.getParameter("tags"));
+        String tagsParam = StringUtils.trimToNull(request.getParameter("itemTagTree"));
 
         final List<String> tags = StringUtil.split(tagsParam);
 
@@ -25,7 +25,7 @@ public class ItemGetByTagsAction extends Action {
                 boolean tagsMatch = true;
                 if (!tags.isEmpty()) {
                     throw new UnsupportedOperationException("FIXME tagTree");
-                    //tagsMatch = CollectionUtils.containsAny(item.getTags(), tags);
+                    //tagsMatch = CollectionUtils.containsAny(item.getItemTagTree(), itemTagTree);
                 }
 
 

@@ -1,6 +1,6 @@
 package com.itemstore.collector.rss;
 
-import com.itemstore.engine.model.tag3.TagTree;
+import com.itemstore.engine.model.tag3.ItemTagTree;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -18,7 +18,7 @@ public class Channel {
     @XmlElement(name = "Tag")
     private String tag;
 
-    private TagTree tagTree;
+    private ItemTagTree itemTagTree;
 
     protected Channel() {
     }
@@ -49,25 +49,25 @@ public class Channel {
             return; //Only add the same tag once
         }
 
-        if(tagTree==null){
+        if(itemTagTree ==null){
             //parentRootTagFromGroup swe_sport  tag=aik_fotboll,aik_2016
-            tagTree = new TagTree.Builder(parentTag).addTagsToSingleTree(tag).build();
+            itemTagTree = new ItemTagTree.Builder(parentTag).addTagsToSingleTree(tag).build();
         }
 
-        this.tag = tagTree.toString();
+        this.tag = itemTagTree.toString();
 
         //use both common tag and channel tag
-       // this.tag = this.tag != null ? this.tag + TagTree.TAG_DESCENDANT_SEPARATOR + parentRootTagFromGroup : parentRootTagFromGroup;
+       // this.tag = this.tag != null ? this.tag + ItemTagTree.TAG_DESCENDANT_SEPARATOR + parentRootTagFromGroup : parentRootTagFromGroup;
     }
 
-    public TagTree getTag() {
+    public ItemTagTree getTag() {
 
-        if(tagTree==null){
+        if(itemTagTree ==null){
             //parentRootTagFromGroup swe_sport  tag=aik_fotboll,aik_2016
-            tagTree = new TagTree.Builder(tag).build();
+            itemTagTree = new ItemTagTree.Builder(tag).build();
         }
 
-        return tagTree;
+        return itemTagTree;
     }
 
     public int getRefreshPeridInSeconds() {

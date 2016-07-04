@@ -3,7 +3,7 @@ package com.itemstore.collector.rss;
 import com.itemstore.collector.ItemCollector;
 import com.itemstore.collector.ItemCollectorBase;
 import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.tag3.TagTree;
+import com.itemstore.engine.model.tag3.ItemTagTree;
 import it.sauronsoftware.feed4j.FeedParser;
 import it.sauronsoftware.feed4j.bean.Feed;
 import it.sauronsoftware.feed4j.bean.FeedHeader;
@@ -30,10 +30,9 @@ public class RSSChannelCollector extends ItemCollectorBase {
 
     private final URL channelURL;
 
-    private final TagTree tags;
+    private final ItemTagTree itemTagTree;
 
     private final int pollFrequencyInSeconds;
-
 
     public static List<ItemCollector> parseFile(File channelFile){
         List<Channel> channels = RSSChannels.loadFromFile(channelFile).getChannels();
@@ -48,9 +47,9 @@ public class RSSChannelCollector extends ItemCollectorBase {
         return channelCollectors;
     }
 
-    private RSSChannelCollector(URL channelURL, TagTree tags, int pollFrequencyInSeconds) {
+    private RSSChannelCollector(URL channelURL, ItemTagTree itemTagTree, int pollFrequencyInSeconds) {
         this.channelURL = channelURL;
-        this.tags = tags;
+        this.itemTagTree = itemTagTree;
         this.pollFrequencyInSeconds = pollFrequencyInSeconds;
     }
 
@@ -111,10 +110,10 @@ public class RSSChannelCollector extends ItemCollectorBase {
 
 
               //  LocalDateTime.
-               // TagTree tagTree = new TagTree.Builder(tags).build(); //FIXME add to root??
-                //FIXME Tag and TagCollector extract tags...rssItemLink(Video or articleUrl)
+               // ItemTagTree tagTree = new ItemTagTree.Builder(itemTagTree).build(); //FIXME add to root??
+                //FIXME Tag and TagCollector extract itemTagTree...rssItemLink(Video or articleUrl)
                 Item item = new Item.Builder().imageURL1(imageUrl1).targetURL(rssItemLink).sourceURL(channelURL.toString())
-                        .tags(tags).title(title).description(description)
+                        .itemTagTree(itemTagTree).title(title).description(description)
                         .publishedDate(publishedTime).build();
 
                 items.add(item);

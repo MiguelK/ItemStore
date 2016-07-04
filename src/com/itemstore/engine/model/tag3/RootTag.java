@@ -9,8 +9,6 @@ public enum RootTag {
     SWE_NYHETER("swe_nyheter"),
     SWE_SPORT("swe_sport");
 
-
-
     private String tags;
 
     RootTag(String tags) {

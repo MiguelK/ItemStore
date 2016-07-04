@@ -1,6 +1,6 @@
 package com.itemstore.engine;
 
-import com.itemstore.engine.model.tag3.TagTree;
+import com.itemstore.engine.model.tag3.ItemTagTree;
 
 import java.util.List;
 
@@ -12,10 +12,10 @@ public interface ItemGroupFilter {
 
     int getMaxResult();
 
-    TagTree getExcludeTag();
+    ItemTagTree.Filter getExcludeTag();
 
-    TagTree getFavoriteTag();
+    ItemTagTree.Filter getFavoriteTag();
 
-    TagTree getIncludeOnlyTag();
+    ItemTagTree.Filter getIncludeOnlyTag();
 
 }

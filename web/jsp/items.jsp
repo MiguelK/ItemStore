@@ -111,7 +111,7 @@
                     <table border="1" bgcolor="aqua">
                         <tr>
                             <td>Item Tags</td>
-                            <td><input type="text" name="tags" placeholder="tags"></td>
+                            <td><input type="text" name="itemTagTree" placeholder="itemTagTree"></td>
                         </tr>
                         <tr>
                             <td><input type="submit" value="Search"></td>
