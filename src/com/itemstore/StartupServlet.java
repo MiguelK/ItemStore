@@ -32,7 +32,7 @@ public class StartupServlet extends HttpServlet {
         List<ItemCollector> channelCollectors = RSSChannelCollector.parseFile(channelFile);
 
         ItemEngine.getInstance().addCollectors(channelCollectors);
-      //  ItemEngine.getInstance().addCollector(new TopNewsSwedenCollector()); //FIXME
+        ItemEngine.getInstance().addCollector(new TopNewsSwedenCollector()); //FIXME
 
         ItemEngine.getInstance().start();
     }

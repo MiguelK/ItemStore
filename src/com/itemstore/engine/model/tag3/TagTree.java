@@ -4,12 +4,17 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
+//Base <TagTree>
+//ItemTagTree
+//SearchFilterTagTree
 public class TagTree {
+
+    //Root swe_sport (Mandatory for Items)
+
     private static final String NEW_LINE = System.getProperty("line.separator");
-    public static final String TAG_DESCENDANT_SEPARATOR = ",";
+    private static final String TAG_DESCENDANT_SEPARATOR = ",";
     private final List<TagDescendant> tagDescendants;
 
     private TagTree(List<TagDescendant> tagDescendants) {
@@ -51,12 +56,17 @@ public class TagTree {
 
         private List<String> tagsToAddToSingleTree = new ArrayList<>();
 
-        public Builder(String rootTags) {
+        public Builder(RootTag rootTags) {
+            this(rootTags.getTags());
+        }
 
+        public Builder(String rootTags) {
             String s = StringUtils.trimToNull(rootTags);
             if (s == null) {
                 throw new TagTreeException("Invalid tags " + rootTags);
             }
+
+            RootTag.validate(s);
 
             List<String> tags = Arrays.asList(s.split(TAG_DESCENDANT_SEPARATOR));
 
@@ -98,7 +108,7 @@ public class TagTree {
 
             String tagTrimmed = StringUtils.trimToNull(tag);
 
-            if(tagTrimmed==null){
+            if (tagTrimmed == null) {
                 return this;
             }
 

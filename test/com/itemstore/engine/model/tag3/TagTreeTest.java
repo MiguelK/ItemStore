@@ -9,7 +9,7 @@ public class TagTreeTest {
 
     @Test
     public void parseMultiTag() {
-        TagTree tagTreeA = new TagTree.Builder("swe_sport_os2016,swe_sport_zlatan").build();
+        TagTree tagTreeA = new TagTree.Builder(RootTag.SWE_NYHETER.getTags()+"_os2016,swe_sport_zlatan").build();
         Assert.assertEquals(tagTreeA.getTagDescendants().size(), 2);
     }
 
@@ -85,7 +85,8 @@ public class TagTreeTest {
 
     @Test
     public void addTagsToSingleTree() {
-        TagTree tagTreeA = new TagTree.Builder("swe_sport_os2016")
+        //"swe_sport_os2016"
+        TagTree tagTreeA = new TagTree.Builder(RootTag.SWE_SPORT).addTagsToSingleTree("os2016")
                 .addTagsToSingleTree(Arrays.asList("a", "b", "c")).build();
 
         //swe_sport_os2016
