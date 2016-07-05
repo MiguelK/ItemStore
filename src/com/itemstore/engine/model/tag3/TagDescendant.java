@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//-> TagPath swe_sport_fotboll
 public class TagDescendant {
 
     private final String tags;
@@ -61,16 +62,19 @@ public class TagDescendant {
             return Arrays.asList(split);
     }
 
-     static List<TagDescendant> parse(List<String> tags) {
-        Map<String,TagDescendant> descendants = new HashMap<>();
-        for (String tag : tags) {
-            TagDescendant tagDescendant = descendants.get(tag);
+     static List<TagDescendant> parse(List<String> tagPaths) {
+        Map<String,TagDescendant> descendantsUnique = new HashMap<>();
+         List<TagDescendant> tagDescendants = new ArrayList<>();
+
+        for (String tagPath : tagPaths) {
+            TagDescendant tagDescendant = descendantsUnique.get(tagPath);
             if(tagDescendant==null){
-                 tagDescendant = new TagDescendant(tag);
-                descendants.put(tag,tagDescendant);
+                 tagDescendant = new TagDescendant(tagPath);
+                descendantsUnique.put(tagPath,tagDescendant);
+                tagDescendants.add(tagDescendant);
             }
         }
-        return new ArrayList<>(descendants.values());
+        return tagDescendants;
     }
      static TagDescendant parse(String tags) {
         return new TagDescendant(tags);

@@ -14,14 +14,14 @@ class ChannelGroup {
     @XmlElement(name = "RefreshPeridInSeconds")
     private int refreshPeridInSeconds;
 
-    @XmlElement(name = "Tag")
-    private String tag;
+    @XmlElement(name = "RootTag")
+    private String rootTag;
 
     public List<Channel> getChannels() {
 
         for (Channel channel : channels) {
             channel.setRefreshPeridInSeconds(refreshPeridInSeconds);
-            channel.setTagFromChannelGroup(tag);
+            channel.setTagFromChannelGroup(rootTag);
         }
         return channels;
     }

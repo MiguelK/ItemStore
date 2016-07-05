@@ -1,7 +1,7 @@
 <RSSChannels>
 
 	<ChannelGroup>
-		<Tag>swe_sport</Tag>
+		<RootTag>swe_sport</RootTag>
 		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
 
 		<Channels>

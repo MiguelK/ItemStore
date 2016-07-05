@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//Base <ItemTagTree>
-//ItemTagTree
-//SearchFilterTagTree
 public class ItemTagTree {
 
     private static final String NEW_LINE = System.getProperty("line.separator");
@@ -31,9 +28,7 @@ public class ItemTagTree {
             if (searchTagDescendant.isWildCard()) {
                 for (TagDescendant tagDescendant : tagDescendants) {
                     String tags = tagDescendant.getTags();
-//                    if (searchTagDescendant.getWithotWildcard().startsWith(tags)) {
                     if (tags.startsWith(searchTagDescendant.getWithotWildcard())) {
-
                         return 1.0;//FIXME
                     }
                 }
@@ -46,23 +41,6 @@ public class ItemTagTree {
                     }
                 }
             }
-
-            /*String tags = searchTagDescendant.getTags(); //Tag path //swe_sport_fotboll_xyz
-            for (TagDescendant tagDescendant : tagDescendants) {
-                String tags1 = tagDescendant.getTags(); //swe_sport_fotboll_xyz
-
-                if (tagDescendant.isWildCard()) {
-                    String withotWildcard = tagDescendant.getWithotWildcard();
-
-                    if (tags1.startsWith(withotWildcard)) {
-                        return 1.0;//FIXME
-                    }
-                }
-
-                if (tags1.contains(tags)) {
-                    return 1.0; //FIXME use TagNodes
-                }
-            }*/
         }
         //FIXME
         return 0;
@@ -83,22 +61,15 @@ public class ItemTagTree {
                 throw new TagTreeException("Invalid itemTagTree " + rootTags);
             }
 
-            // RootTag.validate(s);
+             RootTag.validate(s);
 
             rootTag = TagDescendant.parse(s);
             tagDescendants.add(rootTag);
         }
 
         public ItemTagTree build() {
-
-          /*  TagDescendant firstTagDescendant = tagDescendants.get(0);
-            for (String tag : tagsToAddToSingleTree) {
-                TagDescendant tagDescendant = TagDescendant.parse(firstTagDescendant.getTags() + "_" + tag);//FIXME
-                tagDescendants.add(tagDescendant);
-            }*/
-
             for (TagDescendant tagDescendant : tagDescendants) {
-                if(tagDescendant.isWildCard()){
+                if (tagDescendant.isWildCard()) {
                     throw new TagTreeException("Wildcard not allowed");
                 }
             }
@@ -121,16 +92,7 @@ public class ItemTagTree {
                 TagDescendant t = TagDescendant.parse(rootTag.getTags() + "_" + tagDescendant.getTags());//FIXME
 
                 tagDescendants.add(t);
-               // tagsToAddToSingleTree.addAll(tags);
-
             }
-
-
-          //  List<String> tags = Arrays.asList(tagNodesTrimmed.split(TAG_DESCENDANT_SEPARATOR));
-
-            //  TagDescendant tagDescendant = TagDescendant.parse(rootTag.getTags() + "_" + tag);//FIXME
-
-            // tagsToAddToSingleTree.addAll(tags);
 
             return this;
         }

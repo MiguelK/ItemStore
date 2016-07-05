@@ -23,15 +23,15 @@ public class ItemTagTreeTest {
     @Test
     public void tagDescendants_wth_added_tags()  {
 
-        /*ItemTagTree itemTagTreeB = new ItemTagTree.Builder("swe_sport_fotboll")
-                .addTagsToSingleTree(Arrays.asList("zlatan", "OS-2016","fotboll_sverige_landslaget")).build();
+        ItemTagTree itemTagTreeB = new ItemTagTree.Builder("swe_sport")
+                .addTagsToSingleTree("fotboll_zlatan, fotboll_OS-2016, fotboll_fotboll_sverige_landslaget").build();
 
         Assert.assertEquals(itemTagTreeB.getTagDescendants().size(), 4);
 
-        Assert.assertEquals(itemTagTreeB.getTagDescendants().get(0).getItemTagTree(),"swe_sport_fotboll");
-        Assert.assertEquals(itemTagTreeB.getTagDescendants().get(1).getItemTagTree(),"swe_sport_fotboll_zlatan");
-        Assert.assertEquals(itemTagTreeB.getTagDescendants().get(2).getItemTagTree(),"swe_sport_fotboll_OS-2016");
-        Assert.assertEquals(itemTagTreeB.getTagDescendants().get(3).getItemTagTree(),"swe_sport_fotboll_fotboll_sverige_landslaget");*/
+        Assert.assertEquals(itemTagTreeB.getTagDescendants().get(0).getTags(),"swe_sport");
+        Assert.assertEquals(itemTagTreeB.getTagDescendants().get(1).getTags(),"swe_sport_fotboll_zlatan");
+        Assert.assertEquals(itemTagTreeB.getTagDescendants().get(2).getTags(),"swe_sport_fotboll_OS-2016");
+        Assert.assertEquals(itemTagTreeB.getTagDescendants().get(3).getTags(),"swe_sport_fotboll_fotboll_sverige_landslaget");
     }
 
     @Test

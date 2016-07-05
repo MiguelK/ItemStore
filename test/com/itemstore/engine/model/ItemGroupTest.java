@@ -25,7 +25,7 @@ public class ItemGroupTest {
     @Test
     public void sort_by_date_3_item_groups() {
 
-        ItemTagTree itemTagTree = new ItemTagTree.Builder("swe_sport_zlatan").build();
+        ItemTagTree itemTagTree = new ItemTagTree.Builder("swe_sport").addTagsToSingleTree("zlatan").build();
         ItemGroup itemGroup1 = new ItemGroup();
         itemGroup1.addItem(new Item.Builder().title("A").itemTagTree(itemTagTree).publishedDate(LocalDateTime.now().minusDays(2)).targetURL("dn.se").build());
 

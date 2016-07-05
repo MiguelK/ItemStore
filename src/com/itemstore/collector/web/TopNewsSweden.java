@@ -2,6 +2,7 @@ package com.itemstore.collector.web;
 
 import com.itemstore.engine.model.Item;
 import com.itemstore.engine.model.tag3.ItemTagTree;
+import com.itemstore.engine.model.tag3.RootTag;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -61,7 +62,7 @@ public class TopNewsSweden extends ItemCollectorWebBase {
             if (!plusArticle && size > 0 && StringUtils.isNotEmpty(text) &&
                     text.contains("JUST NU") || text.contains("EXTRA")) {
                 Item.Builder builder = new Item.Builder()
-                        .itemTagTree(new ItemTagTree.Builder("swe_top_news").build())
+                        .itemTagTree(new ItemTagTree.Builder(RootTag.SWE_NYHETER).addTagsToSingleTree("topnews").build())
                         .sourceURL(URL_AFTONBLADET_SE).title(text).targetURL(URL_AFTONBLADET_SE); //FIXME same target?
 
                 System.out.println("**** " + text);

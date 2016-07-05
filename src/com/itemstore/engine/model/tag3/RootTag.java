@@ -4,6 +4,7 @@ package com.itemstore.engine.model.tag3;
 
 public enum RootTag {
     ENG_NEWS("eng_news"),
+    ENG_SPORT("eng_sport"),
 
     SWE_NEWS("swe_news"),
     SWE_NYHETER("swe_nyheter"),
@@ -26,7 +27,7 @@ public enum RootTag {
         }
 
         if (notFound) {
-            throw new IllegalArgumentException("Tag " + tag + " not valid");
+            throw new TagTreeException("Tag " + tag + " not valid");
         }
     }
 

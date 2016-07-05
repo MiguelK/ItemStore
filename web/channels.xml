@@ -1,10 +1,9 @@
 <RSSChannels>
 
     <ChannelGroup>
-        <Tag>eng_news</Tag>
+        <RootTag>eng_news</RootTag>
         <RefreshPeridInSeconds>30</RefreshPeridInSeconds>
         <Channels>
-
             <Channel>
                 <Url>http://www.wired.com/rss/index.xml</Url>
             </Channel>
@@ -54,7 +53,7 @@
     </ChannelGroup>
 
     <ChannelGroup>
-        <Tag>swe_nyheter</Tag>
+        <RootTag>swe_nyheter</RootTag>
         <RefreshPeridInSeconds>30</RefreshPeridInSeconds>
         <Channels>
             <Channel>
@@ -129,7 +128,7 @@
 
     <ChannelGroup>
         <RefreshPeridInSeconds>30</RefreshPeridInSeconds>
-        <Tag>swe_sport</Tag>
+        <RootTag>swe_sport</RootTag>
         <Channels>
             <Channel>
                 <Url>http://www.aftonbladet.se/sportbladet/rss.xml</Url>
@@ -146,6 +145,5 @@
             </Channel>
         </Channels>
     </ChannelGroup>
-
 
 </RSSChannels>
