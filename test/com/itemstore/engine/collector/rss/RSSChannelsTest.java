@@ -3,7 +3,7 @@ package com.itemstore.engine.collector.rss;
 import com.itemstore.TestUtil;
 import com.itemstore.collector.rss.Channel;
 import com.itemstore.collector.rss.RSSChannels;
-import com.itemstore.engine.model.tag3.TagDescendant;
+import com.itemstore.engine.model.tag3.TagTreePath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -21,11 +21,11 @@ public class RSSChannelsTest {
         //swe_sport
         //swe_sport_nyheter
         //swe_sport_stockholm
-        List<TagDescendant> tagDescendants = rss.getChannels().get(0).getTag().getTagDescendants();
-        Assert.assertEquals(tagDescendants.size(), 3);
-        Assert.assertEquals(tagDescendants.get(0).getTags(), "swe_sport");
-        Assert.assertEquals(tagDescendants.get(1).getTags(), "swe_sport_Nyheter");
-        Assert.assertEquals(tagDescendants.get(2).getTags(), "swe_sport_Stockholm");
+        List<TagTreePath> tagTreePaths = rss.getChannels().get(0).getTag().getTagTreePaths();
+        Assert.assertEquals(tagTreePaths.size(), 3);
+        Assert.assertEquals(tagTreePaths.get(0).getTagTreePath(), "swe_sport");
+        Assert.assertEquals(tagTreePaths.get(1).getTagTreePath(), "swe_sport_Nyheter");
+        Assert.assertEquals(tagTreePaths.get(2).getTagTreePath(), "swe_sport_Stockholm");
 
     }
 
@@ -35,7 +35,7 @@ public class RSSChannelsTest {
 
         Assert.assertEquals(rss.getChannels().size(), 1);
         /*String tag = rss.getChannels().get(0).getTag();
-        List<TagDescendant> tagDescendants = new ItemTagTree.Builder(tag).build().getTagDescendants();
+        List<TagTreePath> tagDescendants = new ItemTagTree.Builder(tag).build().getTagTreePaths();
 
         Assert.assertEquals(tagDescendants.size(), 2); */
     }
@@ -48,7 +48,7 @@ public class RSSChannelsTest {
         for (Channel channel : rss.getChannels()) {
             Assert.assertEquals(channel.getRefreshPeridInSeconds(), 30);
             Assert.assertNotNull(channel.getUrl());
-            Assert.assertEquals(channel.getTag().getTagDescendants().get(0).getTags(), "eng_news");
+            Assert.assertEquals(channel.getTag().getTagTreePaths().get(0).getTagTreePath(), "eng_news");
         }
     }
 
@@ -58,7 +58,7 @@ public class RSSChannelsTest {
 
         Assert.assertEquals(rss.getChannels().size(), 2);
         for (Channel channel : rss.getChannels()) {
-            Assert.assertEquals(channel.getTag().getTagDescendants().get(0).getTags(), "eng_news");
+            Assert.assertEquals(channel.getTag().getTagTreePaths().get(0).getTagTreePath(), "eng_news");
         }
     }
 

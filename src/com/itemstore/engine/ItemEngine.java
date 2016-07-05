@@ -10,6 +10,7 @@ import com.itemstore.engine.event.Events;
 import com.itemstore.engine.model.Item;
 import com.itemstore.engine.model.ItemGroup;
 import com.itemstore.engine.model.tag3.ItemTagTree;
+import com.itemstore.engine.model.tag3.TagTreeFilter;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Predicate;
 
@@ -138,10 +139,10 @@ public final class ItemEngine implements ItemCollectorListener {
 
             List<Integer> excludeIds = filter.getExcludeIds();
             List<Integer> itemIds = filter.getItemIds(); //FIXME renam? itemIdToInclude
-            ItemTagTree.Filter excludeTag = filter.getExcludeTag();
+            TagTreeFilter excludeTag = filter.getExcludeTag();
             int maxResult = filter.getMaxResult();
-            ItemTagTree.Filter favoriteTag = filter.getFavoriteTag(); //Just a hint, just for sorting
-            ItemTagTree.Filter includeOnlyTag = filter.getIncludeOnlyTag(); //If not null only match against this
+            TagTreeFilter favoriteTag = filter.getFavoriteTag(); //Just a hint, just for sorting
+            TagTreeFilter includeOnlyTag = filter.getIncludeOnlyTag(); //If not null only match against this
 
 
             //Copy??? FIXME

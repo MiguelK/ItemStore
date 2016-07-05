@@ -10,33 +10,47 @@ public class ItemTagTree {
 
     private static final String NEW_LINE = System.getProperty("line.separator");
     private static final String TAG_DESCENDANT_SEPARATOR = ",";
-    private final List<TagDescendant> tagDescendants;
+    private final List<TagTreePath> tagTreePaths;
 
-    private ItemTagTree(List<TagDescendant> tagDescendants) {
-        this.tagDescendants = tagDescendants;
+    private ItemTagTree(List<TagTreePath> tagTreePaths) {
+        this.tagTreePaths = tagTreePaths;
     }
 
-    public List<TagDescendant> getTagDescendants() {
-        return tagDescendants;
+    public List<TagTreePath> getTagTreePaths() {
+        return tagTreePaths;
     }
 
     //Should this be included depending on input tree
-    public double match(ItemTagTree.Filter searchFilterTagTree) { //passTargetTagTree
+    public double match(TagTreeFilter searchTagTreeFilterTagTree) { //passTargetTagTree
 
-        for (TagDescendant searchTagDescendant : searchFilterTagTree.getTagDescendants()) {
+        for (TagTreePath searchTagTreePath : searchTagTreeFilterTagTree.getTagTreePaths()) {
 
-            if (searchTagDescendant.isWildCard()) {
-                for (TagDescendant tagDescendant : tagDescendants) {
-                    String tags = tagDescendant.getTags();
-                    if (tags.startsWith(searchTagDescendant.getWithotWildcard())) {
+            if (searchTagTreePath.isMultiWildcard()) {
+                for (TagTreePath tagTreePath : tagTreePaths) {
+                    String tags = tagTreePath.getTagTreePath();
+                    if (tags.contains(searchTagTreePath.getWithotWildcard())) {
+                        return 1.0;//FIXME
+                    }
+                }
+            }else if (searchTagTreePath.isSuffixWildCard()) {
+                for (TagTreePath tagTreePath : tagTreePaths) {
+                    String tags = tagTreePath.getTagTreePath();
+                    if (tags.startsWith(searchTagTreePath.getWithotWildcard())) {
+                        return 1.0;//FIXME
+                    }
+                }
+            }else  if (searchTagTreePath.isPrefixWildCard()) {
+                for (TagTreePath tagTreePath : tagTreePaths) {
+                    String tags = tagTreePath.getTagTreePath();
+                    if (tags.endsWith(searchTagTreePath.getWithotWildcard())) {
                         return 1.0;//FIXME
                     }
                 }
             } else {
-                String withotWildcard = searchTagDescendant.getWithotWildcard();
+                String withotWildcard = searchTagTreePath.getWithotWildcard();
 
-                for (TagDescendant tagDescendant : tagDescendants) {
-                    if (tagDescendant.getTags().contains(withotWildcard)) {
+                for (TagTreePath tagTreePath : tagTreePaths) {
+                    if (tagTreePath.getTagTreePath().contains(withotWildcard)) {
                         return 1.0; //FIXME use TagNodes
                     }
                 }
@@ -47,9 +61,9 @@ public class ItemTagTree {
     }
 
     public static class Builder {
-        private List<TagDescendant> tagDescendants = new ArrayList<>();
+        private List<TagTreePath> tagTreePaths = new ArrayList<>();
 
-        private TagDescendant rootTag;
+        private TagTreePath rootTag;
 
         public Builder(RootTag rootTags) {
             this(rootTags.getTags());
@@ -63,19 +77,19 @@ public class ItemTagTree {
 
              RootTag.validate(s);
 
-            rootTag = TagDescendant.parse(s);
-            tagDescendants.add(rootTag);
+            rootTag = TagTreePath.parseTagTreePath(s);
+            tagTreePaths.add(rootTag);
         }
 
         public ItemTagTree build() {
-            for (TagDescendant tagDescendant : tagDescendants) {
-                if (tagDescendant.isWildCard()) {
+            for (TagTreePath tagTreePath : tagTreePaths) {
+                if (tagTreePath.isSuffixWildCard()) {
                     throw new TagTreeException("Wildcard not allowed");
                 }
             }
 
 
-            return new ItemTagTree(tagDescendants);
+            return new ItemTagTree(tagTreePaths);
         }
 
         //aik,fotbol_aik,zlatan
@@ -87,44 +101,18 @@ public class ItemTagTree {
                 return this;
             }
 
-            List<TagDescendant> list = parseTagDescendants(tagNodes);
-            for (TagDescendant tagDescendant : list) {
-                TagDescendant t = TagDescendant.parse(rootTag.getTags() + "_" + tagDescendant.getTags());//FIXME
+            List<TagTreePath> list = parseTagDescendants(tagNodes);
+            for (TagTreePath tagTreePath : list) {
+                TagTreePath t = TagTreePath.parseTagTreePath(rootTag.getTagTreePath() + "_" + tagTreePath.getTagTreePath());//FIXME
 
-                tagDescendants.add(t);
+                tagTreePaths.add(t);
             }
 
             return this;
         }
     }
 
-    public static class Filter {
-        private List<TagDescendant> tagDescendants;
-
-
-        public Filter(List<TagDescendant> tagDescendants) {
-            this.tagDescendants = tagDescendants;
-        }
-
-        public List<TagDescendant> getTagDescendants() {
-            return tagDescendants;
-        }
-
-        public static Filter parse(String t) {
-            List<TagDescendant> tagDescendants = parseTagDescendants(t);
-
-            return new Filter(tagDescendants);
-        }
-
-        @Override
-        public String toString() {
-            return "Filter{" +
-                    "tagDescendants=" + tagDescendants +
-                    '}';
-        }
-    }
-
-    private static List<TagDescendant> parseTagDescendants(String t) {
+    private static List<TagTreePath> parseTagDescendants(String t) {
         String s = StringUtils.trimToNull(t);
         if (s == null) {
             throw new TagTreeException("Invalid itemTagTree " + t);
@@ -132,23 +120,23 @@ public class ItemTagTree {
 
         List<String> tags = Arrays.asList(s.split(TAG_DESCENDANT_SEPARATOR));
 
-        List<TagDescendant> tagDescendants = new ArrayList<>();
+        List<TagTreePath> tagTreePaths = new ArrayList<>();
         if (tags.isEmpty()) {
-            TagDescendant parse = TagDescendant.parse(s);
-            tagDescendants.add(parse);
+            TagTreePath parse = TagTreePath.parseTagTreePath(s);
+            tagTreePaths.add(parse);
         } else {
-            List<TagDescendant> parse = TagDescendant.parse(tags);
-            tagDescendants.addAll(parse);
+            List<TagTreePath> parse = TagTreePath.parseTagTreePath(tags);
+            tagTreePaths.addAll(parse);
         }
-        return tagDescendants;
+        return tagTreePaths;
     }
 
     @Override
     public String toString() {
 
         String toString = "ItemTagTree {" + NEW_LINE;
-        for (TagDescendant tagDescendant : tagDescendants) {
-            toString += tagDescendant + NEW_LINE;
+        for (TagTreePath tagTreePath : tagTreePaths) {
+            toString += tagTreePath + NEW_LINE;
         }
         toString = toString + "}";
 

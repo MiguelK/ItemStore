@@ -2,6 +2,7 @@ package com.itemstore.engine;
 
 
 import com.itemstore.engine.model.tag3.ItemTagTree;
+import com.itemstore.engine.model.tag3.TagTreeFilter;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -14,11 +15,11 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
         }
     }
 
-    private final ItemTagTree.Filter excludeTagFilter; //FIXME SearchFilterTagTree
+    private final TagTreeFilter excludeTagTagTreeFilter; //FIXME SearchFilterTagTree
 
-    private final ItemTagTree.Filter favoriteTagFilter; //FIXME SearchFilterTagTree
+    private final TagTreeFilter favoriteTagTagTreeFilter; //FIXME SearchFilterTagTree
 
-    private final ItemTagTree.Filter includeOnlyTagFilter; //If not null only items matching will be returned
+    private final TagTreeFilter includeOnlyTagTagTreeFilter; //If not null only items matching will be returned
 
     private final List<Integer> excludeItemGroupIds;
 
@@ -38,12 +39,12 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
         }
 
 
-        this.excludeTagFilter = StringUtils.trimToNull(excludeTagFilter) == null ?
-                null :  ItemTagTree.Filter.parse(excludeTagFilter);
-        this.favoriteTagFilter = StringUtils.trimToNull(favoriteTagFilter) == null ?
-                null :  ItemTagTree.Filter.parse(favoriteTagFilter);
-        this.includeOnlyTagFilter = StringUtils.trimToNull(includeOnlyTagFilter) == null ?
-                null :  ItemTagTree.Filter.parse(includeOnlyTagFilter);
+        this.excludeTagTagTreeFilter = StringUtils.trimToNull(excludeTagFilter) == null ?
+                null :  TagTreeFilter.parse(excludeTagFilter);
+        this.favoriteTagTagTreeFilter = StringUtils.trimToNull(favoriteTagFilter) == null ?
+                null :  TagTreeFilter.parse(favoriteTagFilter);
+        this.includeOnlyTagTagTreeFilter = StringUtils.trimToNull(includeOnlyTagFilter) == null ?
+                null :  TagTreeFilter.parse(includeOnlyTagFilter);
 
         this.excludeItemGroupIds = excludeItemGroupIds;
         this.itemGroupIds = itemGroupIds;
@@ -80,25 +81,25 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
     }
 
     @Override
-    public ItemTagTree.Filter getExcludeTag() {
-        return excludeTagFilter;
+    public TagTreeFilter getExcludeTag() {
+        return excludeTagTagTreeFilter;
     }
 
     @Override
-    public ItemTagTree.Filter getFavoriteTag() {
-        return favoriteTagFilter;
+    public TagTreeFilter getFavoriteTag() {
+        return favoriteTagTagTreeFilter;
     }
 
     @Override
-    public ItemTagTree.Filter getIncludeOnlyTag() {
-        return includeOnlyTagFilter;
+    public TagTreeFilter getIncludeOnlyTag() {
+        return includeOnlyTagTagTreeFilter;
     }
 
     @Override
     public String toString() {
         return "SearchItemGroupQuery{" +
-                "excludeTagFilter=" + excludeTagFilter +
-                ", favoriteTagFilter=" + favoriteTagFilter +
+                "excludeTagTagTreeFilter=" + excludeTagTagTreeFilter +
+                ", favoriteTagTagTreeFilter=" + favoriteTagTagTreeFilter +
                 ", excludeItemGroupIds=" + excludeItemGroupIds +
                 ", itemGroupIds=" + itemGroupIds +
                 ", maxResultSize=" + maxResultSize +
