@@ -7,6 +7,7 @@ public enum RootTag {
     ENG_SPORT("eng_sport"),
 
     SWE_NEWS("swe_news"),
+    SWE_DATA("swe_data"),
     SWE_NYHETER("swe_nyheter"),
     SWE_SPORT("swe_sport");
 

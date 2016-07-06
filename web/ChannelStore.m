@@ -52,36 +52,6 @@
 
     //--------------------------------------------------------------------------------------------------------------------------------------------
     //Category -------------------------------------------Computor/Mobile /Data /Mobilt --------------------------------------------------------------------
-    ChannelCategory *categoryComputer = [[ChannelCategory alloc] initWithTextSelected:NSLocalizedString(@"CategoryComputerMobileKey", @"") imageName:@"computer"];
-    [categoryComputer addSwedishFeedSelected:@"test" hostName:@"Array.se" url:@"http://array.se/feed/rss/"];
-    [categoryComputer addSwedishChannel:@"test" hostName:@"Unix FAQ (Eng)" url:@"http://www.cyberciti.biz/faq/feed/rss/"];
-    [categoryComputer addSwedishChannel:@"test" hostName:@"Aapl.se Iphone nyheter" url:@"http://feeds.feedburner.com/aaplse?format=xml"];
-    [categoryComputer addSwedishFeedSelected:@"test" hostName:@"PC för Alla, Senaste nyheterna" url:@"http://pcforalla.idg.se/rss/senaste+nytt"];
-    [categoryComputer addSwedishChannel:@"test" hostName:@"PCforalla.se -Dagens surftips" url:@"http://pcforalla.idg.se/rss/dagens+surftips"];
-    [categoryComputer addSwedishChannel:@"test" hostName:@"PCforalla.se -Senaste testerna" url:@"http://pcforalla.idg.se/rss/tester"];
-    [categoryComputer addSwedishChannel:@"test" hostName:@"PCforalla.se -Tips och skolor" url:@"http://pcforalla.idg.se/rss/tips+och+skolor"];
-    [categoryComputer addSwedishChannel:@"test" hostName:@"Mobil.se" url:@"http://www.mobil.se/cmlink/Mobil-se-Nyheter-1.250085.xml"];
-    [categoryComputer addSwedishChannel:@"test" hostName:@"ComputerSweden.se -Tjänster" url:@"http://computersweden.idg.se/tjanster/rss/rss.xml"];
-    [categoryComputer addSwedishChannel:@"computersweden" hostName:@"ComputerSweden.se -Affärer och företag" url:@"http://feeds.idg.se/CsAffarer"];
-    [categoryComputer addSwedishChannel:@"computersweden" hostName:@"ComputerSweden.se -Affärssystem" url:@"http://feeds.idg.se/CsAffrssystem"];
-    [categoryComputer addSwedishChannel:@"computersweden" hostName:@"ComputerSweden.se -Affärsutveckling" url:@"http://computersweden.idg.se/rss/aff%C3%A4rsutveckling"];
-    [categoryComputer addSwedishChannel:@"computersweden" hostName:@"ComputerSweden.se -Hårdvara" url:@"http://computersweden.idg.se/rss/h%C3%A5rdvara"];
-    [categoryComputer addSwedishChannel:@"computersweden" hostName:@"ComputerSweden.se -It-säkerhet" url:@"http://computersweden.idg.se/rss/it-s%C3%A4kerhet"];
-    [categoryComputer addSwedishChannel:@"computersweden" hostName:@"ComputerSweden.se -Lagring" url:@"http://computersweden.idg.se/rss/lagring"];
-    [categoryComputer addSwedishChannel:@"computersweden" hostName:@"ComputerSweden.se -Nät & kommunikation" url:@"http://computersweden.idg.se/rss/n%C3%A4t+%26+kommunikation"];
-    [categoryComputer addSwedishChannel:@"computersweden" hostName:@"ComputerSweden.se -Operativsystem" url:@"http://feeds.idg.se/CsOperativsystem"];
-    [categoryComputer addSwedishFeedSelected:@"computersweden" hostName:@"ComputerSweden.se -Senaste nyheterna" url:@"http://feeds.idg.se/ComputerSweden20SenasteNyheter"];
-    [categoryComputer addSwedishChannel:@"computersweden" hostName:@"ComputerSweden.se -Systemutveckling" url:@"http://computersweden.idg.se/rss/systemutveckling"];
-    [categoryComputer addSwedishChannel:@"computersweden" hostName:@"ComputerSweden.se -Öppen källkod" url:@"http://computersweden.idg.se/rss/%C3%B6ppen+k%C3%A4llkod"];
-    [categoryComputer addSwedishChannel:@"it24.se, it-konsulter" hostName:@"It24.se -it-konsulter" url:@"http://it24.idg.se/rss/it-konsulter"];
-    [categoryComputer addSwedishChannel:@"it24.se, it-konsulter" hostName:@"It24.se -SenasteArtiklar" url:@"http://feeds.idg.se/It24-SenasteArtiklar"];
-    [categoryComputer addSwedishChannel:@"" hostName:@"Mjukvara.se -blogg" url:@"http://www.mjukvara.se/blogg/feed/"];
-    [categoryComputer addSwedishChannel:@"" hostName:@"Techworld.idg.se -senaste" url:@"http://techworld.idg.se/rss/senaste+artiklar"];
-    [categoryComputer addSwedishChannel:@"test" hostName:@"Techworld.idg.se -alla artiklar" url:@"http://techworld.idg.se/rss/alla+artiklar+inom+techworld"];
-    [categoryComputer addSwedishChannel:@"test" hostName:@"Microsoftnyheter" url:@"http://blogs.technet.com/microsoftnyheter/rss.xml"];
-    [categoryComputer addSwedishChannel:@"test" hostName:@"Linux.se" url:@"http://www.linux.se/feed/"];
-    [categoryComputer addSwedishChannel:@"test" hostName:@"Apple.com.se" url:@"http://www.apple.com/se/main/rss/hotnews/hotnews.rss"];
-    [categoryComputer addSwedishChannel:@"test" hostName:@"Swedroid.se" url:@"http://www.swedroid.se/feed/"];
 
     //ENglish, CategoryComputerMobileKey
     [categoryComputer addEnglishFeedSelected:@"test" hostName:@"Idev101.com" url:@"http://feeds.feedburner.com/idev101"];

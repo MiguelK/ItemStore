@@ -28,29 +28,29 @@ public class ItemTagTree {
             if (searchTagTreePath.isMultiWildcard()) {
                 for (TagTreePath tagTreePath : tagTreePaths) {
                     String tags = tagTreePath.getTagTreePath();
-                    if (tags.contains(searchTagTreePath.getWithotWildcard())) {
+                    if (tags.toLowerCase().contains(searchTagTreePath.getWithotWildcard().toLowerCase())) {
                         return 1.0;//FIXME
                     }
                 }
             }else if (searchTagTreePath.isSuffixWildCard()) {
                 for (TagTreePath tagTreePath : tagTreePaths) {
                     String tags = tagTreePath.getTagTreePath();
-                    if (tags.startsWith(searchTagTreePath.getWithotWildcard())) {
+                    if (tags.toLowerCase().startsWith(searchTagTreePath.getWithotWildcard().toLowerCase())) {
                         return 1.0;//FIXME
                     }
                 }
             }else  if (searchTagTreePath.isPrefixWildCard()) {
                 for (TagTreePath tagTreePath : tagTreePaths) {
                     String tags = tagTreePath.getTagTreePath();
-                    if (tags.endsWith(searchTagTreePath.getWithotWildcard())) {
+                    if (tags.toLowerCase().endsWith(searchTagTreePath.getWithotWildcard().toLowerCase())) {
                         return 1.0;//FIXME
                     }
                 }
             } else {
-                String withotWildcard = searchTagTreePath.getWithotWildcard();
+                String withotWildcard = searchTagTreePath.getWithotWildcard().toLowerCase();
 
                 for (TagTreePath tagTreePath : tagTreePaths) {
-                    if (tagTreePath.getTagTreePath().contains(withotWildcard)) {
+                    if (tagTreePath.getTagTreePath().toLowerCase().contains(withotWildcard)) {
                         return 1.0; //FIXME use TagNodes
                     }
                 }
