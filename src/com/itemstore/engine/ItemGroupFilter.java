@@ -9,14 +9,10 @@ public interface ItemGroupFilter {
 
     List<Integer> getExcludeIds();
 
-    List<Integer> getItemIds();
-
     int getMaxResult();
 
-    TagTreeFilter getExcludeTag();
+    TagTreeFilter getExcludeTagTreeFilter();
 
-    TagTreeFilter getFavoriteTag();
-
-    TagTreeFilter getIncludeOnlyTag();
+    TagTreeFilter getIncludeTagTreeFilter();
 
 }

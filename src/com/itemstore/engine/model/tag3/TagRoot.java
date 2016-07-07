@@ -2,7 +2,7 @@ package com.itemstore.engine.model.tag3;
 
 //Root swe_sport (Mandatory for Items)
 
-public enum RootTag {
+public enum TagRoot {
     ENG_NEWS("eng_news"),
     ENG_SPORT("eng_sport"),
 
@@ -13,14 +13,14 @@ public enum RootTag {
 
     private String tags;
 
-    RootTag(String tags) {
+    TagRoot(String tags) {
         this.tags = tags;
     }
 
     static void validate(String tag) {
 
         boolean notFound = true;
-        for (RootTag mandatoryTag : values()) {
+        for (TagRoot mandatoryTag : values()) {
             if (mandatoryTag.tags.equals(tag)) {
                 notFound = false;
                 break;

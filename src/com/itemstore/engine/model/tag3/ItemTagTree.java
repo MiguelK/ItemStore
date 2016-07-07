@@ -21,9 +21,9 @@ public class ItemTagTree {
     }
 
     //Should this be included depending on input tree
-    public double match(TagTreeFilter searchTagTreeFilterTagTree) { //passTargetTagTree
+    public double match(TagTreeFilter tagTreeFilter) { //passTargetTagTree
 
-        for (TagTreePath searchTagTreePath : searchTagTreeFilterTagTree.getTagTreePaths()) {
+        for (TagTreePath searchTagTreePath : tagTreeFilter.getTagTreePaths()) {
 
             if (searchTagTreePath.isMultiWildcard()) {
                 for (TagTreePath tagTreePath : tagTreePaths) {
@@ -65,8 +65,8 @@ public class ItemTagTree {
 
         private TagTreePath rootTag;
 
-        public Builder(RootTag rootTags) {
-            this(rootTags.getTags());
+        public Builder(TagRoot tagsRoot) {
+            this(tagsRoot.getTags());
         }
 
         public Builder(String rootTags) {
@@ -75,7 +75,7 @@ public class ItemTagTree {
                 throw new TagTreeException("Invalid itemTagTree " + rootTags);
             }
 
-             RootTag.validate(s);
+             TagRoot.validate(s);
 
             rootTag = TagTreePath.parseTagTreePath(s);
             tagTreePaths.add(rootTag);

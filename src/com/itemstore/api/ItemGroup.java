@@ -1,8 +1,8 @@
 package com.itemstore.api;
 
-import com.itemstore.engine.SearchItemGroupQuery;
 import com.itemstore.api.response.dto.ItemGroupResponse;
 import com.itemstore.engine.ItemEngine;
+import com.itemstore.engine.SearchItemGroupQuery;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
@@ -24,20 +24,21 @@ public class ItemGroup {
     @Path("/search")
     @Produces(MediaType.APPLICATION_JSON)
     public Response searchItemGroups(@Context HttpServletRequest httpServletRequest,
-                                     @QueryParam("excludeTagFilter") String excludeTagFilter,
-                                     @QueryParam("includeOnlyTag") String includeOnlyTag,
-                                     @QueryParam("favoriteTagFilter") String favoriteTagFilter,
-                                     @QueryParam("requiredItemFields") List<String> requiredItemFields, //FIXME implement
-                                     @QueryParam("excludeItemGroupIds") List<Integer> excludeItemGroupIds,
-                                     @QueryParam("itemGroupIds") List<Integer> itemGroupIds,
-                                     @QueryParam("maxResultSize") Integer maxResultSize) {
+                                     @QueryParam("includeTagTreeFilter") String includeTagTreeFilter,
+                                     @QueryParam("excludeTagTreeFilter") String excludeTagTreeFilter,
+                                     @QueryParam("excludeItemGroupIds") List<Integer> excludeItemGroupIds) {
 
         SearchItemGroupQuery searchQuery;
 
+        //includeTagTreeFilter
+        //excludeTagTreeFilter
+        //excludeItemGroupIds
+
+        LOG.info("includeTagTreeFilter=" + includeTagTreeFilter + ",excludeTagTreeFilter="
+                + excludeTagTreeFilter + ",excludeItemGroupIds=" + excludeItemGroupIds);
+
         try {
-            searchQuery = SearchItemGroupQuery.create(includeOnlyTag, excludeTagFilter, favoriteTagFilter, excludeItemGroupIds,
-                    itemGroupIds, maxResultSize);
-            LOG.info("excludeTagFilter=" + excludeTagFilter);
+            searchQuery = SearchItemGroupQuery.create(includeTagTreeFilter, excludeTagTreeFilter, excludeItemGroupIds);
         } catch (SearchItemGroupQuery.InvalidRequestException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }

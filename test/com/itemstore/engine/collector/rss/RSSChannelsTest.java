@@ -14,18 +14,20 @@ public class RSSChannelsTest {
 
 
     @Test
-    public void testName()  {
+    public void treePaths() {
 
         RSSChannels rss = RSSChannels.loadFromFile(TestUtil.readFile("channels-muktiple-tags-ok.xml"));
 
-        //swe_sport
-        //swe_sport_nyheter
-        //swe_sport_stockholm
         List<TagTreePath> tagTreePaths = rss.getChannels().get(0).getTag().getTagTreePaths();
         Assert.assertEquals(tagTreePaths.size(), 3);
         Assert.assertEquals(tagTreePaths.get(0).getTagTreePath(), "swe_sport");
         Assert.assertEquals(tagTreePaths.get(1).getTagTreePath(), "swe_sport_Nyheter");
         Assert.assertEquals(tagTreePaths.get(2).getTagTreePath(), "swe_sport_Stockholm");
+
+        List<TagTreePath> treePaths = rss.getChannels().get(1).getTag().getTagTreePaths();
+        Assert.assertEquals(treePaths.get(0).getTagTreePath(), "swe_sport");
+        Assert.assertEquals(treePaths.get(1).getTagTreePath(), "swe_sport_fotboll_aik_2016");
+
 
     }
 
@@ -73,14 +75,14 @@ public class RSSChannelsTest {
         File file = new File("web", "channels.xml");
         RSSChannels rss = RSSChannels.loadFromFile(file);
 
-       List<Channel> channels = rss.getChannels();
+        List<Channel> channels = rss.getChannels();
 
-       Assert.assertFalse(channels.isEmpty());
+        Assert.assertFalse(channels.isEmpty());
 
-      for (Channel channel : channels) {
-         Assert.assertNotNull(channel.getRefreshPeridInSeconds());
-           Assert.assertNotNull(channel.getUrl());
-         Assert.assertNotNull(channel.getTag(), "itemTagTree missing " + channel.getUrl());
+        for (Channel channel : channels) {
+            Assert.assertNotNull(channel.getRefreshPeridInSeconds());
+            Assert.assertNotNull(channel.getUrl());
+            Assert.assertNotNull(channel.getTag(), "itemTagTree missing " + channel.getUrl());
         }
     }
 }

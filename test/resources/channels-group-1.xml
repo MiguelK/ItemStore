@@ -1,7 +1,7 @@
 <RSSChannels>
 
 	<ChannelGroup>
-		<RootTag>eng_news</RootTag>
+		<TagRoot>eng_news</TagRoot>
 		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
 
 		<Channels>

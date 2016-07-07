@@ -2,7 +2,7 @@ package com.itemstore.engine.loader.jparser.content;
 
 import com.itemstore.engine.model.Item;
 import com.itemstore.engine.model.tag3.ItemTagTree;
-import com.itemstore.engine.model.tag3.RootTag;
+import com.itemstore.engine.model.tag3.TagRoot;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -45,7 +45,7 @@ public class ItemTest {
 
     @Test
     public void same_title_and_targetURL_should_be_same_id() {
-        ItemTagTree itemTagTree = new ItemTagTree.Builder(RootTag.ENG_NEWS).build();
+        ItemTagTree itemTagTree = new ItemTagTree.Builder(TagRoot.ENG_NEWS).build();
 
         Item a = new Item.Builder().title("Samma title").itemTagTree(itemTagTree).targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
         Item b = new Item.Builder().title("Samma title").itemTagTree(itemTagTree).targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();

@@ -137,24 +137,21 @@ public final class ItemEngine implements ItemCollectorListener {
         readLock.lock();
         try {
 
+            TagTreeFilter includeTagTreeFilter = filter.getIncludeTagTreeFilter();
             List<Integer> excludeIds = filter.getExcludeIds();
-            List<Integer> itemIds = filter.getItemIds(); //FIXME renam? itemIdToInclude
-            TagTreeFilter excludeTag = filter.getExcludeTag();
-            int maxResult = filter.getMaxResult();
-            TagTreeFilter favoriteTag = filter.getFavoriteTag(); //Just a hint, just for sorting
-            TagTreeFilter includeOnlyTag = filter.getIncludeOnlyTag(); //If not null only match against this
-
+            TagTreeFilter excludeTag = filter.getExcludeTagTreeFilter();
+            int maxResult =  100; //filter.getMaxResult();
 
             //Copy??? FIXME
             List<ItemGroup> collect = allItemGroupsSortedByDate.stream()
                     .filter(itemGroup -> {
 
-                        if (includeOnlyTag != null &&
-                                itemGroup.getItemTagTree().match(includeOnlyTag) > 0) {
-                            return true; //Include
-                        } else if(includeOnlyTag !=null){
-                            return false;
-                        }
+                        // if (includeOnlyTag != null &&
+                        //      itemGroup.getItemTagTree().match(includeOnlyTag) > 0) {
+                        //  return true; //Include
+                                //} else if(includeOnlyTag !=null){
+                                //return false;
+                        //}
 
                         //1# If included in excludeItemGroupId do not return it
                         if (excludeIds.contains(itemGroup.getId())) {
@@ -162,21 +159,26 @@ public final class ItemEngine implements ItemCollectorListener {
                         }
 
                         //2# If specific ItemGroups are requested
-                        if (itemIds.contains(itemGroup.getId())) {
-                            return true; //Include
-                        }
+                       // if (itemIds.contains(itemGroup.getId())) {
+                                //     return true; //Include
+                        //}
 
                         //4# Is specific itemgroup id's are requested only those should be returned
-                        if (!itemIds.isEmpty()) {
-                            return false; //Only ids match
-                        }
+                        //if (!itemIds.isEmpty()) {
+                        //  return false; //Only ids match
+                        //}
 
                         if (excludeTag != null &&
                                 itemGroup.getItemTagTree().match(excludeTag) > 0) {
                             return false;
                         }
 
-                        return true;
+                        if(includeTagTreeFilter != null && itemGroup.getItemTagTree().match(includeTagTreeFilter) >= 1.0){
+                            return  true;
+                        }
+
+
+                        return false;
                     }).collect(Collectors.toList());
 
             if (collect.size() > maxResult) {

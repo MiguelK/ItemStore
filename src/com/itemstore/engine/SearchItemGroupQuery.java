@@ -1,7 +1,6 @@
 package com.itemstore.engine;
 
 
-import com.itemstore.engine.model.tag3.ItemTagTree;
 import com.itemstore.engine.model.tag3.TagTreeFilter;
 import org.apache.commons.lang3.StringUtils;
 
@@ -17,52 +16,38 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
 
     private final TagTreeFilter excludeTagTagTreeFilter; //FIXME SearchFilterTagTree
 
-    private final TagTreeFilter favoriteTagTagTreeFilter; //FIXME SearchFilterTagTree
-
-    private final TagTreeFilter includeOnlyTagTagTreeFilter; //If not null only items matching will be returned
+    private final TagTreeFilter includeTagTreeFilter; //If not null only items matching will be returned
 
     private final List<Integer> excludeItemGroupIds;
 
-    private final List<Integer> itemGroupIds;
+    //includeTagFilter
+    //excludeTagFilter
+    //excludeItemGroupIds
 
-    private final Integer maxResultSize;
-
-    private SearchItemGroupQuery(String includeOnlyTagFilter,String excludeTagFilter, String favoriteTagFilter, List<Integer> excludeItemGroupIds,
-                                 List<Integer> itemGroupIds, Integer maxResultSize) throws InvalidRequestException {
-
-        if (itemGroupIds == null) {
-            throw new InvalidRequestException("itemGroupIds is null");
-        }
+    private SearchItemGroupQuery(String includeTagFilter, String excludeTagFilter, List<Integer> excludeItemGroupIds) throws InvalidRequestException {
 
         if (excludeItemGroupIds == null) {
             throw new InvalidRequestException("excludeItemGroupIds is null");
         }
 
+        this.includeTagTreeFilter = StringUtils.trimToNull(includeTagFilter) == null ?
+                null : TagTreeFilter.parse(includeTagFilter);
 
         this.excludeTagTagTreeFilter = StringUtils.trimToNull(excludeTagFilter) == null ?
-                null :  TagTreeFilter.parse(excludeTagFilter);
-        this.favoriteTagTagTreeFilter = StringUtils.trimToNull(favoriteTagFilter) == null ?
-                null :  TagTreeFilter.parse(favoriteTagFilter);
-        this.includeOnlyTagTagTreeFilter = StringUtils.trimToNull(includeOnlyTagFilter) == null ?
-                null :  TagTreeFilter.parse(includeOnlyTagFilter);
+                null : TagTreeFilter.parse(excludeTagFilter);
 
         this.excludeItemGroupIds = excludeItemGroupIds;
-        this.itemGroupIds = itemGroupIds;
-        this.maxResultSize = maxResultSize;
     }
 
-    public static SearchItemGroupQuery create(String includeOnlyTagFilter,String excludeTagFilter, String favoriteTagFilter,
-                                              List<Integer> excludeItemGroupIds, List<Integer> itemGroupIds,
-                                              Integer maxResultSize) throws InvalidRequestException {
-        return new SearchItemGroupQuery(includeOnlyTagFilter,excludeTagFilter,
-                favoriteTagFilter, excludeItemGroupIds, itemGroupIds, maxResultSize);
-    }
 
-    public static SearchItemGroupQuery create(String excludeTagFilter, String favoriteTagFilter,
-                                              List<Integer> excludeItemGroupIds, List<Integer> itemGroupIds,
-                                              Integer maxResultSize) throws InvalidRequestException {
-        return new SearchItemGroupQuery(null,excludeTagFilter,
-                favoriteTagFilter, excludeItemGroupIds, itemGroupIds, maxResultSize);
+    //includeTagFilter
+    //excludeTagFilter
+    //excludeItemGroupIds
+
+    public static SearchItemGroupQuery create(String includeTagFilter, String excludeTagFilter,
+                                              List<Integer> excludeItemGroupIds) throws InvalidRequestException {
+        return new SearchItemGroupQuery(includeTagFilter, excludeTagFilter,
+                excludeItemGroupIds);
     }
 
     @Override
@@ -71,38 +56,25 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
     }
 
     @Override
-    public List<Integer> getItemIds() {
-        return itemGroupIds;
-    }
-
-    @Override
     public int getMaxResult() {
-        return maxResultSize == null ? 100 : maxResultSize; //FIXME
+        return 100; //FIXME
     }
 
     @Override
-    public TagTreeFilter getExcludeTag() {
+    public TagTreeFilter getExcludeTagTreeFilter() {
         return excludeTagTagTreeFilter;
     }
 
-    @Override
-    public TagTreeFilter getFavoriteTag() {
-        return favoriteTagTagTreeFilter;
-    }
-
-    @Override
-    public TagTreeFilter getIncludeOnlyTag() {
-        return includeOnlyTagTagTreeFilter;
+    public TagTreeFilter getIncludeTagTreeFilter() {
+        return includeTagTreeFilter;
     }
 
     @Override
     public String toString() {
         return "SearchItemGroupQuery{" +
                 "excludeTagTagTreeFilter=" + excludeTagTagTreeFilter +
-                ", favoriteTagTagTreeFilter=" + favoriteTagTagTreeFilter +
+                ", includeTagTreeFilter=" + includeTagTreeFilter +
                 ", excludeItemGroupIds=" + excludeItemGroupIds +
-                ", itemGroupIds=" + itemGroupIds +
-                ", maxResultSize=" + maxResultSize +
                 '}';
     }
 }

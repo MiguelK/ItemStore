@@ -7,7 +7,7 @@ public class ItemTagTreeTest {
 
     @Test
     public void parseMultiTag() {
-        ItemTagTree itemTagTreeA = new ItemTagTree.Builder(RootTag.SWE_NYHETER).addTagsToSingleTree("Zlatan").build();
+        ItemTagTree itemTagTreeA = new ItemTagTree.Builder(TagRoot.SWE_NYHETER).addTagsToSingleTree("Zlatan").build();
         Assert.assertEquals(itemTagTreeA.getTagTreePaths().size(), 2);
     }
 
@@ -41,6 +41,15 @@ public class ItemTagTreeTest {
         Assert.assertTrue(itemTagTreeB.toString().contains("swe_sport_fotbollOS-2016"), itemTagTreeB.toString());
     }
 
+    @Test
+    public void getTagTreePathsAsString() {
+        ItemTagTree itemTagTreeB = new ItemTagTree.Builder(TagRoot.SWE_SPORT)
+                .addTagsToSingleTree("aik,fotboll_aik,Karlberg_fotboll_AIK").build();
+
+
+        //swe_sport_fotboll_aik,swe_sport_Karlberg_fotboll_AIK
+        System.out.println(itemTagTreeB.toString());
+    }
     /*
     @Test
     public void no_match_many_nodes() {
@@ -55,7 +64,7 @@ public class ItemTagTreeTest {
     @Test
     public void addTagsToSingleTree() {
         //"swe_sport_os2016"
-        ItemTagTree itemTagTreeA = new ItemTagTree.Builder(RootTag.SWE_SPORT).
+        ItemTagTree itemTagTreeA = new ItemTagTree.Builder(TagRoot.SWE_SPORT).
                 addTagsToSingleTree("os2016,os2016_a,os2016_b,os2016_c")
                 .build();
 

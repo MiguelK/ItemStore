@@ -1,7 +1,7 @@
 <RSSChannels>
 
     <ChannelGroup>
-        <RootTag>eng_news</RootTag>
+        <TagRoot>eng_news</TagRoot>
         <RefreshPeridInSeconds>30</RefreshPeridInSeconds>
         <Channels>
             <Channel>
@@ -53,7 +53,7 @@
     </ChannelGroup>
 
     <ChannelGroup>
-        <RootTag>swe_nyheter</RootTag>
+        <TagRoot>swe_nyheter</TagRoot>
         <RefreshPeridInSeconds>30</RefreshPeridInSeconds>
         <Channels>
             <Channel>
@@ -72,6 +72,7 @@
                 <Url>http://www.dn.se/debatt/m/rss</Url>
             </Channel>
             <Channel>
+                <Tag>aftonbladet</Tag>
                 <Url>aftonbladet.se</Url>
                 <Url>http://www.aftonbladet.se/nojesliv/rss.xml</Url>
             </Channel>
@@ -128,7 +129,7 @@
 
     <ChannelGroup>
         <RefreshPeridInSeconds>30</RefreshPeridInSeconds>
-        <RootTag>swe_sport</RootTag>
+        <TagRoot>swe_sport</TagRoot>
         <Channels>
             <Channel>
                 <Url>http://www.aftonbladet.se/sportbladet/rss.xml</Url>
@@ -148,7 +149,7 @@
 
 <ChannelGroup>
     <RefreshPeridInSeconds>30</RefreshPeridInSeconds>
-    <RootTag>swe_data</RootTag>
+    <TagRoot>swe_data</TagRoot>
     <Channels>
         <Channel>
             <Url>http://array.se/feed/rss/</Url>
