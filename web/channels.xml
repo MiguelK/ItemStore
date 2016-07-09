@@ -147,124 +147,120 @@
         </Channels>
     </ChannelGroup>
 
-<ChannelGroup>
-    <RefreshPeridInSeconds>30</RefreshPeridInSeconds>
-    <TagRoot>swe_data</TagRoot>
-    <Channels>
-        <Channel>
-            <Url>http://array.se/feed/rss/</Url>
-        </Channel>
+    <ChannelGroup>
+        <RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+        <TagRoot>swe_data</TagRoot>
+        <Channels>
+            <Channel>
+                <Url>http://array.se/feed/rss/</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://pcforalla.idg.se/rss/tester</Url>
-        </Channel>
+            <Channel>
+                <Url>http://pcforalla.idg.se/rss/tester</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://computersweden.idg.se/rss/h%C3%A5rdvara</Url>
-        </Channel>
+            <Channel>
+                <Url>http://computersweden.idg.se/rss/h%C3%A5rdvara</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://feeds.idg.se/CsOperativsystem</Url>
-        </Channel>
+            <Channel>
+                <Url>http://feeds.idg.se/CsOperativsystem</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://computersweden.idg.se/rss/n%C3%A4t+%26+kommunikation</Url>
-        </Channel>
+            <Channel>
+                <Url>http://computersweden.idg.se/rss/n%C3%A4t+%26+kommunikation</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://feeds.idg.se/ComputerSweden20SenasteNyheter</Url>
-        </Channel>
+            <Channel>
+                <Url>http://feeds.idg.se/ComputerSweden20SenasteNyheter</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://computersweden.idg.se/rss/lagring</Url>
-        </Channel>
+            <Channel>
+                <Url>http://computersweden.idg.se/rss/lagring</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://computersweden.idg.se/rss/it-s%C3%A4kerhet</Url>
-        </Channel>
+            <Channel>
+                <Url>http://computersweden.idg.se/rss/it-s%C3%A4kerhet</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://computersweden.idg.se/rss/aff%C3%A4rsutveckling</Url>
-        </Channel>
+            <Channel>
+                <Url>http://computersweden.idg.se/rss/aff%C3%A4rsutveckling</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://feeds.idg.se/CsAffrssystem</Url>
-        </Channel>
+            <Channel>
+                <Url>http://feeds.idg.se/CsAffrssystem</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://feeds.idg.se/CsAffarer</Url>
-        </Channel>
+            <Channel>
+                <Url>http://feeds.idg.se/CsAffarer</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://www.swedroid.se/feed/</Url>
-        </Channel>
+            <Channel>
+                <Url>http://www.swedroid.se/feed/</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://computersweden.idg.se/tjanster/rss/rss.xml</Url>
-        </Channel>
+            <Channel>
+                <Url>http://computersweden.idg.se/tjanster/rss/rss.xml</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://www.mobil.se/cmlink/Mobil-se-Nyheter-1.250085.xml</Url>
-        </Channel>
+            <Channel>
+                <Url>http://www.mobil.se/cmlink/Mobil-se-Nyheter-1.250085.xml</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://pcforalla.idg.se/rss/tips+och+skolor</Url>
-        </Channel>
+            <Channel>
+                <Url>http://pcforalla.idg.se/rss/tips+och+skolor</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://pcforalla.idg.se/rss/senaste+nytt</Url>
-        </Channel>
+            <Channel>
+                <Url>http://pcforalla.idg.se/rss/senaste+nytt</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://pcforalla.idg.se/rss/dagens+surftips</Url>
-        </Channel>
+            <Channel>
+                <Url>http://pcforalla.idg.se/rss/dagens+surftips</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://feeds.feedburner.com/aaplse?format=xml</Url>
-        </Channel>
+            <Channel>
+                <Url>http://feeds.feedburner.com/aaplse?format=xml</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://www.cyberciti.biz/faq/feed/rss/</Url>
-        </Channel>
+            <Channel>
+                <Url>http://computersweden.idg.se/rss/systemutveckling</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://computersweden.idg.se/rss/systemutveckling</Url>
-        </Channel>
+            <Channel>
+                <Url>http://computersweden.idg.se/rss/%C3%B6ppen+k%C3%A4llkod</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://computersweden.idg.se/rss/%C3%B6ppen+k%C3%A4llkod</Url>
-        </Channel>
+            <Channel>
+                <Url>http://it24.idg.se/rss/it-konsulter</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://it24.idg.se/rss/it-konsulter</Url>
-        </Channel>
+            <Channel>
+                <Url>http://feeds.idg.se/It24-SenasteArtiklar</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://feeds.idg.se/It24-SenasteArtiklar</Url>
-        </Channel>
+            <Channel>
+                <Url>http://www.mjukvara.se/blogg/feed/</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://www.mjukvara.se/blogg/feed/</Url>
-        </Channel>
+            <Channel>
+                <Url>http://techworld.idg.se/rss/senaste+artiklar</Url>
+            </Channel>
 
-        <Channel>
-            <Url>http://techworld.idg.se/rss/senaste+artiklar</Url>
-        </Channel>
-
-        <Channel>
-            <Url>http://techworld.idg.se/rss/alla+artiklar+inom+techworld</Url>
-        </Channel>
-        <Channel>
-            <Url>http://blogs.technet.com/microsoftnyheter/rss.xml</Url>
-        </Channel>
-        <Channel>
-            <Url>http://www.linux.se/feed/</Url>
-        </Channel>
-        <Channel>
-            <Url>http://www.apple.com/se/main/rss/hotnews/hotnews.rss</Url>
-        </Channel>
-    </Channels>
-</ChannelGroup>
+            <Channel>
+                <Url>http://techworld.idg.se/rss/alla+artiklar+inom+techworld</Url>
+            </Channel>
+            <Channel>
+                <Url>http://blogs.technet.com/microsoftnyheter/rss.xml</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.linux.se/feed/</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.apple.com/se/main/rss/hotnews/hotnews.rss</Url>
+            </Channel>
+        </Channels>
+    </ChannelGroup>
 
 
 </RSSChannels>

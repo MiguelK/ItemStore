@@ -104,24 +104,15 @@ public class RSSChannelCollector extends ItemCollectorBase {
                     }
                 }
 
-                //imageUrl1==null ||
-                if( title==null || description == null) {
-                    System.out.println(channelURL + " " + title + " desc= " + description);
-
-                    if(channelURL.toString().contains("aik")){
-
-                        System.out.println();
-                    }
-
+                //
+                if( imageUrl1==null || title==null || description == null) {
                     continue; //FIXME filter
-
                 }
 
 
               //  LocalDateTime.
                // ItemTagTree tagTree = new ItemTagTree.Builder(itemTagTree).build(); //FIXME add to root??
                 //FIXME Tag and TagCollector extract itemTagTree...rssItemLink(Video or articleUrl)
-                System.out.println(channelURL +" " + itemTagTree);
                 Item item = new Item.Builder().imageURL1(imageUrl1).targetURL(rssItemLink).sourceURL(channelURL.toString())
                         .itemTagTree(itemTagTree).title(title).description(description)
                         .publishedDate(publishedTime).build();

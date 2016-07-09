@@ -42,10 +42,15 @@ public class ItemTagTreeTest {
     }
 
     @Test
+    public void getTagRoot() {
+        ItemTagTree itemTagTreeB = new ItemTagTree.Builder(TagRoot.SWE_NYHETER).build();
+        Assert.assertEquals(itemTagTreeB.getTagRoot(), TagRoot.SWE_NYHETER);
+
+    }
+        @Test
     public void getTagTreePathsAsString() {
         ItemTagTree itemTagTreeB = new ItemTagTree.Builder(TagRoot.SWE_SPORT)
                 .addTagsToSingleTree("aik,fotboll_aik,Karlberg_fotboll_AIK").build();
-
 
         //swe_sport_fotboll_aik,swe_sport_Karlberg_fotboll_AIK
         System.out.println(itemTagTreeB.toString());

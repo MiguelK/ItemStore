@@ -1,6 +1,7 @@
 package com.itemstore.engine.model;
 
 import com.itemstore.engine.model.tag3.ItemTagTree;
+import com.itemstore.engine.model.tag3.TagRoot;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,7 +15,7 @@ public class ItemGroupTest {
     public void testToString() {
         ItemGroup itemGroup1 = new ItemGroup();
         itemGroup1.addItem(new Item.Builder().title("A").
-                itemTagTree(new ItemTagTree.Builder("swe_news").build()).
+                itemTagTree(new ItemTagTree.Builder(TagRoot.SWE_NYHETER).build()).
                 publishedDate(LocalDateTime.now().minusDays(2)).
                 targetURL("dn.se").build());
 

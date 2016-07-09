@@ -3,6 +3,7 @@ package com.itemstore.engine.model.tag3;
 import java.util.List;
 
 public class TagTreeFilter {
+
     private List<TagTreePath> tagTreePaths;
 
     public TagTreeFilter(List<TagTreePath> tagTreePaths) {

@@ -10,9 +10,11 @@ import com.itemstore.engine.event.Events;
 import com.itemstore.engine.model.Item;
 import com.itemstore.engine.model.ItemGroup;
 import com.itemstore.engine.model.tag3.ItemTagTree;
+import com.itemstore.engine.model.tag3.TagRoot;
 import com.itemstore.engine.model.tag3.TagTreeFilter;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Predicate;
+import org.apache.commons.collections4.map.HashedMap;
 
 import java.util.*;
 import java.util.concurrent.locks.Lock;
@@ -138,56 +140,65 @@ public final class ItemEngine implements ItemCollectorListener {
         try {
 
             TagTreeFilter includeTagTreeFilter = filter.getIncludeTagTreeFilter();
-            List<Integer> excludeIds = filter.getExcludeIds();
-            TagTreeFilter excludeTag = filter.getExcludeTagTreeFilter();
-            int maxResult =  100; //filter.getMaxResult();
+            List<Integer> excludeItemGroupIds = filter.getExcludeIds();
+            TagTreeFilter excludeTagTreeFilter = filter.getExcludeTagTreeFilter();
+            int maxResult = 50; //filter.getMaxResult();
 
             //Copy??? FIXME
-            List<ItemGroup> collect = allItemGroupsSortedByDate.stream()
+            Map<TagRoot, Integer> maxTagrootTracker = new HashedMap<>();
+            List<ItemGroup> itemGroups = allItemGroupsSortedByDate.stream()
                     .filter(itemGroup -> {
 
-                        // if (includeOnlyTag != null &&
-                        //      itemGroup.getItemTagTree().match(includeOnlyTag) > 0) {
-                        //  return true; //Include
-                                //} else if(includeOnlyTag !=null){
-                                //return false;
-                        //}
-
                         //1# If included in excludeItemGroupId do not return it
-                        if (excludeIds.contains(itemGroup.getId())) {
+                        if (excludeItemGroupIds.contains(itemGroup.getId())) {
                             return false; //Do not include
                         }
 
-                        //2# If specific ItemGroups are requested
-                       // if (itemIds.contains(itemGroup.getId())) {
-                                //     return true; //Include
-                        //}
+                        ItemTagTree itemTagTree = itemGroup.getItemTagTree();
 
-                        //4# Is specific itemgroup id's are requested only those should be returned
-                        //if (!itemIds.isEmpty()) {
-                        //  return false; //Only ids match
-                        //}
+                        if (maxTagrootTracker.get(itemTagTree.getTagRoot()) != null
+                                && maxTagrootTracker.get(itemTagTree.getTagRoot()) > 5) {
+                            return false; //Max 5 items per tagRoot (Category)
+                        }
 
-                        if (excludeTag != null &&
-                                itemGroup.getItemTagTree().match(excludeTag) > 0) {
+                        if (excludeTagTreeFilter != null &&
+                                itemTagTree.match(excludeTagTreeFilter) > 0) {
                             return false;
                         }
 
-                        if(includeTagTreeFilter != null && itemGroup.getItemTagTree().match(includeTagTreeFilter) >= 1.0){
-                            return  true;
+                        if (includeTagTreeFilter != null && itemTagTree.match(includeTagTreeFilter) >= 1.0) {
+                            TagRoot tagRoot = itemTagTree.getTagRoot();
+                            Integer integer = maxTagrootTracker.get(tagRoot);
+                            if (integer == null) {
+                                maxTagrootTracker.put(tagRoot, 0);
+                            } else {
+                                integer = integer + 1;
+                                maxTagrootTracker.put(tagRoot, integer);
+                            }
+                            return true;
                         }
 
 
                         return false;
                     }).collect(Collectors.toList());
 
-            if (collect.size() > maxResult) {
-                return collect.subList(0, maxResult);
+            if (itemGroups.size() > maxResult) {
+                itemGroups = itemGroups.subList(0, maxResult);
             }
 
             //FIXME add sorting? date tagMatch??? filter
+            //includeTagTreeFilter
 
-            return collect;
+            //FIXME conf?
+            ItemGroupSorter itemGroupSorter = new ItemGroupSorter<ItemGroup>(itemGroups);
+            itemGroups = (List<ItemGroup>) itemGroupSorter.sort();
+
+
+
+            //itemGroups = (List<ItemGroup>) filter.sort(itemGroups);
+
+
+            return itemGroups;
         } finally {
             readLock.unlock();
         }

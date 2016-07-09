@@ -9,7 +9,7 @@ import java.util.List;
 public class SearchItemGroupQuery implements ItemGroupFilter {
 
     public static class InvalidRequestException extends Exception {
-        public InvalidRequestException(String message) {
+        InvalidRequestException(String message) {
             super(message);
         }
     }
@@ -19,10 +19,6 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
     private final TagTreeFilter includeTagTreeFilter; //If not null only items matching will be returned
 
     private final List<Integer> excludeItemGroupIds;
-
-    //includeTagFilter
-    //excludeTagFilter
-    //excludeItemGroupIds
 
     private SearchItemGroupQuery(String includeTagFilter, String excludeTagFilter, List<Integer> excludeItemGroupIds) throws InvalidRequestException {
 
@@ -39,11 +35,6 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
         this.excludeItemGroupIds = excludeItemGroupIds;
     }
 
-
-    //includeTagFilter
-    //excludeTagFilter
-    //excludeItemGroupIds
-
     public static SearchItemGroupQuery create(String includeTagFilter, String excludeTagFilter,
                                               List<Integer> excludeItemGroupIds) throws InvalidRequestException {
         return new SearchItemGroupQuery(includeTagFilter, excludeTagFilter,
@@ -53,11 +44,6 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
     @Override
     public List<Integer> getExcludeIds() {
         return excludeItemGroupIds;
-    }
-
-    @Override
-    public int getMaxResult() {
-        return 100; //FIXME
     }
 
     @Override

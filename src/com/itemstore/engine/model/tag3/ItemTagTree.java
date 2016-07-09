@@ -11,9 +11,11 @@ public class ItemTagTree {
     private static final String NEW_LINE = System.getProperty("line.separator");
     private static final String TAG_DESCENDANT_SEPARATOR = ",";
     private final List<TagTreePath> tagTreePaths;
+    private final TagRoot tagRoot; //e.g swe_sport, eng_news
 
-    private ItemTagTree(List<TagTreePath> tagTreePaths) {
+    private ItemTagTree(List<TagTreePath> tagTreePaths, TagRoot tagRoot) {
         this.tagTreePaths = tagTreePaths;
+        this.tagRoot = tagRoot;
     }
 
     public List<TagTreePath> getTagTreePaths() {
@@ -32,14 +34,14 @@ public class ItemTagTree {
                         return 1.0;//FIXME
                     }
                 }
-            }else if (searchTagTreePath.isSuffixWildCard()) {
+            } else if (searchTagTreePath.isSuffixWildCard()) {
                 for (TagTreePath tagTreePath : tagTreePaths) {
                     String tags = tagTreePath.getTagTreePath();
                     if (tags.toLowerCase().startsWith(searchTagTreePath.getWithotWildcard().toLowerCase())) {
                         return 1.0;//FIXME
                     }
                 }
-            }else  if (searchTagTreePath.isPrefixWildCard()) {
+            } else if (searchTagTreePath.isPrefixWildCard()) {
                 for (TagTreePath tagTreePath : tagTreePaths) {
                     String tags = tagTreePath.getTagTreePath();
                     if (tags.toLowerCase().endsWith(searchTagTreePath.getWithotWildcard().toLowerCase())) {
@@ -60,10 +62,20 @@ public class ItemTagTree {
         return 0;
     }
 
+
+    public static ItemTagTree create(TagRoot tagRoot) {
+        return new ItemTagTree.Builder(tagRoot).build();
+    }
+
+    public TagRoot getTagRoot() {
+        return tagRoot;
+    }
+
     public static class Builder {
         private List<TagTreePath> tagTreePaths = new ArrayList<>();
 
         private TagTreePath rootTag;
+        private TagRoot tagRoot;
 
         public Builder(TagRoot tagsRoot) {
             this(tagsRoot.getTags());
@@ -75,7 +87,9 @@ public class ItemTagTree {
                 throw new TagTreeException("Invalid itemTagTree " + rootTags);
             }
 
-             TagRoot.validate(s);
+            TagRoot.validate(s);
+
+            tagRoot = TagRoot.valueOf(s.toUpperCase());
 
             rootTag = TagTreePath.parseTagTreePath(s);
             tagTreePaths.add(rootTag);
@@ -89,7 +103,7 @@ public class ItemTagTree {
             }
 
 
-            return new ItemTagTree(tagTreePaths);
+            return new ItemTagTree(tagTreePaths, tagRoot);
         }
 
         //aik,fotbol_aik,zlatan

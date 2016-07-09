@@ -1,11 +1,15 @@
 package com.itemstore.engine.model;
 
+import com.itemstore.engine.ItemGroupSortable;
 import com.itemstore.engine.model.tag3.ItemTagTree;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
-public class ItemGroup {
+public class ItemGroup implements ItemGroupSortable {
 
     public static final Comparator<ItemGroup> PUBLISHED_DATE_SORTER = new LATEST_PUBLISHED_DATE_SORTER();
 
@@ -15,6 +19,7 @@ public class ItemGroup {
         items.add(item);
     }
 
+    @Override
     public ItemTagTree getItemTagTree() {
         return items.get(0).getItemTagTree();
     }
@@ -38,6 +43,7 @@ public class ItemGroup {
 
         }
     }
+
     private LocalDateTime getLatestItemPublishedDate() {
         return items.get(0).getPublishedDate(); //0 is always latest in group
     }

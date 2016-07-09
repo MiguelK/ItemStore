@@ -1,10 +1,15 @@
 package com.itemstore.api.request;
 
+import com.itemstore.engine.ItemGroupSortable;
 import com.itemstore.engine.SearchItemGroupQuery;
+import com.itemstore.engine.model.tag3.ItemTagTree;
+import com.itemstore.engine.model.tag3.TagRoot;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class SearchItemGroupQueryTest {
 
@@ -15,7 +20,7 @@ public class SearchItemGroupQueryTest {
 
     @Test(expectedExceptions = SearchItemGroupQuery.InvalidRequestException.class)
     public void create_invalid_exclude_filter() throws SearchItemGroupQuery.InvalidRequestException {
-        SearchItemGroupQuery.create(null,"invalid exclude filter", null);
+        SearchItemGroupQuery.create(null, "invalid exclude filter", null);
     }
 
     @Test(expectedExceptions = SearchItemGroupQuery.InvalidRequestException.class)
@@ -23,7 +28,10 @@ public class SearchItemGroupQueryTest {
         SearchItemGroupQuery.create("invalid exclude filter", "invalid'", null);
     }
 
-/*    @Test
+
+
+
+    /*    @Test
     public void create_default_empty() throws SearchItemGroupQuery.InvalidRequestException {
         SearchItemGroupQuery request = SearchItemGroupQuery.create(null," ", " ",
                 Collections.emptyList(), Collections.emptyList(), null);

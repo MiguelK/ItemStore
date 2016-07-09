@@ -35,8 +35,6 @@ public class SvtTextTvCollector extends HTMLDocumentBase {
 
         }
 
-
-        System.out.println(root);
         return null;
     }
 

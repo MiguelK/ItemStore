@@ -6,7 +6,8 @@ public enum TagRoot {
     ENG_NEWS("eng_news"),
     ENG_SPORT("eng_sport"),
 
-    SWE_NEWS("swe_news"),
+    //Swedish tag roots
+    SWE_NYHETER_EXTRA("swe_nyheter_extra"),
     SWE_DATA("swe_data"),
     SWE_NYHETER("swe_nyheter"),
     SWE_SPORT("swe_sport");
