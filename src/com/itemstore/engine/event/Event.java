@@ -9,9 +9,9 @@ public final class Event {
     private static final Map<TheKey, Event> events = new HashMap<TheKey, Event>();
     private final AtomicInteger counter = new AtomicInteger(0);
 
-    private String message;
-    private Exception exception;
-    private EventType eventType;
+    private final String message;
+    private final Exception exception;
+    private final EventType eventType;
     private final TheKey thekey;
 
 
@@ -80,8 +80,8 @@ public final class Event {
     }
 
     private static class TheKey {
-        private EventType eventType;
-        private String message;
+        private final EventType eventType;
+        private final String message;
 
         private TheKey(EventType eventType, String message) {
             this.eventType = eventType;

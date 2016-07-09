@@ -13,7 +13,7 @@ public class ItemGroup implements ItemGroupSortable {
 
     public static final Comparator<ItemGroup> PUBLISHED_DATE_SORTER = new LATEST_PUBLISHED_DATE_SORTER();
 
-    private List<Item> items = new ArrayList<Item>();
+    private final List<Item> items = new ArrayList<>();
 
     public void addItem(Item item) {
         items.add(item);

@@ -34,7 +34,7 @@ public final class ItemEngine implements ItemCollectorListener {
     private List<String> allItemTags;
     private List<ItemGroup> allItemGroupsSortedByDate = new ArrayList<ItemGroup>();
 
-    private ItemCollectorRunner itemCollectorRunner;
+    private final ItemCollectorRunner itemCollectorRunner;
 
     private static final ItemEngine INSTANCE = new ItemEngine();
 
@@ -135,7 +135,7 @@ public final class ItemEngine implements ItemCollectorListener {
         }
     }
 
-    public List<ItemGroup> search(ItemGroupFilter filter) {
+    public List<ItemGroup> search(SearchItemGroupQuery filter) {
         readLock.lock();
         try {
 
@@ -192,10 +192,6 @@ public final class ItemEngine implements ItemCollectorListener {
             //FIXME conf?
             ItemGroupSorter itemGroupSorter = new ItemGroupSorter<ItemGroup>(itemGroups);
             itemGroups = (List<ItemGroup>) itemGroupSorter.sort();
-
-
-
-            //itemGroups = (List<ItemGroup>) filter.sort(itemGroups);
 
 
             return itemGroups;

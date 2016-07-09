@@ -8,7 +8,7 @@ import java.util.*;
 public class TagTreePath {
 
     private static final String TAG_TREE_PATH_SEPARATOR = ",";
-    private static final String TAG_SPACE_SEPARATOR = "+";
+    private static final String TAG_SPACE_SEPARATOR = "+"; //FIXME
     private static final String TAG_SEPARATOR = "_";
     private static final char WILDCARD_CHARACTER = '*';
     private static final int MAX_WILD_CARDS_ALLOWED = 2;

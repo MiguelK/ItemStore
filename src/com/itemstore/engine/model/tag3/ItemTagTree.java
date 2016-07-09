@@ -72,7 +72,7 @@ public class ItemTagTree {
     }
 
     public static class Builder {
-        private List<TagTreePath> tagTreePaths = new ArrayList<>();
+        private final List<TagTreePath> tagTreePaths = new ArrayList<>();
 
         private TagTreePath rootTag;
         private TagRoot tagRoot;

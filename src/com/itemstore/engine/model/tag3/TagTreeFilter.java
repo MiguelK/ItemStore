@@ -4,9 +4,9 @@ import java.util.List;
 
 public class TagTreeFilter {
 
-    private List<TagTreePath> tagTreePaths;
+    private final List<TagTreePath> tagTreePaths;
 
-    public TagTreeFilter(List<TagTreePath> tagTreePaths) {
+    private TagTreeFilter(List<TagTreePath> tagTreePaths) {
         this.tagTreePaths = tagTreePaths;
     }
 

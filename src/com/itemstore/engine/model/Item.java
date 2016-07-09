@@ -13,7 +13,7 @@ import java.util.Comparator;
 public class Item implements Serializable {
 
     public static final Comparator<Item> PUBLISHED_DATE_SORTER = new PublishedDateSorter();
-    private int id;
+    private final int id;
 
     private final ItemTagTree itemTagTree; //Transient
 
@@ -25,7 +25,7 @@ public class Item implements Serializable {
     private final String targetURL; //Required targetURL
     private final String sourceURL;
     private final LocalDateTime publishedDate;
-    private String itemGroupId; //if not null use it= part of group, groupId? Required Same id will be part of same composite object
+    private final String itemGroupId; //if not null use it= part of group, groupId? Required Same id will be part of same composite object
 
     private Item(LocalDateTime publishedDate, String title, String description, String imageURL1, String imageURL2,
                  String youTubeVideoID, String targetURL, String sourceURL,

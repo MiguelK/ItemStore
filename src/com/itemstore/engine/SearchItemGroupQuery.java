@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-public class SearchItemGroupQuery implements ItemGroupFilter {
+public class SearchItemGroupQuery {
 
     public static class InvalidRequestException extends Exception {
         InvalidRequestException(String message) {
@@ -41,12 +41,10 @@ public class SearchItemGroupQuery implements ItemGroupFilter {
                 excludeItemGroupIds);
     }
 
-    @Override
     public List<Integer> getExcludeIds() {
         return excludeItemGroupIds;
     }
 
-    @Override
     public TagTreeFilter getExcludeTagTreeFilter() {
         return excludeTagTagTreeFilter;
     }

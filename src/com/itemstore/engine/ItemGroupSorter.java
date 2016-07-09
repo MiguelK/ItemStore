@@ -5,11 +5,12 @@ import com.itemstore.engine.model.tag3.TagRoot;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ItemGroupSorter<T extends ItemGroupSortable> {
+class ItemGroupSorter<T extends ItemGroupSortable> {
 
+    private static final int TOP_ITEMS_SORTEDD_BY_DATA = 5;
     private List<T> itemGroupsToSort;
 
-    public ItemGroupSorter(List<T> itemGroupsToSort) {
+    ItemGroupSorter(List<T> itemGroupsToSort) {
         this.itemGroupsToSort = itemGroupsToSort;
     }
 
@@ -17,31 +18,20 @@ public class ItemGroupSorter<T extends ItemGroupSortable> {
 
         List<ItemGroupSortable> sorted = new ArrayList<>();
 
-        if (itemGroupsToSort.size() <= 5) {
+        if (itemGroupsToSort.size() <= TOP_ITEMS_SORTEDD_BY_DATA) {
             sorted.addAll(itemGroupsToSort);
             return sorted;
         }
-
-        TagRoot.values();
 
         Comparator<ItemGroupSortable> tagRootOrder = (e1, e2) -> {
             TagRoot tagRootA = e1.getItemTagTree().getTagRoot();
             TagRoot tagRootB = e2.getItemTagTree().getTagRoot();
 
+            Integer i1 = TagRoot.SORT_ORDER.indexOf(tagRootA);
+            Integer i2 = TagRoot.SORT_ORDER.indexOf(tagRootB);
 
-            //Must contain all
-            List<TagRoot> order = Arrays.asList(TagRoot.SWE_NYHETER_EXTRA, TagRoot.SWE_NYHETER, TagRoot.SWE_SPORT,
-                    TagRoot.SWE_DATA,TagRoot.ENG_NEWS,TagRoot.ENG_SPORT);
-
-            Integer i1 = order.indexOf(tagRootA);
-            Integer i2 = order.indexOf(tagRootB);
-
-            //if(tagRootA==TagRoot.SWE_NYHETER_EXTRA)
             return i1.compareTo(i2);
         };
-
-
-        //Integer.compare(e1.getEmployeeNumber(), e2.getEmployeeNumber() );
 
         itemGroupsToSort = itemGroupsToSort.stream().sorted(tagRootOrder).collect(Collectors.toList());
 
@@ -59,11 +49,6 @@ public class ItemGroupSorter<T extends ItemGroupSortable> {
         Collections.shuffle(rest);
         sorted.addAll(rest);
 
-        //itemGroupsToSort.stream()
-
-
         return sorted;
     }
-
-
 }

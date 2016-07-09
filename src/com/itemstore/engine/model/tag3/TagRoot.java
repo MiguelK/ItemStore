@@ -2,6 +2,9 @@ package com.itemstore.engine.model.tag3;
 
 //Root swe_sport (Mandatory for Items)
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum TagRoot {
     ENG_NEWS("eng_news"),
     ENG_SPORT("eng_sport"),
@@ -12,7 +15,10 @@ public enum TagRoot {
     SWE_NYHETER("swe_nyheter"),
     SWE_SPORT("swe_sport");
 
-    private String tags;
+    public static final List<TagRoot> SORT_ORDER = Arrays.asList(TagRoot.SWE_NYHETER_EXTRA, TagRoot.SWE_NYHETER, TagRoot.SWE_SPORT,
+            TagRoot.SWE_DATA,TagRoot.ENG_NEWS,TagRoot.ENG_SPORT);
+
+    private final String tags;
 
     TagRoot(String tags) {
         this.tags = tags;
