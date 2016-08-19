@@ -11,7 +11,6 @@ http://engine-itemstore.rhcloud.com/ItemStore/api/itemGroup/search?favoriteTagFi
 
 http://engine-itemstore.rhcloud.com/ItemStore/jsp/index.jsp
 
-
-
-Heruku
+-------------------
+Heruku / Openshift
 miguelworker1 /Swift%123
