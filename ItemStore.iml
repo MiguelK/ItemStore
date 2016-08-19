@@ -47,6 +47,8 @@
     <orderEntry type="library" name="jsoup-1.8" level="project" />
     <orderEntry type="library" name="commons-io-2" level="project" />
     <orderEntry type="library" name="imgscalr-lib-4" level="project" />
+    <orderEntry type="library" name="gson-2.7" level="project" />
+    <orderEntry type="library" name="mapdb-3.0.1" level="project" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">
