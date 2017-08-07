@@ -45,10 +45,9 @@ public class ItemTest {
 
     @Test
     public void same_title_and_targetURL_should_be_same_id() {
-        ItemTagTree itemTagTree = new ItemTagTree.Builder(TagRoot.ENG_NEWS).build();
 
-        Item a = new Item.Builder().title("Samma title").itemTagTree(itemTagTree).targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
-        Item b = new Item.Builder().title("Samma title").itemTagTree(itemTagTree).targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
+        Item a = new Item.Builder().title("Samma title").tags(TagRoot.ENG_NEWS.getTags()).targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
+        Item b = new Item.Builder().title("Samma title").tags(TagRoot.ENG_NEWS.getTags()).targetURL("http://www.aftonbladet.se/nyheter/article22906939.ab").build();
 
         Assert.assertEquals(a.getId(), b.getId());
     }

@@ -63,7 +63,7 @@ public class TopNewsSwedenCollector extends HTMLDocumentBase {
                         .publishedDate(LocalDateTime.now()).
                         sourceURL(URL_AFTONBLADET_SE).
                         targetURL(URL_AFTONBLADET_SE).
-                        itemTagTree(new ItemTagTree.Builder(TagRoot.SWE_NYHETER_EXTRA).build()).
+                        tags(TagRoot.SWE_NYHETER_EXTRA.getTags()).
                         title(text);
                 //System.out.println("**** " + text);
                 items.add(builder.build());
@@ -106,7 +106,7 @@ public class TopNewsSwedenCollector extends HTMLDocumentBase {
         for (Element element : cls1) {
             //   Elements extra = element.getElementsContainingText("EXTRA");
             if (StringUtils.isNotEmpty(element.text())) {
-                Item.Builder builder = new Item.Builder().itemTagTree(new ItemTagTree.Builder(TagRoot.SWE_NYHETER_EXTRA).build())
+                Item.Builder builder = new Item.Builder().tags(TagRoot.SWE_NYHETER_EXTRA.getTags())
                         .sourceURL(URL_EXPRESSEN_SE).title(element.text());
                 items.add(builder.build());
             }

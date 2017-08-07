@@ -15,7 +15,7 @@ public class Item implements Serializable {
     public static final Comparator<Item> PUBLISHED_DATE_SORTER = new PublishedDateSorter();
     private final int id;
 
-    private final ItemTagTree itemTagTree; //Transient
+    private final String tags; //Transient
 
     private final String title; //Required
     private final String description; //Required
@@ -29,9 +29,9 @@ public class Item implements Serializable {
 
     private Item(LocalDateTime publishedDate, String title, String description, String imageURL1, String imageURL2,
                  String youTubeVideoID, String targetURL, String sourceURL,
-                 ItemTagTree itemTagTree, String itemGroupId) {
+                 String tags, String itemGroupId) {
         this.id = title.hashCode() + targetURL.hashCode(); //FIXME UUID.randomUUID().toString();
-        this.itemTagTree = itemTagTree;
+        this.tags = tags;
         this.title = title;
         this.description = description;
         this.imageURL1 = imageURL1;
@@ -52,7 +52,7 @@ public class Item implements Serializable {
         private String youTubeVideoID;
         private String targetURL;
         private String sourceURL;
-        private ItemTagTree itemTagTree; //Default empty itemTagTree
+        private String tags; //Default empty itemTagTree
         private String itemGroupId; //Same id will be part of same composite object
 
         public Builder sourceURL(String sourceURL) {
@@ -65,13 +65,8 @@ public class Item implements Serializable {
             return this;
         }
 
-        public Builder imageURL2(String imageURL2) { //FIXME use
-            this.imageURL2 = StringUtils.trimToNull(imageURL2);
-            return this;
-        }
-
-        public Builder itemTagTree(ItemTagTree itemTagTree) {
-            this.itemTagTree = itemTagTree;
+        public Builder tags(String tags) {
+            this.tags = tags;
             return this;
         }
 
@@ -111,8 +106,8 @@ public class Item implements Serializable {
                 throw new IllegalArgumentException("Invalid targetURL " + targetURL);
             }
 
-            if (itemTagTree == null) {
-                throw new IllegalArgumentException("itemTagTree is missing");
+            if (tags == null) {
+                throw new IllegalArgumentException("tags is missing");
             }
 
             //FIXME ???
@@ -135,7 +130,7 @@ public class Item implements Serializable {
 
 
             return new Item(publishedDate, title, description, imageURL1,
-                    imageURL2, youTubeVideoID, targetURL, sourceURL, itemTagTree, itemGroupId);
+                    imageURL2, youTubeVideoID, targetURL, sourceURL, tags, itemGroupId);
         }
     }
 
@@ -143,8 +138,8 @@ public class Item implements Serializable {
         return id;
     }
 
-    public ItemTagTree getItemTagTree() { //getTagNames //FIXME
-        return itemTagTree;
+    public String getTags() { //getTagNames //FIXME
+        return tags;
     }
 
     public String getTitle() {
@@ -208,7 +203,7 @@ public class Item implements Serializable {
     public String toString() {
         return "Item{" +
                 "id='" + id + '\'' +
-                ", itemTagTree=" + itemTagTree +
+                ", tags=" + tags +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", imageURL1='" + imageURL1 + '\'' +

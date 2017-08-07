@@ -16,9 +16,9 @@ public class BasicIndexBuilderTest {
         List<Item> items = new ArrayList<Item>();
 
         items.add(new Item.Builder().title("Test aaa").targetURL("www.dn.se")
-                .itemTagTree(new ItemTagTree.Builder("swe_sport").build()).build());
+                .tags("swe_sport").build());
         items.add(new Item.Builder().title("Test DUPLICATE").targetURL("www.aik.se")
-                .itemTagTree(new ItemTagTree.Builder("swe_sport").build()).build());
+                .tags("swe_sport").build());
 
         BasicIndexBuilder basicIndexBuilder = new BasicIndexBuilder(new HashSet<>(items));
         BasicIndexBuilder.Result result = basicIndexBuilder.buildIndex();

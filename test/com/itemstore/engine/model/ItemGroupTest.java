@@ -15,7 +15,7 @@ public class ItemGroupTest {
     public void testToString() {
         ItemGroup itemGroup1 = new ItemGroup();
         itemGroup1.addItem(new Item.Builder().title("A").
-                itemTagTree(new ItemTagTree.Builder(TagRoot.SWE_NYHETER).build()).
+                tags(TagRoot.SWE_NYHETER.getTags()).
                 publishedDate(LocalDateTime.now().minusDays(2)).
                 targetURL("dn.se").build());
 
@@ -26,17 +26,17 @@ public class ItemGroupTest {
     @Test
     public void sort_by_date_3_item_groups() {
 
-        ItemTagTree itemTagTree = new ItemTagTree.Builder("swe_sport").addTagsToSingleTree("zlatan").build();
+        String tags = "swe_sport,zlatan";
         ItemGroup itemGroup1 = new ItemGroup();
-        itemGroup1.addItem(new Item.Builder().title("A").itemTagTree(itemTagTree).publishedDate(LocalDateTime.now().minusDays(2)).targetURL("dn.se").build());
+        itemGroup1.addItem(new Item.Builder().title("A").tags(tags).publishedDate(LocalDateTime.now().minusDays(2)).targetURL("dn.se").build());
 
 
         ItemGroup itemGroup2 = new ItemGroup();
-        itemGroup2.addItem(new Item.Builder().title("B").itemTagTree(itemTagTree).publishedDate(LocalDateTime.now().minusMinutes(1)).targetURL("dn.se").build());
+        itemGroup2.addItem(new Item.Builder().title("B").tags(tags).publishedDate(LocalDateTime.now().minusMinutes(1)).targetURL("dn.se").build());
 
 
         ItemGroup itemGroup3 = new ItemGroup();
-        itemGroup3.addItem(new Item.Builder().title("C").itemTagTree(itemTagTree).publishedDate(LocalDateTime.now()).targetURL("dn.se").build());
+        itemGroup3.addItem(new Item.Builder().title("C").tags(tags).publishedDate(LocalDateTime.now()).targetURL("dn.se").build());
 
         List<ItemGroup> itemGroups = new ArrayList<>();
         itemGroups.add(itemGroup1);

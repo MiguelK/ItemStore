@@ -9,28 +9,30 @@ import java.net.URL;
 
 public class Channel {
 
-    @XmlElement(name = "RefreshPeridInSeconds")
-    private int refreshPeridInSeconds;
+    @XmlElement(name = "RefreshPeriodInSeconds")
+    private int refreshPeriodInSeconds;
 
     @XmlElement(name = "Url")
     private String url;
 
     @XmlElement(name = "Tag")
-    private String tag;
-
+    private String tag;  //, (comma) separated words, space in word separtaed by '_' (underscore)
+                        //e.g aik,aik_forboll,allsvenskan
     private ItemTagTree itemTagTree;
+
+    private String tagRoot;
 
     protected Channel() {
     }
 
-    Channel(int refreshPeridInSeconds, String url, String tag) {
-        this.refreshPeridInSeconds = refreshPeridInSeconds;
+    Channel(int refreshPeriodInSeconds, String url, String tag) {
+        this.refreshPeriodInSeconds = refreshPeriodInSeconds;
         this.url = url;
         this.tag = tag;
     }
 
-    void setRefreshPeridInSeconds(int refreshPeridInSeconds) {
-        this.refreshPeridInSeconds = refreshPeridInSeconds;
+    void setRefreshPeriodInSeconds(int refreshPeriodInSeconds) {
+        this.refreshPeriodInSeconds = refreshPeriodInSeconds;
     }
 
     /**
@@ -38,40 +40,24 @@ public class Channel {
      * @param parentRootTagFromGroup parentRootTags e.g swe_sport or swe_kultur
      */
     void setTagFromChannelGroup(String parentRootTagFromGroup) {
-
-        String parentTag = StringUtils.trimToNull(parentRootTagFromGroup);
-
-        if(parentTag==null){
-            return;
-        }
-
-        if (this.tag != null && this.tag.contains(parentTag)) { //FIXME
-            return; //Only add the same tag once
-        }
-
-        if(itemTagTree ==null){
-            //parentRootTagFromGroup swe_sport  tag=aik_fotboll,aik_2016
-            itemTagTree = new ItemTagTree.Builder(parentTag).addTagsToSingleTree(tag).build();
-        }
-
-        this.tag = itemTagTree.toString();
-
-        //use both common tag and channel tag
-       // this.tag = this.tag != null ? this.tag + ItemTagTree.TAG_DESCENDANT_SEPARATOR + parentRootTagFromGroup : parentRootTagFromGroup;
+        this.tagRoot = StringUtils.trimToNull(parentRootTagFromGroup);
     }
 
-    public ItemTagTree getTag() {
+    public String getTags() {
 
-        if(itemTagTree ==null){
-            //parentRootTagFromGroup swe_sport  tag=aik_fotboll,aik_2016
-            itemTagTree = new ItemTagTree.Builder(tag).build();
+        String extraTags = StringUtils.trimToNull(tag);
+
+        String result =  tagRoot;
+
+        if(extraTags != null) {
+            result = result + "," + extraTags;
         }
 
-        return itemTagTree;
+        return result.toLowerCase().trim();
     }
 
-    public int getRefreshPeridInSeconds() {
-        return refreshPeridInSeconds;
+    public int getRefreshPeriodInSeconds() {
+        return refreshPeriodInSeconds;
     }
 
     public URL getUrl() {
@@ -89,7 +75,7 @@ public class Channel {
     @Override
     public String toString() {
         return "{" +
-                "refreshPeriodInSeconds=" + refreshPeridInSeconds +
+                "refreshPeriodInSeconds=" + refreshPeriodInSeconds +
                 ", url='" + url + '\'' +
                 ", tag='" + tag + '\'' +
                 '}';

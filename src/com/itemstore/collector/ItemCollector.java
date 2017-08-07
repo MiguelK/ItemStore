@@ -12,6 +12,4 @@ public interface ItemCollector {
     int getPollFrequencyInSeconds();
 
     List<EventType> getPostProcessEvents();
-
-
 }

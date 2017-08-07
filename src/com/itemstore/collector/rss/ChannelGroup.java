@@ -11,8 +11,8 @@ class ChannelGroup {
     @XmlElement(name="Channel")
     private List<Channel> channels = new ArrayList<>();
 
-    @XmlElement(name = "RefreshPeridInSeconds")
-    private int refreshPeridInSeconds;
+    @XmlElement(name = "RefreshPeriodInSeconds")
+    private int refreshPeriodInSeconds;
 
     @XmlElement(name = "TagRoot")
     private String tagRoot;
@@ -20,7 +20,7 @@ class ChannelGroup {
     public List<Channel> getChannels() {
 
         for (Channel channel : channels) {
-            channel.setRefreshPeridInSeconds(refreshPeridInSeconds);
+            channel.setRefreshPeriodInSeconds(refreshPeriodInSeconds);
             channel.setTagFromChannelGroup(tagRoot);
         }
         return channels;

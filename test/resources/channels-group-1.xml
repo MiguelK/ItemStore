@@ -2,7 +2,7 @@
 
 	<ChannelGroup>
 		<TagRoot>eng_news</TagRoot>
-		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
+		<RefreshPeriodInSeconds>30</RefreshPeriodInSeconds>
 
 		<Channels>
 			<Channel>

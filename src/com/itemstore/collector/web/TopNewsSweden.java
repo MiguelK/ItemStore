@@ -62,7 +62,7 @@ public class TopNewsSweden extends ItemCollectorWebBase {
             if (!plusArticle && size > 0 && StringUtils.isNotEmpty(text) &&
                     text.contains("JUST NU") || text.contains("EXTRA")) {
                 Item.Builder builder = new Item.Builder()
-                        .itemTagTree(new ItemTagTree.Builder(TagRoot.SWE_NYHETER_EXTRA).addTagsToSingleTree("topnews").build())
+                        .tags(TagRoot.SWE_NYHETER_EXTRA.getTags() + ",topnews")
                         .sourceURL(URL_AFTONBLADET_SE).title(text).targetURL(URL_AFTONBLADET_SE); //FIXME same target?
 
                 //System.out.println("**** " + text);

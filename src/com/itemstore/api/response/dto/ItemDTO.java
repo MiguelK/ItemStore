@@ -41,6 +41,9 @@ public class ItemDTO implements Serializable {
         itemResponseDTO.targetURL = item.getTargetURL();
         itemResponseDTO.youTubeVideoID = item.getYouTubeVideoID();
         itemResponseDTO.id = item.getId();
+      //  item.getItemTagTree()
+
+
       //  itemResponseDTO.itemTagTree.addAll(item.getItemTagTree()); //FIXME from/to client/server tagTree
 
         return itemResponseDTO;

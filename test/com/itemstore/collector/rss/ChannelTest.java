@@ -3,49 +3,19 @@ package com.itemstore.collector.rss;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-
 public class ChannelTest {
 
 
     @Test
-    public void testSetRefreshPeridInSeconds() throws Exception {
-
-
-    }
-
-    @Test
-    public void testSetTagFromChannelGroup() throws Exception {
-
-    }
-
-    @Test
     public void testGetTag() throws Exception {
-        Channel channel = new Channel(12,"dn.se","swe_sport");
+        Channel channel = new Channel(12,"dn.se","extraTag");
         channel.setTagFromChannelGroup("swe_nyheter");
 
-        System.out.println(channel.getTag());
-
-    }
-
-    @Test
-    public void testGetRefreshPeridInSeconds() throws Exception {
-
-    }
-
-    @Test
-    public void testGetUrl() throws Exception {
-
-    }
-
-    @Test
-    public void testValidate() throws Exception {
-
+        Assert.assertEquals(channel.getTags(), "swe_nyheter,extratag");
     }
 
     @Test
     public void testToString()  {
-
         Channel channel = new Channel(12,"www.dn.se","swe_sport,swe_nyheter");
 
         System.out.printf("Channel= " + channel);

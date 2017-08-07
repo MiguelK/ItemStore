@@ -20,8 +20,8 @@ public class ItemGroup implements ItemGroupSortable {
     }
 
     @Override
-    public ItemTagTree getItemTagTree() {
-        return items.get(0).getItemTagTree();
+    public String getTags() {
+        return items.get(0).getTags();
     }
 
     public int getId() {

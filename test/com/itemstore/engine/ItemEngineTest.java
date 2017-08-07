@@ -177,7 +177,7 @@ public class ItemEngineTest {
         Assert.assertEquals(itemGroups.get(0).getItems().get(0), expectedItem, "Item1 has time now, should be first");
     }*/
 
-    @Test
+   /* @Test
     public void search_sort_random() throws SearchItemGroupQuery.InvalidRequestException {
 
         //3 sport, 2 nyheter, 2 data
@@ -197,12 +197,10 @@ public class ItemEngineTest {
 
         //5 varannan mappa på tagRoot
         //ItemGroupSortable
-
-
     }
+*/
 
-
-    @Test(dataProvider = "SearchData")
+   /* @Test(dataProvider = "SearchData")
     public void search(SearchData searchData) throws SearchItemGroupQuery.InvalidRequestException {
 
         Item a = new Item.Builder().title("Test A").targetURL("dn.se").
@@ -220,6 +218,7 @@ public class ItemEngineTest {
     //    Assert.assertEquals(ItemEngine.getInstance().search(SearchItemGroupQuery.create(searchData.getIncludeTagFilter(),
         //            null, Collections.emptyList())).size(), searchData.getResult());
     }
+    */
 
     @DataProvider(name = "SearchData")
     public Object[][] search() {
