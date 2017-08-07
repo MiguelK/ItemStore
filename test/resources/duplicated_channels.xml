@@ -4,13 +4,13 @@
 
 	<Channel>
 		<Url>http://www.wired.com/rss/index.xml</Url>
-		<Tag>eng_news</Tag>
+		<Tags>eng_news</Tags>
 		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
 	</Channel>
 
 	<Channel>
 		<Url>http://www.wired.com/rss/index.xml</Url>
-		<Tag>eng_news</Tag>
+		<Tags>eng_news</Tags>
 		<RefreshPeridInSeconds>30</RefreshPeridInSeconds>
 	</Channel>
 

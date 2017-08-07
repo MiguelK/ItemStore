@@ -2,7 +2,6 @@ package com.itemstore.collector;
 
 import com.itemstore.engine.model.Item;
 
-import com.itemstore.engine.model.tag3.ItemTagTree;
 import com.itemstore.engine.model.tag3.TagRoot;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;

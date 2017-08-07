@@ -1,7 +1,6 @@
 package com.itemstore.engine.model;
 
 import com.itemstore.engine.ItemGroupSortable;
-import com.itemstore.engine.model.tag3.ItemTagTree;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -1,6 +1,5 @@
 package com.itemstore.engine.model;
 
-import com.itemstore.engine.model.tag3.ItemTagTree;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;

@@ -6,7 +6,7 @@
 
 		<Channels>
 			<Channel>
-				<Tag>cnn.com</Tag>
+				<Tags>cnn.com</Tags>
 				<Url>http://www.dn.se.com/rss/index.xml</Url>
 			</Channel>
 		</Channels>

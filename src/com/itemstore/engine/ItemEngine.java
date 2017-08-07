@@ -9,18 +9,11 @@ import com.itemstore.engine.event.EventType;
 import com.itemstore.engine.event.Events;
 import com.itemstore.engine.model.Item;
 import com.itemstore.engine.model.ItemGroup;
-import com.itemstore.engine.model.tag3.ItemTagTree;
-import com.itemstore.engine.model.tag3.TagRoot;
-import com.itemstore.engine.model.tag3.TagTreeFilter;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.Predicate;
-import org.apache.commons.collections4.map.HashedMap;
 
 import java.util.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 public final class ItemEngine implements ItemCollectorListener {
     private static final Logger LOG = Logger.getLogger(ItemEngine.class.getName());

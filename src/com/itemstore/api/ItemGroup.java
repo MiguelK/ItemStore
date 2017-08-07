@@ -2,7 +2,7 @@ package com.itemstore.api;
 
 import com.itemstore.api.response.dto.ItemGroupResponse;
 import com.itemstore.engine.ItemEngine;
-import com.itemstore.engine.SearchItemGroupQuery;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;

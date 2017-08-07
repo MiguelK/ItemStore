@@ -1,6 +1,5 @@
 package com.itemstore.engine.model;
 
-import com.itemstore.engine.model.tag3.ItemTagTree;
 import com.itemstore.engine.model.tag3.TagRoot;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -53,32 +52,5 @@ public class ItemGroupTest {
         Assert.assertEquals(itemGroups.get(0), itemGroup3);
         Assert.assertEquals(itemGroups.get(1),itemGroup2);
         Assert.assertEquals(itemGroups.get(2),itemGroup1);
-
-
-    }
-
-    @Test
-    public void testGetTags() {
-
-    }
-
-    @Test
-    public void testGetItems() {
-
-    }
-
-    @Test
-    public void testGetItemIds() {
-
-    }
-
-    @Test
-    public void testGetHeader() {
-
-    }
-
-    @Test
-    public void testSortItemsByPublishedDate() {
-
     }
 }

@@ -1,7 +1,6 @@
 package com.itemstore.engine;
 
 import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.tag3.ItemTagTree;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

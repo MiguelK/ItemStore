@@ -4,7 +4,6 @@ import com.itemstore.engine.ItemEngine;
 import com.itemstore.admin.Action;
 import com.itemstore.admin.dto.ItemDTO;
 import com.itemstore.engine.model.Item;
-import com.itemstore.engine.model.tag3.ItemTagTree;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -19,27 +18,6 @@ public class ItemCreateRandomAction extends Action {
     @Override
     protected Object execute(HttpServletRequest request) {
 
-      /*  int itemsToGenerate = NumberUtils.toInt(request.getParameter("itemsToGenerate"), 1);
-
-        String title = request.getParameter("title");
-        String description = request.getParameter("description");
-        String tagsParameter = StringUtils.trimToNull(request.getParameter("itemTagTree"));
-        List<String> tags = Collections.emptyList();
-        if (tagsParameter != null) {
-            tags = Arrays.asList(StringUtils.split(tagsParameter, ","));
-        }
-
-        List<Item> items = new ArrayList<Item>();
-        for (int i = 0; i < itemsToGenerate; i++) {
-            Item.Builder builder = new Item.Builder();
-            builder.title(title + "_" + i).itemTagTree(new ItemTagTree.Builder(tags).build())
-                    .description(description);
-            items.add(builder.build());
-        }
-
-        ItemEngine.getInstance().registerItems(items);
-
-        return ItemDTO.map(items); */
 
         throw new UnsupportedOperationException();
     }

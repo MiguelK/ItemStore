@@ -1,6 +1,5 @@
 package com.itemstore.collector.rss;
 
-import com.itemstore.engine.model.tag3.ItemTagTree;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -15,20 +14,19 @@ public class Channel {
     @XmlElement(name = "Url")
     private String url;
 
-    @XmlElement(name = "Tag")
-    private String tag;  // , (comma) separated words, space in word separtaed by '_' (underscore)
+    @XmlElement(name = "Tags")
+    private String tags;  // , (comma) separated words, space in word separtaed by '_' (underscore)
                         //e.g aik,aik_forboll,allsvenskan
-    private ItemTagTree itemTagTree;
 
     private String tagRoot;
 
     protected Channel() {
     }
 
-    Channel(int refreshPeriodInSeconds, String url, String tag) {
+    Channel(int refreshPeriodInSeconds, String url, String tags) {
         this.refreshPeriodInSeconds = refreshPeriodInSeconds;
         this.url = url;
-        this.tag = tag;
+        this.tags = tags;
     }
 
     void setRefreshPeriodInSeconds(int refreshPeriodInSeconds) {
@@ -45,7 +43,7 @@ public class Channel {
 
     public String getTags() {
 
-        String extraTags = StringUtils.trimToNull(tag);
+        String extraTags = StringUtils.trimToNull(tags);
 
         String result =  tagRoot;
 
@@ -77,7 +75,7 @@ public class Channel {
         return "{" +
                 "refreshPeriodInSeconds=" + refreshPeriodInSeconds +
                 ", url='" + url + '\'' +
-                ", tag='" + tag + '\'' +
+                ", tags='" + tags + '\'' +
                 '}';
     }
 }
