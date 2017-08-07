@@ -64,7 +64,7 @@ public final class ItemEngine implements ItemCollectorListener {
         }
     }
 
-    public void registerItem(Item item) {
+   /* public void registerItem(Item item) {
         writeLock.lock();
         try {
             allItems.add(item);
@@ -82,7 +82,7 @@ public final class ItemEngine implements ItemCollectorListener {
         } finally {
             writeLock.unlock();
         }
-    }
+    }*/
 
     public void rebuildIndex() {
 
@@ -114,6 +114,16 @@ public final class ItemEngine implements ItemCollectorListener {
         Events.fireEvent(EventType.EngineRebuildIndex);
     }
 
+    public List<String> getItemTags() {
+        readLock.lock();
+        try {
+            return allItemTags;
+        } finally {
+            readLock.unlock();
+        }
+    }
+
+
     public void start() {
         writeLock.lock();
         try {
@@ -126,16 +136,8 @@ public final class ItemEngine implements ItemCollectorListener {
             writeLock.unlock();
         }
     }
-    public List<String> getAllItemTags() {
-        readLock.lock();
-        try {
-            return allItemTags;
-        } finally {
-            readLock.unlock();
-        }
-    }
 
-    public List<ItemGroup> getAllItemGroupsSortedByDate(Date fromDate) {
+    public List<ItemGroup> getAllItemGroupsSortedByDate(String fromDate) {
         readLock.lock();
         try {
             //FIXME split fromDate

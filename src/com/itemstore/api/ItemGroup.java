@@ -22,23 +22,10 @@ public class ItemGroup {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllItemGroups(@Context HttpServletRequest httpServletRequest) {
-
-        List<com.itemstore.engine.model.ItemGroup> itemGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate();
-
-        LOG.info("itemGroups = " + itemGroups.size());
-        ItemGroupResponse response = ItemGroupResponse.create(itemGroups);
-
-        return Response.status(Response.Status.OK).entity(response).build();
-    }
-
-    @GET
-    @Path("/from")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getItemGroupsFromDate(@Context HttpServletRequest httpServletRequest,
                                           @QueryParam("fromDate") String fromDate) {
 
-        List<com.itemstore.engine.model.ItemGroup> itemGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate(null); //FIXME
+        List<com.itemstore.engine.model.ItemGroup> itemGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate(fromDate);
 
         LOG.info("itemGroups = " + itemGroups.size() + " fromDate=" + fromDate);
 

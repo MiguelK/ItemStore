@@ -72,7 +72,7 @@
                 <Url>http://www.dn.se/debatt/m/rss</Url>
             </Channel>
             <Channel>
-                <Tag>aftonbladet</Tag>
+                <Tags>aftonbladet</Tags>
                 <Url>http://www.aftonbladet.se/nojesliv/rss.xml</Url>
             </Channel>
             <Channel>
@@ -135,12 +135,12 @@
             </Channel>
 
             <Channel>
-                <Tag>aik,aik_fotboll</Tag>
+                <Tags>aik,aik_fotboll</Tags>
                 <Url>http://www.aikfotboll.se/AIKFeed/AIKFeed/rss/START</Url>
             </Channel>
 
             <Channel>
-                <Tag>aik,aik_fotboll</Tag>
+                <Tags>aik,aik_fotboll</Tags>
                 <Url>http://www.aikforum.se/external.php?type=RSS2</Url>
             </Channel>
         </Channels>
@@ -151,6 +151,7 @@
         <TagRoot>swe_data</TagRoot>
         <Channels>
             <Channel>
+                <Tags>iOS</Tags>
                 <Url>http://array.se/feed/rss/</Url>
             </Channel>
 

@@ -21,33 +21,23 @@ public class ItemEngineTest {
         ItemEngine.getInstance().clear();
     }
 
+    @Test
+    public void items_3()  {
 
-  /*
-
-
-
-   /* @Test
-    public void search_sort_random() throws SearchItemGroupQuery.InvalidRequestException {
-
-        //3 sport, 2 nyheter, 2 data
-        List<Item> items = new ArrayList<>();
-        ItemEngine.getInstance().handleNewItems(Arrays.asList(
-                new Item.Builder().title("Test A").targetURL("dn.se").publishedDate(LocalDateTime.now()).
-                        itemTagTree(ItemTagTree.create(TagRoot.SWE_SPORT)).build(),
-                new Item.Builder().title("Test B").targetURL("aik.se").
-                        itemTagTree(ItemTagTree.create(TagRoot.SWE_SPORT)).build(),
-                new Item.Builder().title("Test C").targetURL("aik.se").
-                        itemTagTree(ItemTagTree.create(TagRoot.SWE_SPORT)).build()));
-
+        Item item1 = new Item.Builder().title("Test A").targetURL("dn.se")
+                .publishedDate(LocalDateTime.now()).
+                        tags(TagRoot.SWE_SPORT.getTags()).build();
+        Item item2 = new Item.Builder().title("Test B").targetURL("aik.se").
+                tags(TagRoot.SWE_SPORT.getTags()).build();
+        Item item3 = new Item.Builder().title("Test C").targetURL("aik.se").
+                tags(TagRoot.SWE_SPORT.getTags()).build();
+        ItemEngine.getInstance().handleNewItems(Arrays.asList(item1, item2, item3));
         ItemEngine.getInstance().rebuildIndex();
 
-        String includeTagFilter = "swe_sport,swe_data,swe_nyheter";
-      //  List<ItemGroup> itemGroups = ItemEngine.getInstance().search(SearchItemGroupQuery.create(includeTagFilter, null, Collections.emptyList()));
-
-        //5 varannan mappa på tagRoot
-        //ItemGroupSortable
+        List<ItemGroup> itemGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate(null);
+        Assert.assertEquals(itemGroups.size(),3);
     }
-*/
+
 
     @DataProvider(name = "SearchData")
     public Object[][] search() {

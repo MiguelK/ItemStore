@@ -28,18 +28,20 @@ class BasicIndexBuilder {
     // 3  Done!
     // 4 (ItemGroup API search will sort on itemTagTree, priority etc...)
     public Result buildIndex() {
-        Set<String> itemTags = new HashSet<String>();
+        Set<String> itemTags = new HashSet<>();
 
         Collections.sort(items, Item.PUBLISHED_DATE_SORTER);
 
         List<ItemGroup> itemGroups = new ArrayList<ItemGroup>();
         List<Item> handledItems = new ArrayList<Item>();
+
         for (Item item : items) {
             if (handledItems.contains(item)) {
                 //User client has already this items in is local cache
                 continue;
             }
-            //FIXME needed???    itemTags.addAll(item.getItemTagTree());
+            itemTags.add(item.getTags());
+
             List<Item> itemsNotHandled = ListUtils.subtract(items, handledItems);
 
             ItemGroup itemGroup = new ItemGroup();
@@ -68,11 +70,11 @@ class BasicIndexBuilder {
         return new Result(itemGroups, new ArrayList<>(itemTags));
     }
 
-    public static final class Result {
+    static final class Result {
         private final List<ItemGroup> itemGroups;
         private final List<String> itemTags;
 
-        public Result(List<ItemGroup> itemGroups, List<String> itemTags) {
+        Result(List<ItemGroup> itemGroups, List<String> itemTags) {
             this.itemGroups = ListUtils.unmodifiableList(itemGroups);
             this.itemTags = ListUtils.unmodifiableList(itemTags);
         }
@@ -85,6 +87,4 @@ class BasicIndexBuilder {
             return itemTags;
         }
     }
-
-
 }

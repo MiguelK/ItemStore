@@ -137,7 +137,7 @@ public class Item implements Serializable {
         return id;
     }
 
-    public String getTags() { //getTagNames //FIXME
+    public String getTags() {
         return tags;
     }
 
