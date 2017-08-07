@@ -16,7 +16,7 @@ public class Channel {
     private String url;
 
     @XmlElement(name = "Tag")
-    private String tag;  //, (comma) separated words, space in word separtaed by '_' (underscore)
+    private String tag;  // , (comma) separated words, space in word separtaed by '_' (underscore)
                         //e.g aik,aik_forboll,allsvenskan
     private ItemTagTree itemTagTree;
 
