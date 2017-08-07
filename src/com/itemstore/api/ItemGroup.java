@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Path("/itemGroup")
+@Path("/itemGroups")
 public class ItemGroup {
 
     private static final Logger LOG = Logger.getLogger(ItemGroup.class.getName());
@@ -32,17 +32,18 @@ public class ItemGroup {
         return Response.status(Response.Status.OK).entity(response).build();
     }
 
-
     @GET
+    @Path("/from")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getItemGroupsFromDate(@Context HttpServletRequest httpServletRequest) {
+    public Response getItemGroupsFromDate(@Context HttpServletRequest httpServletRequest,
+                                          @QueryParam("fromDate") String fromDate) {
 
-        List<com.itemstore.engine.model.ItemGroup> itemGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate(); //FIXME
+        List<com.itemstore.engine.model.ItemGroup> itemGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate(null); //FIXME
 
-        LOG.info("itemGroups = " + itemGroups.size());
+        LOG.info("itemGroups = " + itemGroups.size() + " fromDate=" + fromDate);
+
         ItemGroupResponse response = ItemGroupResponse.create(itemGroups);
 
         return Response.status(Response.Status.OK).entity(response).build();
     }
-
 }

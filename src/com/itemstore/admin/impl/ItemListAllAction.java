@@ -4,9 +4,11 @@ import com.itemstore.engine.ItemEngine;
 import com.itemstore.admin.Action;
 import com.itemstore.admin.dto.StatisticsDTO;
 import com.itemstore.engine.model.Item;
+import com.itemstore.engine.model.ItemGroup;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
+import java.util.List;
 
 public class ItemListAllAction extends Action {
 
@@ -15,15 +17,10 @@ public class ItemListAllAction extends Action {
 
     @Override
     protected Object execute(HttpServletRequest request) {
-        Collection<Item> allItems = ItemEngine.getInstance().searchItems(new org.apache.commons.collections4.Predicate<Item>() {
-            @Override
-            public boolean evaluate(Item item) {
-                return true;
-            }
-        });
+        List<ItemGroup> itemGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate();
 
         StatisticsDTO s = new StatisticsDTO();
-        s.itemsCount = allItems.size();
+        s.itemsCount = itemGroups.size();
 
         return s;
     }

@@ -99,31 +99,6 @@
     </div>
 </div>
 
-<div class="centerDiv">
-    <table>
-        <tr>
-            <td>
-                <form action="#" id="formId"
-                      onsubmit="postToServer('formId', itemSearchByTagsCallBack, 'ItemGetByTagsAction')"
-                      method="post"
-                      target="hiddenFrame">
-
-                    <table border="1" bgcolor="aqua">
-                        <tr>
-                            <td>Item Tags</td>
-                            <td><input type="text" name="itemTagTree" placeholder="itemTagTree"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="submit" value="Search"></td>
-                        </tr>
-                    </table>
-                </form>
-            </td>
-        </tr>
-    </table>
-
-    <div id="resultDivId"/>
-</div>
 
 </body>
 </html>

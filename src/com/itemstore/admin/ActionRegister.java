@@ -1,6 +1,6 @@
 package com.itemstore.admin;
 
-import com.itemstore.admin.impl.ItemListAllAction;
+import com.itemstore.admin.impl.ItemGetItemGroupsAction;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +19,7 @@ public class ActionRegister {
     }
 
     public Action getAction(String action) {
-        String className = ItemListAllAction.class.getPackage().getName() + "." + action;
+        String className = ItemGetItemGroupsAction.class.getPackage().getName() + "." + action;
 
         try {
             Class aClass = Class.forName(className);

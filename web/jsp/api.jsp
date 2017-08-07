@@ -18,7 +18,7 @@
     <table>
         <tr>
             <td>ItemGroup</td>
-            <td><a href="<%=jsonServiceURL%>itemGroup/search"> getItemGroups() ALL (No param) </a>
+            <td><a href="<%=jsonServiceURL%>itemGroups"> getItemGroups() ALL </a>
             </td>
         </tr>
     </table>

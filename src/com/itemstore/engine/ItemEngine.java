@@ -22,7 +22,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-//FIXME rename ItemStore, ItemEngine
 public final class ItemEngine implements ItemCollectorListener {
     private static final Logger LOG = Logger.getLogger(ItemEngine.class.getName());
 
@@ -32,7 +31,7 @@ public final class ItemEngine implements ItemCollectorListener {
 
     private Set<Item> allItems = new HashSet<Item>();
     private List<String> allItemTags;
-    private List<ItemGroup> allItemGroupsSortedByDate = new ArrayList<ItemGroup>();
+    private List<ItemGroup> allItemGroupsSortedByDate = new ArrayList<>();
 
     private final ItemCollectorRunner itemCollectorRunner;
 
@@ -48,7 +47,7 @@ public final class ItemEngine implements ItemCollectorListener {
 
     @Override
     public void handleNewItems(List<Item> items) {
-        LOG.fine("handleNewItems recived from collector" + items);
+        LOG.fine("handleNewItems recived from collector" + items.size());
 
         writeLock.lock();
         try {
@@ -134,112 +133,20 @@ public final class ItemEngine implements ItemCollectorListener {
             writeLock.unlock();
         }
     }
-
-    public List<ItemGroup> search(SearchItemGroupQuery filter) {
-        readLock.lock();
-        try {
-
-            TagTreeFilter includeTagTreeFilter = filter.getIncludeTagTreeFilter();
-            List<Integer> excludeItemGroupIds = filter.getExcludeIds();
-            TagTreeFilter excludeTagTreeFilter = filter.getExcludeTagTreeFilter();
-            int maxResult = 50; //filter.getMaxResult();
-
-            //Copy??? FIXME
-            Map<TagRoot, Integer> maxTagrootTracker = new HashedMap<>();
-            List<ItemGroup> itemGroups = allItemGroupsSortedByDate.stream()
-                    .filter(itemGroup -> {
-
-                        //1# If included in excludeItemGroupId do not return it
-                        if (excludeItemGroupIds.contains(itemGroup.getId())) {
-                            return false; //Do not include
-                        }
-
-                        ItemTagTree itemTagTree = itemGroup.getItemTagTree();
-
-                        if (maxTagrootTracker.get(itemTagTree.getTagRoot()) != null
-                                && maxTagrootTracker.get(itemTagTree.getTagRoot()) > 5) {
-                            return false; //Max 5 items per tagRoot (Category)
-                        }
-
-                        if (excludeTagTreeFilter != null &&
-                                itemTagTree.match(excludeTagTreeFilter) > 0) {
-                            return false;
-                        }
-
-                        if (includeTagTreeFilter != null && itemTagTree.match(includeTagTreeFilter) >= 1.0) {
-                            TagRoot tagRoot = itemTagTree.getTagRoot();
-                            Integer integer = maxTagrootTracker.get(tagRoot);
-                            if (integer == null) {
-                                maxTagrootTracker.put(tagRoot, 0);
-                            } else {
-                                integer = integer + 1;
-                                maxTagrootTracker.put(tagRoot, integer);
-                            }
-                            return true;
-                        }
-
-
-                        return false;
-                    }).collect(Collectors.toList());
-
-            if (itemGroups.size() > maxResult) {
-                itemGroups = itemGroups.subList(0, maxResult);
-            }
-
-            //FIXME add sorting? date tagMatch??? filter
-            //includeTagTreeFilter
-
-            //FIXME conf?
-            ItemGroupSorter itemGroupSorter = new ItemGroupSorter<ItemGroup>(itemGroups);
-            itemGroups = (List<ItemGroup>) itemGroupSorter.sort();
-
-
-            return itemGroups;
-        } finally {
-            readLock.unlock();
-        }
-    }
-
-    public Collection<Item> searchItems(Predicate<Item> predicate) {
-        readLock.lock();
-        try {
-            return CollectionUtils.select(allItems, predicate);
-        } finally {
-            readLock.unlock();
-        }
-    }
-
-    //FIXME Uset ItemTagTree filter
-    /*public List<ItemGroup> searchItemsByTags(final List<String> itemTagTree) {
-        readLock.lock();
-        try {
-
-            Predicate<ItemGroup> predicate = new Predicate<ItemGroup>() {
-                @Override
-                public boolean evaluate(ItemGroup item) {
-
-                    boolean tagsMatch = true;
-                    if (!itemTagTree.isEmpty()) {
-                        tagsMatch = CollectionUtils.containsAny(item.getItemTagTree(), itemTagTree);
-                    }
-
-
-                    return tagsMatch;
-                }
-            };
-
-            return new ArrayList<ItemGroup>(CollectionUtils.select(allItemGroupsSortedByDate, predicate));
-
-        } finally {
-            readLock.unlock();
-        }
-    }*/
-
-
     public List<String> getAllItemTags() {
         readLock.lock();
         try {
             return allItemTags;
+        } finally {
+            readLock.unlock();
+        }
+    }
+
+    public List<ItemGroup> getAllItemGroupsSortedByDate(Date fromDate) {
+        readLock.lock();
+        try {
+            //FIXME split fromDate
+            return allItemGroupsSortedByDate;
         } finally {
             readLock.unlock();
         }
@@ -271,5 +178,4 @@ public final class ItemEngine implements ItemCollectorListener {
             writeLock.unlock();
         }
     }
-
 }
