@@ -7,6 +7,8 @@ import com.itemstore.collector.ItemCollectorRunner;
 import com.itemstore.commons.AsyncService;
 import com.itemstore.engine.model.Item;
 import com.itemstore.engine.model.ItemGroup;
+import com.itemstore.engine.model.SnapShotItemGroups;
+import com.itemstore.service.datastore.ServiceDataStorage;
 
 import java.util.*;
 import java.util.concurrent.locks.Lock;
@@ -97,6 +99,9 @@ public final class ItemEngine implements ItemCollectorListener {
         try {
             BasicIndexBuilder indexBuilder = new BasicIndexBuilder(this.allItems);
             result = indexBuilder.buildIndex();
+
+            SnapShotItemGroups snap = new SnapShotItemGroups();//FIXME
+            ServiceDataStorage.useDefault().save(snap);
         } finally {
             readLock.unlock();
         }

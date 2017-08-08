@@ -40,6 +40,10 @@
         <servlet-class>com.itemstore.admin.AdminManagerServlet</servlet-class>
         <load-on-startup>2</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>ItemGroupsZipServlet</servlet-name>
+        <servlet-class>com.itemstore.api.ItemGroupsZipServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>ViewStatisticsServlet</servlet-name>

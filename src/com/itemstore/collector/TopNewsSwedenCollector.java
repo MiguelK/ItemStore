@@ -32,20 +32,16 @@ public class TopNewsSwedenCollector extends HTMLDocumentBase {
         }
 
         List<Item> items = new ArrayList<Item>();
-        //abItemHLine
 
-        //Elements article = document.getElementsByTag("h2");
         Elements article = document.getElementsByTag("article");
 
         //all article + h2 contains just nu or extra
 
-        //abPfxPrimary abIconArrow
         for (Element element : article) {
             Elements h2 = element.getElementsByTag("h2");
 
             int size = h2.size();
             // System.out.println("size == " + size + " " + element.text());
-
             //System.out.println("SSSS " + element.getElementsContainingText("JUST NU").text());
 
             String text = StringUtils.trimToEmpty(element.text());
