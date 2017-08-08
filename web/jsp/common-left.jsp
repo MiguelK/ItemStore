@@ -15,7 +15,6 @@
         <li><a href="tags.jsp" >Tags</a></li>
         <li><a href="channels.jsp" >Channels</a></li>
         <li><a href="api.jsp" >API</a></li>
-        <li><a href="events.jsp" >Events</a></li>
 
       </ul>
     </div>

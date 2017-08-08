@@ -1,8 +1,6 @@
 package com.itemstore.collector;
 
 import com.itemstore.commons.AsyncService;
-import com.itemstore.engine.event.EventType;
-import com.itemstore.engine.event.Events;
 import com.itemstore.engine.model.Item;
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -103,10 +101,6 @@ public class ItemCollectorRunner {
                 }
 
                 handledItems.addAll(notHandledItems);
-
-                for (EventType type : itemCollector.getPostProcessEvents()) {
-                    Events.fireEvent(type);
-                }
 
             } catch (Exception e) {
                 LOG.log(Level.SEVERE, "Unable to parse itemCollector " + itemCollector, e);

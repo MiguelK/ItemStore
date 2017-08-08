@@ -5,8 +5,6 @@ import com.itemstore.collector.ItemCollector;
 import com.itemstore.collector.ItemCollectorListener;
 import com.itemstore.collector.ItemCollectorRunner;
 import com.itemstore.commons.AsyncService;
-import com.itemstore.engine.event.EventType;
-import com.itemstore.engine.event.Events;
 import com.itemstore.engine.model.Item;
 import com.itemstore.engine.model.ItemGroup;
 
@@ -14,6 +12,7 @@ import java.util.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public final class ItemEngine implements ItemCollectorListener {
     private static final Logger LOG = Logger.getLogger(ItemEngine.class.getName());
@@ -23,7 +22,7 @@ public final class ItemEngine implements ItemCollectorListener {
     private final Lock writeLock = readWriteLock.writeLock();
 
     private Set<Item> allItems = new HashSet<Item>();
-    private List<String> allItemTags;
+    private final Set<String> tags = new HashSet<>();
     private List<ItemGroup> allItemGroupsSortedByDate = new ArrayList<>();
 
     private final ItemCollectorRunner itemCollectorRunner;
@@ -106,20 +105,27 @@ public final class ItemEngine implements ItemCollectorListener {
         writeLock.lock();
         try {
             this.allItemGroupsSortedByDate = result.getItemGroups();
-            this.allItemTags = result.getItemTags();
+            this.tags.addAll(result.getItemTags());
         } finally {
             writeLock.unlock();
         }
-
-        Events.fireEvent(EventType.EngineRebuildIndex);
     }
 
-    public List<String> getItemTags() {
+    public List<String> getTags() {
         readLock.lock();
         try {
-            return allItemTags;
+            return tags.stream().collect(Collectors.toList());
         } finally {
             readLock.unlock();
+        }
+    }
+
+    public void addChannelTags(String tags) {
+        writeLock.lock();
+        try {
+            this.tags.add(tags);
+        } finally {
+            writeLock.unlock();
         }
     }
 
@@ -127,6 +133,7 @@ public final class ItemEngine implements ItemCollectorListener {
     public void start() {
         writeLock.lock();
         try {
+
             AsyncService.instance().init();
 
             itemCollectorRunner.start();

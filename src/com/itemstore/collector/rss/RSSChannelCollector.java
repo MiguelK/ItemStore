@@ -2,6 +2,7 @@ package com.itemstore.collector.rss;
 
 import com.itemstore.collector.ItemCollector;
 import com.itemstore.collector.ItemCollectorBase;
+import com.itemstore.engine.ItemEngine;
 import com.itemstore.engine.model.Item;
 import it.sauronsoftware.feed4j.FeedParser;
 import it.sauronsoftware.feed4j.bean.Feed;
@@ -40,6 +41,7 @@ public class RSSChannelCollector extends ItemCollectorBase {
         for (Channel channel : channels) {
             RSSChannelCollector channelCollector = new RSSChannelCollector(channel.getUrl(),
                     channel.getTags(), channel.getRefreshPeriodInSeconds());
+            ItemEngine.getInstance().addChannelTags(channel.getTags());
             channelCollectors.add(channelCollector);
         }
 
