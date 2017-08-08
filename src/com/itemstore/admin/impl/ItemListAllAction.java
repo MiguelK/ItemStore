@@ -17,7 +17,7 @@ public class ItemListAllAction extends Action {
 
     @Override
     protected Object execute(HttpServletRequest request) {
-        List<ItemGroup> itemGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate();
+        List<ItemGroup> itemGroups = ItemEngine.getInstance().getAllItemGroupsSortedByDate(null);
 
         StatisticsDTO s = new StatisticsDTO();
         s.itemsCount = itemGroups.size();

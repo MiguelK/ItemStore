@@ -1,7 +1,4 @@
-package com.request;
-
-import com.google.gson.Gson;
-import com.request.GEOServiceRequest;
+package com.itemstore.location.request;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

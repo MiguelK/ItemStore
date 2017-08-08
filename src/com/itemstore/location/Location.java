@@ -1,6 +1,6 @@
-package com;
+package com.itemstore.location;
 
-import com.country.sweden.Country;
+import com.itemstore.location.country.sweden.Country;
 
 import java.io.Serializable;
 import java.util.Optional;

@@ -3,7 +3,6 @@ package com.itemstore.engine.collector.rss;
 import com.itemstore.TestUtil;
 import com.itemstore.collector.rss.Channel;
 import com.itemstore.collector.rss.RSSChannels;
-import com.itemstore.engine.model.tag3.TagTreePath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

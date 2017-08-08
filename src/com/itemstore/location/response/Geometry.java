@@ -1,4 +1,4 @@
-package com.response;
+package com.itemstore.location.response;
 
 public class Geometry {
     private Location location;

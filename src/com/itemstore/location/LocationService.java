@@ -1,7 +1,7 @@
-package com;
+package com.itemstore.location;
 
-import com.country.sweden.LocationParser;
-import com.request.APIRequest;
+import com.itemstore.location.country.sweden.LocationParser;
+import com.itemstore.location.request.APIRequest;
 import org.mapdb.DB;
 import org.mapdb.DBMaker;
 import org.mapdb.DataInput2;

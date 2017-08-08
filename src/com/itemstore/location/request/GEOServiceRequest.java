@@ -1,4 +1,4 @@
-package com.request;
+package com.itemstore.location.request;
 
 public interface GEOServiceRequest {
 

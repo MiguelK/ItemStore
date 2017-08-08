@@ -1,6 +1,6 @@
-package com.country.sweden;
+package com.itemstore.location.country.sweden;
 
-import com.Location;
+import com.itemstore.location.Location;
 
 import java.util.Optional;
 

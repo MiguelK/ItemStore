@@ -1,4 +1,4 @@
-package com.response;
+package com.itemstore.location.response;
 
 import java.util.ArrayList;
 import java.util.Collection;

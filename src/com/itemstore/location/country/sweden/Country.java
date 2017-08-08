@@ -1,4 +1,4 @@
-package com.country.sweden;
+package com.itemstore.location.country.sweden;
 
 import java.util.EnumSet;
 

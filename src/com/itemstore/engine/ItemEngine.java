@@ -154,15 +154,6 @@ public final class ItemEngine implements ItemCollectorListener {
         }
     }
 
-    public List<ItemGroup> getAllItemGroupsSortedByDate() {
-        readLock.lock();
-        try {
-            return allItemGroupsSortedByDate;
-        } finally {
-            readLock.unlock();
-        }
-    }
-
     public void addCollectors(List<ItemCollector> itemCollectors) {
         writeLock.lock();
         try {

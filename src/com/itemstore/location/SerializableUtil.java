@@ -1,4 +1,4 @@
-package com;
+package com.itemstore.location;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
