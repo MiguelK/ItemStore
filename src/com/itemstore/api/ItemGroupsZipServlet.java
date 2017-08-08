@@ -25,9 +25,9 @@ public class ItemGroupsZipServlet extends HttpServlet {
 
         ServiceDataStorage serviceDataStorageDisk = ServiceDataStorage.useDefault();
 
-        File zipFile = serviceDataStorageDisk.getCurrentVersion().orElseGet(null).getLangJSONZipped();//FIXME Only SWE
+        File zipFile = serviceDataStorageDisk.getCurrentVersion().getLangJSONZipped();
 
-        if (zipFile == null) {
+        if (zipFile == null || !zipFile.exists()) {
             response.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE, "Loading in progress?");
             return;
         }

@@ -15,51 +15,49 @@ import java.util.logging.Logger;
 public class ServiceDataStorageDisk implements ServiceDataStorage {
     private final static Logger LOG = Logger.getLogger(ServiceDataStorageDisk.class.getName());
 
-    private final File podDataHomeDir;
+    private final File homeDirectory;
 
     ServiceDataStorageDisk() {
         this(new LocatorProduction().getHomeDirectory());
     }
 
-    public ServiceDataStorageDisk(File podDataHomeDir) {
-        if (podDataHomeDir == null) {
-            throw new IllegalArgumentException("podDataHomeDir is null");
+    public ServiceDataStorageDisk(File homeDirectory) {
+        if (homeDirectory == null) {
+            throw new IllegalArgumentException("homeDirectory is null");
         }
-        if (!podDataHomeDir.isDirectory()) {
-            throw new IllegalArgumentException("podDataHomeDir is not a dir " + podDataHomeDir.getAbsolutePath());
+        if (!homeDirectory.isDirectory()) {
+            throw new IllegalArgumentException("homeDirectory is not a dir " + homeDirectory.getAbsolutePath());
         }
-        this.podDataHomeDir = podDataHomeDir;
+        this.homeDirectory = homeDirectory;
 
     }
 
     @Override
     public void save(SnapShotItemGroups snapShotItemGroups) {
 
-        LOG.info("Saving PodCastCatalog to " + podDataHomeDir.getAbsolutePath());
+        LOG.info("Saving SnapShot to " + homeDirectory.getAbsolutePath() +
+                " ItemGroups=" + snapShotItemGroups.getAllItemGroupsSortedByDate().size());
 
-        SnapShotVersion snapShotVersion = SnapShotVersion.create(podDataHomeDir);
+        SnapShotVersion snapShotVersion = SnapShotVersion.create(homeDirectory);
 
-        saveAsObject(snapShotItemGroups, podDataHomeDir);
+        saveAsObject(snapShotItemGroups, homeDirectory);
         File json = saveAsJSON(snapShotItemGroups, snapShotVersion);
 
         ZipFile.zip(json, snapShotVersion.getLangJSONZipped());
     }
 
-    public File getPodDataHomeDir() {
-        return podDataHomeDir;
+
+    @Override
+    public File getHomeDirectory() {
+        return homeDirectory;
     }
 
     @Override
-    public Optional<SnapShotVersion> getCurrentVersion() {
-
-        SnapShotItemGroups snapShotItemGroups = load(podDataHomeDir, SnapShotItemGroups.class);
-
-        //SnapShotVersion.create()
-
-        return null;
+    public SnapShotVersion getCurrentVersion() {
+        return SnapShotVersion.load(homeDirectory);
     }
 
-
+/*
     private <T> T load(File sourceFile, Class<T> sourceType) {
 
         ObjectInputStream in = null;
@@ -83,6 +81,7 @@ public class ServiceDataStorageDisk implements ServiceDataStorage {
         }
         return null;
     }
+*/
 
     private void saveAsObject(Object object, File targetFile) {
         FileOutputStream fileOut = null;

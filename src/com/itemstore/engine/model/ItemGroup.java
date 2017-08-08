@@ -39,14 +39,12 @@ public class ItemGroup implements ItemGroupSortable {
         @Override
         public int compare(ItemGroup o1, ItemGroup o2) {
             return o2.getLatestItemPublishedDate().compareTo(o1.getLatestItemPublishedDate());
-
         }
     }
 
     private LocalDateTime getLatestItemPublishedDate() {
         return items.get(0).getPublishedDate(); //0 is always latest in group
     }
-
 
     @Override
     public String toString() {

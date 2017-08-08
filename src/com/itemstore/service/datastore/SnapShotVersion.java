@@ -19,11 +19,9 @@ public class SnapShotVersion {
         langDat = new File(versionRoot, "items.dat");
         langJSON = new File(versionRoot, "items.json");
         langJSONZipped = new File(versionRoot, "items_json.zip");
+ }
 
-        make(versionRoot);
-    }
-
-    private void make(File versionRoot) {
+    private void make() {
         try {
             langDat.createNewFile();
             langJSON.createNewFile();
@@ -35,7 +33,7 @@ public class SnapShotVersion {
 
     public static SnapShotVersion create(File versionRoot) {
         SnapShotVersion snapShotVersion = new SnapShotVersion(versionRoot);
-        snapShotVersion.make(versionRoot);
+        snapShotVersion.make();
         return snapShotVersion;
     }
 
@@ -43,6 +41,7 @@ public class SnapShotVersion {
         return new SnapShotVersion(versionRoot);
     }
 
+    /*
     void loadPodCastCatalogFromDisc() {
 
         ObjectInputStream in = null;
@@ -63,6 +62,7 @@ public class SnapShotVersion {
             }
         }
     }
+*/
 
     public File getLangJSON() {
         return langJSON;
@@ -70,14 +70,6 @@ public class SnapShotVersion {
 
     public File getLangJSONZipped() {
         return langJSONZipped;
-    }
-
-    public File getLangDat() {
-        return langDat;
-    }
-
-    public SnapShotItemGroups getPodCastCatalog() {
-        return podCastCatalog;
     }
 
     @Override

@@ -13,7 +13,7 @@ public interface ServiceDataStorage {
 
     void save(SnapShotItemGroups snapShotItemGroups);
 
-    File getPodDataHomeDir();
+    File getHomeDirectory();
 
-    Optional<SnapShotVersion> getCurrentVersion();
+    SnapShotVersion getCurrentVersion();
 }

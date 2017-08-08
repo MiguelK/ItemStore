@@ -1,5 +1,7 @@
 package com.itemstore.engine;
 
-public interface ItemGroupSortable {
+import java.io.Serializable;
+
+public interface ItemGroupSortable extends Serializable {
     String getTags();
 }

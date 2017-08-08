@@ -22,8 +22,18 @@
             </td>
         </tr>
     </table>
-
     <br>
+
+
+    <table>
+        <tr>
+            <td>Download JSON ZIP</td>
+            <td><a href="<%=jsonServiceURL%>ItemGroupsZipServlet/download/zip"> ItemGroups JSON (ZIP) </a>
+            </td>
+        </tr>
+    </table>
+    <br>
+
 
     <table border="1px">
         <tr>

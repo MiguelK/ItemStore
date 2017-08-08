@@ -41,7 +41,7 @@ public final class ItemEngine implements ItemCollectorListener {
 
     @Override
     public void handleNewItems(List<Item> items) {
-        LOG.fine("handleNewItems recived from collector" + items.size());
+        LOG.fine("handleNewItems received from collector" + items.size());
 
         writeLock.lock();
         try {
@@ -65,26 +65,6 @@ public final class ItemEngine implements ItemCollectorListener {
         }
     }
 
-   /* public void registerItem(Item item) {
-        writeLock.lock();
-        try {
-            allItems.add(item);
-            rebuildIndex(); //FIXME TEST
-        } finally {
-            writeLock.unlock();
-        }
-    }
-
-    public void registerItems(List<Item> items) {
-        writeLock.lock();
-        try {
-            allItems.addAll(items);
-            rebuildIndex(); //FIXME TEST
-        } finally {
-            writeLock.unlock();
-        }
-    }*/
-
     public void rebuildIndex() {
 
         if (allItems.isEmpty()) {
@@ -100,7 +80,7 @@ public final class ItemEngine implements ItemCollectorListener {
             BasicIndexBuilder indexBuilder = new BasicIndexBuilder(this.allItems);
             result = indexBuilder.buildIndex();
 
-            SnapShotItemGroups snap = new SnapShotItemGroups();//FIXME
+            SnapShotItemGroups snap = new SnapShotItemGroups(result.getItemGroups());
             ServiceDataStorage.useDefault().save(snap);
         } finally {
             readLock.unlock();
@@ -138,11 +118,8 @@ public final class ItemEngine implements ItemCollectorListener {
     public void start() {
         writeLock.lock();
         try {
-
             AsyncService.instance().init();
-
             itemCollectorRunner.start();
-
             rebuildIndex();
         } finally {
             writeLock.unlock();
