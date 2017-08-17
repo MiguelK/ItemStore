@@ -8,9 +8,12 @@ import java.util.List;
 public class ItemGroupResponse {
 
     private List<ItemGroupDTO> itemGroups = new ArrayList<ItemGroupDTO>();
+    private final String createdDate;
+
 
     private ItemGroupResponse(List<ItemGroupDTO> itemGroups) {
         this.itemGroups = itemGroups;
+        createdDate = "1234FIXME"; //FIXME
     }
 
     public List<ItemGroupDTO> getItemGroups() {

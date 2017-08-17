@@ -52,7 +52,7 @@
 
     <servlet-mapping>
         <servlet-name>ItemGroupsZipServlet</servlet-name>
-        <url-pattern>/download/zip</url-pattern>
+        <url-pattern>/api/download/zip</url-pattern>
     </servlet-mapping>
 
     <!--http://127.0.01:8080/FlowEngine_war_exploded/jsp/index.jsp OK-->

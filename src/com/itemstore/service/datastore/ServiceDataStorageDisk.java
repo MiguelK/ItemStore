@@ -40,7 +40,7 @@ public class ServiceDataStorageDisk implements ServiceDataStorage {
 
         SnapShotVersion snapShotVersion = SnapShotVersion.create(homeDirectory);
 
-        saveAsObject(snapShotItemGroups, homeDirectory);
+        //saveAsObject(snapShotItemGroups, homeDirectory);
         File json = saveAsJSON(snapShotItemGroups, snapShotVersion);
 
         ZipFile.zip(json, snapShotVersion.getLangJSONZipped());
@@ -57,31 +57,6 @@ public class ServiceDataStorageDisk implements ServiceDataStorage {
         return SnapShotVersion.load(homeDirectory);
     }
 
-/*
-    private <T> T load(File sourceFile, Class<T> sourceType) {
-
-        ObjectInputStream in = null;
-        FileInputStream fileIn = null;
-        try {
-            try {
-                fileIn = new FileInputStream(sourceFile);
-                in = new ObjectInputStream(fileIn);
-                return ((T) in.readObject());
-            } catch (IOException | ClassNotFoundException e) {
-                LOG.log(Level.INFO, "Unable to load object=" + sourceType + " from=" + sourceFile.getAbsolutePath(), e.getMessage());
-            }
-
-        } finally {
-            if (in != null) {
-                IOUtils.closeQuietly(in);
-            }
-            if (fileIn != null) {
-                IOUtils.closeQuietly(fileIn);
-            }
-        }
-        return null;
-    }
-*/
 
     private void saveAsObject(Object object, File targetFile) {
         FileOutputStream fileOut = null;

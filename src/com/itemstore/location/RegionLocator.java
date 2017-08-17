@@ -1,4 +1,4 @@
-package com.itemstore.commons;
+package com.itemstore.location;
 
 import javax.servlet.http.HttpServletRequest;
 
