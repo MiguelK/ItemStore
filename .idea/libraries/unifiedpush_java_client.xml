@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="unifiedpush-java-client">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/unifiedpush-java-client" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/unifiedpush-java-client" recursive="false" />
+  </library>
+</component>

@@ -1,10 +1,13 @@
 package com.itemstore.engine.model.tag3;
 
 //Root swe_sport (Mandatory for Items)
-
+//TagCategoryRoot ?
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * All channels in channels_xx.xml mus contain a valid TagRoot
+ */
 public enum TagRoot {
     ENG_NEWS("eng_news"),
     ENG_SPORT("eng_sport"),

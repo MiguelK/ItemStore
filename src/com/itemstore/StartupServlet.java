@@ -25,13 +25,18 @@ public class StartupServlet extends HttpServlet {
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
 
-        File channelFile = EngineConf.getInstance().getChannelsFile(servletConfig.getServletContext());
+        File channelFileSwe = EngineConf.getInstance().getChannelsFile(servletConfig.getServletContext(), "channels_swe.xml");
+        List<ItemCollector> channelCollectorsSwe = RSSChannelCollector.parseFile(channelFileSwe);
+        ItemEngine.getInstance().addCollectors(channelCollectorsSwe);
 
-        List<ItemCollector> channelCollectors = RSSChannelCollector.parseFile(channelFile);
+        LOG.info("Starting ItemStore SWE channelCollectorsSwe=" + channelCollectorsSwe.size());
 
-        LOG.info("Starting ItemStore channelCollectors=" + channelCollectors.size());
+        File channelFileEng = EngineConf.getInstance().getChannelsFile(servletConfig.getServletContext(), "channels_eng.xml");
+        List<ItemCollector> channelCollectorsEng = RSSChannelCollector.parseFile(channelFileEng);
+        ItemEngine.getInstance().addCollectors(channelCollectorsEng);
 
-        ItemEngine.getInstance().addCollectors(channelCollectors);
+        LOG.info("Starting ItemStore ENG channelCollectorsSwe=" + channelCollectorsEng.size());
+
         ItemEngine.getInstance().addCollector(new TopNewsSwedenCollector()); //FIXME
 
         ItemEngine.getInstance().start();

@@ -61,7 +61,7 @@ public class RSSChannelsTest {
     @Test
     public void validateProductionChannelFile() {
 
-        File file = new File("web", "channels.xml");
+        File file = new File("web", "channels_swe.xml");
         RSSChannels rss = RSSChannels.loadFromFile(file);
 
         List<Channel> channels = rss.getChannels();

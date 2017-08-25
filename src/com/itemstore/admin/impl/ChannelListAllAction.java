@@ -13,7 +13,7 @@ public class ChannelListAllAction extends Action {
     @Override
     protected Object execute(HttpServletRequest request) {
 
-        File channelFile = EngineConf.getInstance().getChannelsFile(request.getServletContext());
+        File channelFile = EngineConf.getInstance().getChannelsFile(request.getServletContext(),"channels_swe.xml");
 
         List<com.itemstore.collector.rss.Channel> channels = RSSChannels.loadFromFile(channelFile).getChannels();
 

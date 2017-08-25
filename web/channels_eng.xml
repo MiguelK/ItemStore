@@ -1,0 +1,55 @@
+<RSSChannels>
+
+    <ChannelGroup>
+        <TagRoot>eng_news</TagRoot>
+        <RefreshPeriodInSeconds>30</RefreshPeriodInSeconds>
+        <Channels>
+            <Channel>
+                <Url>http://www.wired.com/rss/index.xml</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.newyorker.com/services/rss/feeds/everything.xml</Url>
+            </Channel>
+            <Channel>
+                <Url>http://feeds.reuters.com/reuters/topNews</Url>
+            </Channel>
+            <Channel>
+                <Url>http://feeds.reuters.com/Reuters/domesticNews</Url>
+            </Channel>
+            <Channel>
+                <Url>http://feeds.reuters.com/Reuters/worldNews</Url>
+            </Channel>
+            <Channel>
+                <Url>http://feeds.reuters.com/reuters/USVideoTopNews</Url>
+            </Channel>
+            <Channel>
+                <Url>http://content.usatoday.com/marketing/rss/rsstrans.aspx?feedId=news1</Url>
+            </Channel>
+            <Channel>
+                <Url>http://rssfeeds.usatoday.com/usatoday-NewsTopStories</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.kuro5hin.org/backend.rdf</Url>
+            </Channel>
+            <Channel>
+                <Url>http://www.latimes.com/rss2.0.xml</Url>
+            </Channel>
+            <Channel>
+                <Url>http://feeds.theonion.com/theonion/daily</Url>
+            </Channel>
+            <Channel>
+                <Url>http://feeds.feedburner.com/foxnews/latest</Url>
+            </Channel>
+            <Channel>
+                <Url>http://feeds.feedburner.com/TheAtlanticWire</Url>
+            </Channel>
+            <Channel>
+                <Url>http://feeds.slate.com/slate</Url>
+            </Channel>
+            <Channel>
+                <Url>http://feeds.cbsnews.com/CBSNewsMain</Url>
+            </Channel>
+        </Channels>
+    </ChannelGroup>
+
+</RSSChannels>

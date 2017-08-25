@@ -18,7 +18,7 @@ import java.util.Set;
 @XmlRootElement(name = "RSSChannels")
 public class RSSChannels {
 
-    @XmlElementWrapper(name = "Channels")
+    @XmlElementWrapper(name = "Tag")
     @XmlElement(name = "Channel")
     private List<Channel> channels = new ArrayList<>();
 

@@ -21,7 +21,7 @@ public class TopNewsSwedenCollector extends HTMLDocumentBase {
     public List<Item> collect() {
         List<Item> items = new ArrayList<Item>();
         items.addAll(parseAftonbladet(get(URL_AFTONBLADET_SE)));
-        // items.addAll(parseExpressen(get(URL_EXPRESSEN_SE)));
+        items.addAll(parseExpressen(get(URL_EXPRESSEN_SE)));
 
         return items;
     }

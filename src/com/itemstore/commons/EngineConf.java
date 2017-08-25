@@ -48,10 +48,10 @@ public class EngineConf {
     }
 
 
-    public File getChannelsFile(ServletContext servletContext) {
-        String realPath = servletContext.getRealPath("/" + "channels.xml");
+    public File getChannelsFile(ServletContext servletContext, String fileName) {
+        String realPath = servletContext.getRealPath("/" + fileName);
         File file = new File(realPath);
-        FileValidator.validateFile(file, String.format("Unable to read Channels %s file", CHANNELS_FILE_NAME));
+        FileValidator.validateFile(file, String.format("Unable to read Tag %s file", CHANNELS_FILE_NAME));
         return file;
     }
 
