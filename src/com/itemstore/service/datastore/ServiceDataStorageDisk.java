@@ -40,7 +40,6 @@ public class ServiceDataStorageDisk implements ServiceDataStorage {
 
         SnapShotVersion snapShotVersion = SnapShotVersion.create(homeDirectory);
 
-        //saveAsObject(snapShotItemGroups, homeDirectory);
         File json = saveAsJSON(snapShotItemGroups, snapShotVersion);
 
         ZipFile.zip(json, snapShotVersion.getLangJSONZipped());
@@ -75,18 +74,18 @@ public class ServiceDataStorageDisk implements ServiceDataStorage {
         }
     }
 
-    private static final Gson GSON;// = new Gson();
+    private static final Gson GSON = new Gson();
 
-    static {
+    /*static {
         List<String> fieldExclusions = new ArrayList<String>();
         fieldExclusions.add("podCastEpisodesInternal");
 
         List<Class<?>> classExclusions = new ArrayList<Class<?>>();
        // classExclusions.add(PodCast.class);
         GSON = GsonFactory.build(fieldExclusions, classExclusions);
-    }
+    }*/
 
-    public static class GsonFactory {
+   /* public static class GsonFactory {
 
         public static Gson build(final List<String> fieldExclusions, final List<Class<?>> classExclusions) {
             GsonBuilder b = new GsonBuilder();
@@ -105,6 +104,7 @@ public class ServiceDataStorageDisk implements ServiceDataStorage {
 
         }
     }
+*/
 
     private File saveAsJSON(SnapShotItemGroups snapShotItemGroups, SnapShotVersion versionDirectory) {
 

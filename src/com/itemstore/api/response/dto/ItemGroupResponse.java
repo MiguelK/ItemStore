@@ -7,17 +7,17 @@ import java.util.List;
 
 public class ItemGroupResponse {
 
-    private List<ItemGroupDTO> itemGroups = new ArrayList<ItemGroupDTO>();
+    private List<ItemGroupDTO> allItemGroupsSortedByDate = new ArrayList<ItemGroupDTO>();
     private final String createdDate;
 
 
     private ItemGroupResponse(List<ItemGroupDTO> itemGroups) {
-        this.itemGroups = itemGroups;
+        this.allItemGroupsSortedByDate = itemGroups;
         createdDate = "1234FIXME"; //FIXME
     }
 
-    public List<ItemGroupDTO> getItemGroups() {
-        return itemGroups;
+    public List<ItemGroupDTO> getAllItemGroupsSortedByDate() {
+        return allItemGroupsSortedByDate;
     }
 
     public static ItemGroupResponse create(List<ItemGroup> itemGroupGroups) {

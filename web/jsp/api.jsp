@@ -17,6 +17,16 @@
 
     <table>
         <tr>
+            <td>Tags</td>
+            <td><a href="<%=jsonServiceURL%>tags"> getAllTags() ALL </a>
+            </td>
+        </tr>
+    </table>
+    <br>
+
+
+    <table>
+        <tr>
             <td>ItemGroup</td>
             <td><a href="<%=jsonServiceURL%>itemGroups"> getItemGroups() ALL </a>
             </td>

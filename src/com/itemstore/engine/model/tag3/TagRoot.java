@@ -13,9 +13,9 @@ public enum TagRoot {
     ENG_SPORT("eng_sport"),
 
     //Swedish tag roots
-    SWE_NYHETER_EXTRA("swe_nyheter_extra"),
+    SWE_NYHETER_EXTRA("swe_news_extra"),
     SWE_DATA("swe_data"),
-    SWE_NYHETER("swe_nyheter"),
+    SWE_NYHETER("swe_news"),
     SWE_SPORT("swe_sport");
 
     public static final List<TagRoot> SORT_ORDER = Arrays.asList(TagRoot.SWE_NYHETER_EXTRA, TagRoot.SWE_NYHETER, TagRoot.SWE_SPORT,
