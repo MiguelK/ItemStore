@@ -8,7 +8,7 @@
     </deployment>
     <method>
       <option name="BuildArtifacts" enabled="true">
-        <artifact name="ItemStore" />
+        <artifact name="ROOT" />
         <artifact name="ItemStore:war exploded" />
       </option>
       <option name="RunConfigurationTask" enabled="true" run_configuration_name="All Test" run_configuration_type="TestNG" />
