@@ -20,6 +20,8 @@
           <element id="library" level="project" name="commons-io-2" />
           <element id="library" level="project" name="imgscalr-lib-4" />
           <element id="library" level="project" name="gson-2.7" />
+          <element id="library" level="project" name="mapdb-3.0.1" />
+          <element id="library" level="project" name="unifiedpush-java-client" />
         </element>
       </element>
     </root>

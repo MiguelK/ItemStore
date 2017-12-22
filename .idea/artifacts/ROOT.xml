@@ -11,6 +11,7 @@
           <element id="library" level="project" name="jsoup-1.8" />
           <element id="library" level="project" name="commons-io-2" />
           <element id="library" level="project" name="gson-2.7" />
+          <element id="library" level="project" name="unifiedpush-java-client" />
         </element>
       </element>
     </root>
