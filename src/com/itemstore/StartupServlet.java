@@ -6,6 +6,7 @@ import com.itemstore.collector.rss.RSSChannelCollector;
 import com.itemstore.collector.web.TopNewsSweden;
 import com.itemstore.commons.EngineConf;
 import com.itemstore.engine.ItemEngine;
+import com.pusher.ChannelSubscriptionService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -25,7 +26,16 @@ public class StartupServlet extends HttpServlet {
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
 
-        File channelFileSwe = EngineConf.getInstance().getChannelsFile(servletConfig.getServletContext(), "channels_swe.xml");
+
+        LOG.info("Starting PushServer...");
+
+        //FIXME Move to Game API
+        ChannelSubscriptionService.getInstance().addSubscriber("device_token", "match1");
+
+
+
+
+       /* File channelFileSwe = EngineConf.getInstance().getChannelsFile(servletConfig.getServletContext(), "channels_swe.xml");
         List<ItemCollector> channelCollectorsSwe = RSSChannelCollector.parseFile(channelFileSwe);
         ItemEngine.getInstance().addCollectors(channelCollectorsSwe);
 
@@ -39,7 +49,7 @@ public class StartupServlet extends HttpServlet {
 
         ItemEngine.getInstance().addCollector(new TopNewsSwedenCollector()); //FIXME
 
-        ItemEngine.getInstance().start();
+        ItemEngine.getInstance().start(); */
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

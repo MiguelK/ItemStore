@@ -49,6 +49,7 @@
     <orderEntry type="library" name="gson-2.7" level="project" />
     <orderEntry type="library" name="mapdb-3.0.1" level="project" />
     <orderEntry type="library" name="unifiedpush-java-client" level="project" />
+    <orderEntry type="library" name="apns-http2" level="project" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">

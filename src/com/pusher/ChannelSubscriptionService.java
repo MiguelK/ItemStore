@@ -56,9 +56,9 @@ public class ChannelSubscriptionService {
 
         try {
             List<String> deviceTokens = subscribers.getSubscribers(tag); //FIXME ok with read? lock
-            LOG.fine("notifySubscribers deviceTokens=" + deviceTokens);
+            LOG.info("notifySubscribers deviceTokens=" + deviceTokens);
 
-            LOG.fine("All subscribers=" + subscribers);
+            LOG.info("All subscribers=" + subscribers);
 
             if (deviceTokens != null) {
              //   LOG.fine("Start notify " + subscriberStations.size() + " subscribers updatedChannel " + updatedChannel.getChannelId() + " changes");

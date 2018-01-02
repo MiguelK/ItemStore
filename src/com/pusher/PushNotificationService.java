@@ -1,10 +1,14 @@
 package com.pusher;
 
-import org.jboss.aerogear.unifiedpush.JavaSender;
-import org.jboss.aerogear.unifiedpush.SenderClient;
-import org.jboss.aerogear.unifiedpush.message.MessageResponseCallback;
-import org.jboss.aerogear.unifiedpush.message.UnifiedMessage;
+//import org.jboss.aerogear.unifiedpush.JavaSender;
+//import org.jboss.aerogear.unifiedpush.SenderClient;
+//import org.jboss.aerogear.unifiedpush.message.MessageResponseCallback;
+//import org.jboss.aerogear.unifiedpush.message.UnifiedMessage;
 
+import com.clevertap.apns.ApnsClient;
+import com.clevertap.apns.clients.ApnsClientBuilder;
+
+import java.io.FileInputStream;
 import java.util.Arrays;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -59,7 +63,16 @@ public class PushNotificationService {
 
                     LOG.log(Level.FINE, "Sending PushMessage to " + pushMessage);
 
-                    JavaSender defaultJavaSender = new SenderClient.Builder("https://jbossunifiedpush-miguelk.rhcloud.com/ag-push/").build();
+                    FileInputStream cert = new FileInputStream("/path/to/certificate.p12");
+                    final ApnsClient client = new ApnsClientBuilder()
+                            .withProductionGateway()
+                            .inSynchronousMode()
+                            .withCertificate(cert)
+                            .withPassword("")
+                            .withDefaultTopic("<your app's topic>")
+                            .build();
+
+                  /*  JavaSender defaultJavaSender = new SenderClient.Builder("https://jbossunifiedpush-miguelk.rhcloud.com/ag-push/").build();
                     UnifiedMessage unifiedMessage = new UnifiedMessage.Builder()
                             .pushApplicationId("e7c28757-b4a4-4b63-81ae-5602bedbc5c6")
                             .masterSecret("22041a9b-f5a9-40ee-bf03-aadc28809ca3").aliases(Arrays.asList(pushMessage.getDeviceToken())) //Target device
@@ -84,7 +97,7 @@ public class PushNotificationService {
                             LOG.log(Level.SEVERE, "Failed sending push message", throwable);
                             //     Statistics.getInstance().increaseAsync(Statistics.PUSH_MESSAGES_FAILED_COUNTER);
                         }
-                    });
+                    }); */
                 } catch (InterruptedException ex) {
                     LOG.warning("Failed sending");
                     Thread.currentThread().interrupt();
