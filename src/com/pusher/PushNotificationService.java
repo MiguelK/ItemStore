@@ -63,6 +63,7 @@ public class PushNotificationService {
 
                     LOG.log(Level.FINE, "Sending PushMessage to " + pushMessage);
 
+                    //https://github.com/CleverTap/apns-http2
                     FileInputStream cert = new FileInputStream("/path/to/certificate.p12");
                     final ApnsClient client = new ApnsClientBuilder()
                             .withProductionGateway()

@@ -29,7 +29,9 @@ public class StartupServlet extends HttpServlet {
 
         LOG.info("Starting PushServer...");
 
-        //FIXME Move to Game API
+        ChannelSubscriptionService.getInstance().loadSubscribers();
+
+        //FIXME Move to Match API
         ChannelSubscriptionService.getInstance().addSubscriber("device_token", "match1");
 
 

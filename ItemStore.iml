@@ -29,7 +29,7 @@
     <orderEntry type="library" exported="" name="commons-fileupload" level="project" />
     <orderEntry type="library" exported="" name="hsqldb-2.3" level="project" />
     <orderEntry type="library" name="guava-18" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Jersey-2.2" level="project" />
+    <orderEntry type="library" name="Jersey-2.2" level="project" />
     <orderEntry type="module-library" exported="" scope="TEST">
       <library>
         <CLASSES>

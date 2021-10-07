@@ -22,6 +22,7 @@
           <element id="library" level="project" name="gson-2.7" />
           <element id="library" level="project" name="mapdb-3.0.1" />
           <element id="library" level="project" name="unifiedpush-java-client" />
+          <element id="library" level="project" name="apns-http2" />
         </element>
       </element>
     </root>
